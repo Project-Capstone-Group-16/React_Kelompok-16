@@ -1,9 +1,9 @@
-import LandingPage from './pages/landingPage/LandingPage'
+import RouteManagement from './routers/RouteManagement'
 
 function App() {
   return (
     <>
-      <LandingPage />
+      <RouteManagement />
     </>
   )
 }
