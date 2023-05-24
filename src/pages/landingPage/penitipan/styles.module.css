@@ -1,0 +1,25 @@
+.container__penitipan {
+  margin: 40px auto;
+  max-width: 1140px;
+  width: 100%;
+}
+
+.penitipan__card {
+  border-radius: 33px;
+}
+
+.penitipan__cover__image {
+  padding: 24px 24px 0 24px;
+}
+
+@media (max-width: 991px) {
+  .container__penitipan {
+    padding: 0 16px;
+  }
+  .penitipan__cover__image {
+    padding: 0;
+  }
+  .penitipan__card {
+    border-radius: 4px;
+  }
+}
