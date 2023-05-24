@@ -1,6 +1,7 @@
 import React from 'react'
 import styles from './style.module.css'
 import { Button, Form, Input } from 'antd'
+import { Link } from 'react-router-dom'
 
 const LoginPage = () => {
   const onLogin = (values) => {
@@ -51,7 +52,7 @@ const LoginPage = () => {
           </Button>
         </Form>
         <p className={styles['text-register-login-page']}>
-          Belum punya akun? <a href="">Daftar</a>
+          Belum punya akun? <Link to="/register">Daftar</Link>
         </p>
       </div>
     </div>
