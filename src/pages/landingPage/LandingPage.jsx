@@ -1,7 +1,14 @@
 import React from 'react'
+import Unggulan from './unggulan'
+import Penitipan from './penitipan'
 
 const LandingPage = () => {
-  return <div>LandingPage</div>
+  return (
+    <>
+      <Unggulan />
+      <Penitipan />
+    </>
+  )
 }
 
 export default LandingPage
