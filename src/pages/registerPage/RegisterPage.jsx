@@ -4,8 +4,16 @@ import { Button, Checkbox, Form, Input, Space } from 'antd'
 
 const RegisterPage = () => {
   const onRegister = (values) => {
-    alert('Register berhasil!')
-    // console.log(values)
+    const data ={
+      full_name: values.full_name,
+      email: values.email,
+      phone_number: values.phone_number,
+      password: values.password,
+      confirm_password: values.confirm_password,
+      
+    }
+    console.log(data)
+    
   }
   return (
     <>
@@ -16,7 +24,7 @@ const RegisterPage = () => {
             <Form.Item
               className={styles['form-item-register-page']}
               label="Nama Lengkap"
-              name="fullname"
+              name="full_name"
               rules={[
                 {
                   required: true,

@@ -74,7 +74,7 @@ const LoginPage = () => {
           </Button>
         </Form>
         <p className={styles['text-register-login-page']}>
-          Belum punya akun? <Link to="/register">Daftar</Link>
+          Belum punya akun? <Link to="/register/admin">Daftar</Link>
         </p>
       </div>
     </div>
