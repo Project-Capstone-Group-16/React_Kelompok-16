@@ -1,7 +1,12 @@
 import React from 'react'
+import FirstSection from './sections/first-section/firstSection'
 
 const LandingPage = () => {
-  return <div>LandingPage</div>
+  return (
+    <div>
+      <FirstSection />
+    </div>
+  )
 }
 
 export default LandingPage
