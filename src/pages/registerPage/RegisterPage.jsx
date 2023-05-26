@@ -1,23 +1,38 @@
-import React from 'react'
+import { Button, Checkbox, Form, Input, message } from 'antd'
+import React, { useState } from 'react'
+import { register } from '../../services/auth'
 import styles from './style.module.css'
-import { Button, Checkbox, Form, Input, Space } from 'antd'
+import { useNavigate } from 'react-router'
+import LoadingComponent from '../../components/loadingComponent'
 
 const RegisterPage = () => {
+  const navigate = useNavigate()
+  const [isLoading, setIsLoading] = useState(false)
   const onRegister = (values) => {
-    const data ={
+    const data = {
       full_name: values.full_name,
       email: values.email,
       phone_number: values.phone_number,
       password: values.password,
       confirm_password: values.confirm_password,
-      
     }
+    setIsLoading(true)
+    register(data, (status, res) => {
+      if (status) {
+        setIsLoading(false)
+        message.success(`${res.message}`)
+        navigate('/login/admin')
+      } else {
+        setIsLoading(false)
+        message.error(`${res.response.data.error}`)
+      }
+    })
     console.log(data)
-    
   }
   return (
     <>
       <div className={styles['container-register-page']}>
+        {isLoading && <LoadingComponent />}
         <div className={styles['form-register-page']}>
           <h1 className={styles['title-register-page']}>Inventron</h1>
           <Form layout="vertical" onFinish={onRegister}>

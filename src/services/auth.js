@@ -3,10 +3,10 @@ import jwt_decode from 'jwt-decode'
 
 export const login = (data, callback) => {
   axios
-    .post('https://fakestoreapi.com/auth/login', data)
+    .post('http://13.55.207.170:8080/login/admin', data) //port menyesuaikan server API backend
     .then((res) => {
       console.log(res)
-      callback(true, res.data.token)
+      callback(true, res.data.data.token)
     })
     .catch((error) => {
       console.log(error)
@@ -16,10 +16,10 @@ export const login = (data, callback) => {
 
 export const register = (data, callback) => {
   axios
-    .post('https://fakestoreapi.com/users', data)
+    .post('http://13.55.207.170:8080/register/admin', data) //port menyesuaikan server API backend
     .then((res) => {
       console.log(res)
-      callback(true, res)
+      callback(true, res.data)
     })
     .catch((error) => {
       console.log(error)

@@ -10,7 +10,7 @@ const LoginPage = () => {
   const [isLoading, setIsLoading] = useState(false)
   const onLogin = (values) => {
     const data = {
-      username: values.username, //nanti ganti ke email
+      email: values.email, 
       password: values.password,
     }
     setIsLoading(true)
@@ -20,7 +20,7 @@ const LoginPage = () => {
         message.success('Login success!')
         localStorage.setItem('token', res)
         console.log(res)
-        navigate('/register/admin')
+        navigate('/admin/warehouse')
       } else {
         setIsLoading(false)
         message.error(`Login failed! ${res.response.data}`)
@@ -37,13 +37,13 @@ const LoginPage = () => {
           <Form.Item
             /* nanti ganti ke email*/
             className={styles['form-item-login-page']}
-            label="Username"
-            name="username"
+            label="Email"
+            name="email"
             rules={[
-              // {
-              //   type: 'email',
-              //   message: 'Please input valid email!',
-              // },
+              {
+                type: 'email',
+                message: 'Please input valid email!',
+              },
               {
                 required: true,
                 message: 'Please input your email!',
