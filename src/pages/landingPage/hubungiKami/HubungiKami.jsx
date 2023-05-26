@@ -13,20 +13,20 @@ function HubungiKami() {
 
   return (
     <>
-      <Row style={{ textAlign: 'center' }}>
+      <Row justify="center" style={{ textAlign: 'center' }}>
         <Space direction="vertical">
-          <Title level={3} style={{ fontWeight: 700 }}>
+          <Title level={3} className={styles['heading-3']}>
             Hubungi Kami
           </Title>
-          <p style={{ fontSize: 18, fontWeight: 500, color: '#5F5A5A' }}>
+          <p className={styles['text-hubungi-kami']}>
             Jika terdapat pertanyaan yang ingin ditanyakan, jangan sungkan untuk bertanya kepada Kami. Anda dapat
             menguhubungi Kami dengan beberapa kontak yang dapat Anda hubungi.
           </p>
         </Space>
       </Row>
 
-      <Row justify="center" style={{ marginTop: 64 }}>
-        <Space size={192}>
+      <Row justify="center">
+        <Space size={192} className={styles['sosial-media-icon']}>
           <img src={InstagramIcon} alt="ikon media sosial" />
           <img src={WhatsappIcon} alt="ikon media sosial" />
           <img src={FacebookIcon} alt="ikon media sosial" />

@@ -23,7 +23,7 @@ function Unduhan() {
             Mulai Menyimpan Barang yang Aman dan Murah dengan Inventron!
           </Title>
 
-          <Space>
+          <Space size={24}>
             <img src={UnduhanImage1} alt="" />
             <img src={UnduhanImage2} alt="" />
             <img src={UnduhanImage3} alt="" />

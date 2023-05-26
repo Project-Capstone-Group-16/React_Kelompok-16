@@ -7,9 +7,9 @@
   margin-bottom: 91px;
 }
 
-.ant-title .title-unduhan {
-  font-weight: 700;
-  margin-bottom: 72px;
+.title-unduhan {
+  font-weight: 700 !important;
+  margin-bottom: 72px !important;
 }
 
 .link-app-download {
