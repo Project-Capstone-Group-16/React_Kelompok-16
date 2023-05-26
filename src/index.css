@@ -3,3 +3,11 @@
   margin: 0;
   padding: 0;
 }
+
+.ant-card:not(.ant-card-bordered) {
+  box-shadow: none;
+}
+
+.ant-card .ant-card-meta-detail > div:not(:last-child) {
+  margin-bottom: 0;
+}
