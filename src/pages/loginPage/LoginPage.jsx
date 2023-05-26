@@ -1,27 +1,49 @@
-import React from 'react'
+import { Button, Form, Input, message } from 'antd'
+import React, { useState } from 'react'
+import { Link, useNavigate } from 'react-router-dom'
+import { login } from '../../services/auth'
 import styles from './style.module.css'
-import { Button, Form, Input } from 'antd'
-import { Link } from 'react-router-dom'
+import LoadingComponent from '../../components/loadingComponent'
 
 const LoginPage = () => {
+  const navigate = useNavigate()
+  const [isLoading, setIsLoading] = useState(false)
   const onLogin = (values) => {
-    alert('Login Success!')
-    // console.log(values)
+    const data = {
+      username: values.username, //nanti ganti ke email
+      password: values.password,
+    }
+    setIsLoading(true)
+    login(data, (status, res) => {
+      if (status) {
+        setIsLoading(false)
+        message.success('Login success!')
+        localStorage.setItem('token', res)
+        console.log(res)
+        navigate('/register/admin')
+      } else {
+        setIsLoading(false)
+        message.error(`Login failed! ${res.response.data}`)
+        // console.log(res.response.data)
+      }
+    })
   }
   return (
     <div className={styles['container-login-page']}>
+      {isLoading && <LoadingComponent />}
       <div className={styles['form-login-page']}>
         <h1 className={styles['title-login-page']}>Inventron</h1>
         <Form layout="vertical" onFinish={onLogin}>
           <Form.Item
+            /* nanti ganti ke email*/
             className={styles['form-item-login-page']}
-            label="Email"
-            name="email"
+            label="Username"
+            name="username"
             rules={[
-              {
-                type: 'email',
-                message: 'Please input valid email!',
-              },
+              // {
+              //   type: 'email',
+              //   message: 'Please input valid email!',
+              // },
               {
                 required: true,
                 message: 'Please input your email!',
