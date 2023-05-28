@@ -1,0 +1,77 @@
+.container-login-page {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-image: url("../../assets/images/login-register/bg-login-register.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    color: white;
+    position: relative;
+}
+
+.form-login-page {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.title-login-page {
+    width: 242px;
+    height: 72px;
+    font-size: 48px;
+    font-weight: 700;
+    line-height: 72px;
+    margin-bottom: 30px;
+}
+
+.form-item-login-page {
+    margin-bottom: 30px;
+}
+
+.form-item-login-page label {
+    color: white !important;
+}
+
+.input-login-page {
+    width: 400px;
+    height: 40px;
+}
+
+.button-login-page {
+    width: 170px;
+    height: 41px;
+    border-radius: 15px;
+    background-color: #B3B3B3;
+    font-size: 20px;
+    font-weight: 500;
+    color: black;
+    transition: all 0.3s ease-in-out;
+    border: none;
+    display: flex;
+    justify-content: center;
+    margin: 38px auto 80px;
+}
+
+.button-login-page:hover {
+    filter: brightness(120%);
+    color: black !important;
+    cursor: pointer;
+}
+
+.text-register-login-page {
+    width: 100%;
+    padding: 10px;
+    border-top: 3px solid #A2A3A6;
+    font-size: 18px;
+    line-height: 24px;
+    text-align: center;
+
+}
+
+.text-register-login-page a {
+    color: white;
+    font-weight: bold;
+    text-decoration: none;
+}

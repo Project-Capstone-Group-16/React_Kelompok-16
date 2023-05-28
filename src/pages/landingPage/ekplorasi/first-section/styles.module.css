@@ -1,0 +1,159 @@
+.first-section {
+  width: 100%;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans',
+    'Helvetica Neue', sans-serif;
+}
+
+.intro {
+  background-image: url('../../../../assets/images/explorasi/image-background.jpg');
+  background-size: cover;
+  background-position: bottom;
+  width: 100%;
+  min-height: calc(100vh - 80px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 100px 30px;
+  margin-bottom: 30px;
+}
+
+.intro-content {
+  width: 100%;
+  max-width: 1200px;
+  background-color: rgba(255, 255, 255, 0.4);
+  border-radius: 10px;
+  text-align: center;
+  padding-top: 20px;
+  padding-bottom: 60px;
+}
+
+.intro-content h1 {
+  font-size: 48px;
+  color: #292d32;
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+
+.intro-content h4 {
+  color: #292d32;
+  line-height: 48px;
+  font-size: 24px;
+  font-weight: 500;
+}
+
+.intro-content h3 {
+  color: #292d32;
+  line-height: 48px;
+  font-size: 24px;
+  font-weight: 600;
+}
+
+.intro button {
+  background-color: #599ac2;
+  border-radius: 15px;
+  border: none;
+  outline: none;
+  color: white;
+  font-weight: 400;
+  font-size: 18px;
+  margin-top: 60px;
+  height: 52px;
+  width: 170px;
+}
+
+.list-container {
+  width: 100%;
+  max-width: 1200px;
+  box-sizing: border-box;
+  padding: 0px 30px;
+  margin: auto;
+  margin-bottom: 30px;
+}
+
+.list-container h1 {
+  text-align: center;
+  color: #292d32;
+  font-size: 24px;
+  font-weight: 700;
+  margin-bottom: 30px;
+}
+
+.first-cards,
+.second-cards {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  column-gap: 30px;
+}
+
+.first-card {
+  border: 1px solid #a2a3a6;
+  border-radius: 20px;
+  padding: 20px;
+  box-sizing: border-box;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+.second-card {
+  border: 1px solid #a2a3a6;
+  border-radius: 20px;
+  padding: 25px 20px;
+  box-sizing: border-box;
+  box-shadow: -1px 2px 3px 2px rgba(0, 0, 0, 0.3);
+}
+
+.first-card img,
+.second-card img {
+  width: 100%;
+  aspect-ratio: 1;
+  object-fit: cover;
+  border-radius: 20px;
+}
+
+.first-card p {
+  margin-top: 30px;
+  color: #2f2f2f;
+  font-size: 18px;
+  font-weight: 600;
+  text-align: center;
+  white-space: pre-wrap;
+}
+
+.second-card h4 {
+  margin-top: 20px;
+  color: #2f2f2f;
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.second-card p {
+  color: #616161;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+@media (max-width: 992px) {
+
+  .first-cards,
+  .second-cards {
+    grid-template-columns: repeat(3, 1fr);
+    row-gap: 30px;
+  }
+
+  .list-container {
+    padding: 0px 50px;
+  }
+}
+
+@media (max-width: 768px) {
+
+  .first-cards,
+  .second-cards {
+    grid-template-columns: repeat(2, 1fr);
+    row-gap: 50px;
+    column-gap: 50px;
+  }
+
+  .first-card p {
+    margin-top: 20px;
+  }
+}
