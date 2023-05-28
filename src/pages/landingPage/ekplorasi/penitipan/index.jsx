@@ -1,9 +1,6 @@
-import React from 'react'
-
 import { Card, Col, Row, Typography } from 'antd'
-
+import React from 'react'
 import { PENITIPAN } from './constant'
-
 import styles from './styles.module.css'
 
 const Penitipan = () => {
@@ -19,7 +16,6 @@ const Penitipan = () => {
               <div className={styles['penitipan__cover__image']}>
                 <img alt="example" src={pen.image_src} />
               </div>
-
               <div className={styles['penitipan__card__space']}>
                 <Typography.Title ellipsis={{ rows: 1 }} className={styles['space__title']}>
                   {pen.title}

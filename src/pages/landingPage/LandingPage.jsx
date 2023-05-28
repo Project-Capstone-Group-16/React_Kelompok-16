@@ -1,22 +1,38 @@
 import React from 'react'
-import FirstSection from './sections/first-section/firstSection'
-import Unggulan from './unggulan'
-import Penitipan from './penitipan'
-import TentangKami from './tentangKami/tentangKami'
-import HubungiKami from './hubungiKami/HubungiKami'
-import Unduhan from './unduhan/unduhan'
+import { logo } from '../../assets/svg'
+import { menu } from './constants'
+import FirstSection from './ekplorasi/first-section'
+import Penitipan from './ekplorasi/penitipan'
+import Unggulan from './ekplorasi/unggulan'
+import HubungiKami from './hubungiKami'
+import styles from './styles.module.css'
+import TentangKami from './tentangKami'
+import Unduhan from './unduhan'
 
 const LandingPage = () => {
   return (
     <>
+      <div className={styles['nav-bar']}>
+        <div className={styles['nav-bar-content']}>
+          <div className={styles['logo-container']}>
+            <img src={logo} />
+            <span>Inventron</span>
+          </div>
+          <div className={styles['menu']}>
+            {menu.map((item) => (
+              <a key={item.link} href={item.link}>
+                {item.label}
+              </a>
+            ))}
+          </div>
+        </div>
+      </div>
       <FirstSection />
       <Unggulan />
       <Penitipan />
       <TentangKami />
-      <section>
-        <HubungiKami />
-        <Unduhan />
-      </section>
+      <HubungiKami />
+      <Unduhan />
     </>
   )
 }

@@ -1,26 +1,10 @@
 import React from 'react'
+import { firstList, secondList } from './constants'
 import styles from './styles.module.css'
-import { logo } from '../../../../assets/svg'
-import { firstList, menu, secondList } from './constants'
 const FirstSection = () => {
   return (
-    <div className={styles['first-section']}>
-      <div className={styles['nav-bar']}>
-        <div className={styles['nav-bar-content']}>
-          <div className={styles['logo-container']}>
-            <img src={logo} />
-            <span>Inventron</span>
-          </div>
-          <div className={styles['menu']}>
-            {menu.map((item) => (
-              <a key={item.link} href={item.link}>
-                {item.label}
-              </a>
-            ))}
-          </div>
-        </div>
-      </div>
-      <div className={styles['intro']} id="eksplorasi">
+    <div className={styles['first-section']} id="eksplorasi">
+      <div className={styles['intro']}>
         <div className={styles['intro-content']}>
           <h1>Inventron</h1>
           <h4>Aplikasi Penyimpanan Barang yang Aman dan Terpercaya</h4>

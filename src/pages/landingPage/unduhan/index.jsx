@@ -1,13 +1,15 @@
+import { Row, Space, Typography } from 'antd'
 import React from 'react'
-import { Row, Space, Typography, Button } from 'antd'
 import { Link } from 'react-router-dom'
 
-import UnduhanImage1 from '../../../assets/images/unduhan/unduhan1.png'
-import UnduhanImage2 from '../../../assets/images/unduhan/unduhan2.png'
-import UnduhanImage3 from '../../../assets/images/unduhan/unduhan3.png'
-import UnduhanImage4 from '../../../assets/images/unduhan/unduhan4.png'
-import GooglePlayImage from '../../../assets/images/unduhan/googleplay.png'
-import AppStoreImage from '../../../assets/images/unduhan/appStore.png'
+import {
+  AppStoreImage,
+  GooglePlayImage,
+  UnduhanImage1,
+  UnduhanImage2,
+  UnduhanImage3,
+  UnduhanImage4,
+} from '../../../assets/images/unduhan'
 
 import styles from './styles.module.css'
 
@@ -16,7 +18,7 @@ function Unduhan() {
 
   return (
     <>
-      <section>
+      <section id="unduh">
         <hr className={styles['dividen']} />
         <Row justify="center" className={styles['content-unduhan']}>
           <Title level={3} className={styles['title-unduhan']}>

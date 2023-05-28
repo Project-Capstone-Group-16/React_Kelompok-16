@@ -1,27 +1,24 @@
-import image1 from '../../../assets/image1.jpg'
-import image2 from '../../../assets/image2.jpg'
-import image3 from '../../../assets/image3.jpg'
-import image4 from '../../../assets/image4.jpg'
+import { loker1, loker2, loker3, loker4 } from '../../../assets/images/tentangKami'
 
 export const inventron = [
   {
     id: 1,
     label: 'Penyimpanan Kecil',
-    image: image1,
+    image: loker1,
   },
   {
     id: 2,
     label: 'Penyimpanan Sedang',
-    image: image2,
+    image: loker2,
   },
   {
     id: 3,
     label: 'Penyimpanan Besar',
-    image: image3,
+    image: loker3,
   },
   {
     id: 4,
     label: 'Kotak',
-    image: image4,
+    image: loker4,
   },
 ]

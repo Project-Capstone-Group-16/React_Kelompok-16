@@ -1,11 +1,9 @@
+import { Row, Space, Typography } from 'antd'
 import React from 'react'
-import { Row, Col, Space, Typography } from 'antd'
-
-import InstagramIcon from '../../../assets/icons/media-sosial/IG.svg'
-import WhatsappIcon from '../../../assets/icons/media-sosial/Wa.svg'
 import FacebookIcon from '../../../assets/icons/media-sosial/FB.svg'
+import InstagramIcon from '../../../assets/icons/media-sosial/IG.svg'
 import LineIcon from '../../../assets/icons/media-sosial/Line.svg'
-
+import WhatsappIcon from '../../../assets/icons/media-sosial/Wa.svg'
 import styles from './styles.module.css'
 
 function HubungiKami() {
@@ -13,7 +11,7 @@ function HubungiKami() {
 
   return (
     <>
-      <Row justify="center" style={{ textAlign: 'center' }}>
+      <Row className={styles['hubungi-kami']} id="kontak" justify="center" style={{ textAlign: 'center' }}>
         <Space direction="vertical">
           <Title level={3} className={styles['heading-3']}>
             Hubungi Kami

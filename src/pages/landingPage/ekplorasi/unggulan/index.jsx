@@ -1,9 +1,6 @@
-import React from 'react'
-
 import { Card, Col, Row, Typography } from 'antd'
-
+import React from 'react'
 import { UNGGULAN_1 } from './constant'
-
 import styles from './styles.module.css'
 
 const Unggulan = () => {
@@ -15,7 +12,7 @@ const Unggulan = () => {
       <Row gutter={[24, 24]} align="middle">
         {UNGGULAN_1.map((ug) => (
           <Col xs={12} sm={8} lg={6} key={ug.id}>
-            <Card bordered={false} bodyStyle={{ padding: 0 }}>
+            <Card className={styles['unggulan__card']} bordered={false} bodyStyle={{ padding: 0 }}>
               <Row style={{ flexFlow: 'column' }} justify="center" align="middle">
                 <div className={styles['unggulan__image']}>
                   <img src={ug.image_src} alt="unggulan image" />
