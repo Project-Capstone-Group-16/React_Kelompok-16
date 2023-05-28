@@ -1,25 +1,63 @@
 .container__penitipan {
-  margin: 40px auto;
-  max-width: 1140px;
+  margin: 0 auto 70px;
+  max-width: 1200px;
   width: 100%;
 }
 
 .penitipan__card {
+  overflow: hidden;
   border-radius: 33px;
 }
 
 .penitipan__cover__image {
+  width: 100%;
+  height: 170px;
+  border-radius: 20px !important;
   padding: 24px 24px 0 24px;
+}
+
+.penitipan__cover__image > img {
+  width: 100%;
+  height: 100%;
+  border-radius: inherit;
+}
+
+.penitipan__card__space {
+  padding: 24px;
+}
+
+.penitipan__card__space > .space__title {
+  font-size: 18px;
+  font-weight: 700;
+  color: #494949;
+  margin-bottom: 0;
+}
+
+.penitipan__card__space > .space__subtitle {
+  font-size: 12px;
+  font-weight: 600;
+  color: #b3b3b3;
 }
 
 @media (max-width: 991px) {
   .container__penitipan {
     padding: 0 16px;
   }
-  .penitipan__cover__image {
-    padding: 0;
-  }
   .penitipan__card {
     border-radius: 4px;
+    padding: 0 !important;
+  }
+  .penitipan__cover__image {
+    border-radius: 0 !important;
+    padding: 0;
+  }
+  .penitipan__card__space {
+    padding: 12px;
+  }
+  .penitipan__card__space > .space__title {
+    font-size: 12px;
+  }
+  .penitipan__card__space > .space__subtitle {
+    font-size: 10px;
   }
 }
