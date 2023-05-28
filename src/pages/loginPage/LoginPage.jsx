@@ -1,16 +1,16 @@
 import { Button, Form, Input, message } from 'antd'
 import React, { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
+import LoadingComponent from '../../components/loadingComponent'
 import { login } from '../../services/auth'
 import styles from './style.module.css'
-import LoadingComponent from '../../components/loadingComponent'
 
 const LoginPage = () => {
   const navigate = useNavigate()
   const [isLoading, setIsLoading] = useState(false)
   const onLogin = (values) => {
     const data = {
-      email: values.email, 
+      email: values.email,
       password: values.password,
     }
     setIsLoading(true)
@@ -42,11 +42,11 @@ const LoginPage = () => {
             rules={[
               {
                 type: 'email',
-                message: 'Please input valid email!',
+                message: 'Email tidak valid!',
               },
               {
                 required: true,
-                message: 'Please input your email!',
+                message: 'Masukan email Anda!',
               },
             ]}
           >
@@ -59,11 +59,11 @@ const LoginPage = () => {
             rules={[
               {
                 required: true,
-                message: 'Please input your password!',
+                message: 'Masukan password Anda!',
               },
               {
                 min: 6,
-                message: 'Password must be at least 6 characters!',
+                message: 'Password minimal 6 karakter!',
               },
             ]}
           >
