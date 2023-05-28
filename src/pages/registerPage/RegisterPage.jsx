@@ -1,9 +1,10 @@
-import { Button, Checkbox, Form, Input, message } from 'antd'
+import { Button, Form, Input, message } from 'antd'
 import React, { useState } from 'react'
-import { register } from '../../services/auth'
-import styles from './style.module.css'
 import { useNavigate } from 'react-router'
 import LoadingComponent from '../../components/loadingComponent'
+import { register } from '../../services/auth'
+import styles from './style.module.css'
+import { Link } from 'react-router-dom'
 
 const RegisterPage = () => {
   const navigate = useNavigate()
@@ -43,7 +44,7 @@ const RegisterPage = () => {
               rules={[
                 {
                   required: true,
-                  message: 'Silahkan masukkan nama lengkap anda!',
+                  message: 'Silahkan masukkan nama lengkap Anda!',
                 },
               ]}
             >
@@ -56,7 +57,7 @@ const RegisterPage = () => {
               rules={[
                 {
                   required: true,
-                  message: 'Silahkan masukkan email anda!',
+                  message: 'Silahkan masukkan email Anda!',
                 },
                 {
                   type: 'email',
@@ -73,7 +74,7 @@ const RegisterPage = () => {
               rules={[
                 {
                   required: true,
-                  message: 'Silahkan masukkan nomor telpon anda!',
+                  message: 'Silahkan masukkan nomor telpon Anda!',
                 },
                 {
                   pattern: new RegExp(/^[0-9]+$/),
@@ -90,7 +91,7 @@ const RegisterPage = () => {
               rules={[
                 {
                   required: true,
-                  message: 'Silahkan masukkan password anda!',
+                  message: 'Silahkan masukkan password Anda!',
                 },
                 {
                   min: 6,
@@ -107,7 +108,7 @@ const RegisterPage = () => {
               rules={[
                 {
                   required: true,
-                  message: 'Silahkan masukkan konfirmasi password anda!',
+                  message: 'Silahkan masukkan konfirmasi password Anda!',
                 },
                 ({ getFieldValue }) => ({
                   validator(_, value) {
@@ -121,13 +122,13 @@ const RegisterPage = () => {
             >
               <Input.Password className={styles['input-register-page']} />
             </Form.Item>
-            <div>
-              <Checkbox className={styles['checkbox-register-page']}>Berlangganan info dan promo menarik</Checkbox>
-            </div>
             <Button className={styles['button-register-page']} htmlType="submit">
               Daftar
             </Button>
-            <div className={styles['line-register-page']}></div>
+            <div className={styles['text-register-page']}>
+              Sudah memiliki akun?
+              <Link to="/login/admin"> Masuk</Link>
+            </div>
           </Form>
         </div>
       </div>
