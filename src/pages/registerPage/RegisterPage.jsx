@@ -127,7 +127,7 @@ const RegisterPage = () => {
             </Button>
             <div className={styles['text-register-page']}>
               Sudah memiliki akun?
-              <Link to="/login/admin"> Masuk</Link>
+              <Link to="/login"> Masuk</Link>
             </div>
           </Form>
         </div>
