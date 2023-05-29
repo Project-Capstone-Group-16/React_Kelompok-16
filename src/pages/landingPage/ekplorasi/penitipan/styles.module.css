@@ -18,14 +18,13 @@
 
 .penitipan__cover__image {
   width: 100%;
-  height: 200px;
   border-radius: 20px;
   padding: 24px 24px 0 24px;
 }
 
-.penitipan__cover__image > img {
+.penitipan__cover__image>img {
   width: 100%;
-  height: 100%;
+  height: 220px;
   border-radius: inherit;
 }
 
@@ -33,14 +32,14 @@
   padding: 24px;
 }
 
-.penitipan__card__space > .space__title {
+.penitipan__card__space>.space__title {
   font-size: 18px;
   font-weight: 700;
   color: #494949;
   margin-bottom: 0;
 }
 
-.penitipan__card__space > .space__subtitle {
+.penitipan__card__space>.space__subtitle {
   font-size: 12px;
   font-weight: 600;
   color: #b3b3b3;
@@ -70,11 +69,11 @@
     padding: 12px;
   }
 
-  .penitipan__card__space > .space__title {
+  .penitipan__card__space>.space__title {
     font-size: 12px;
   }
 
-  .penitipan__card__space > .space__subtitle {
+  .penitipan__card__space>.space__subtitle {
     font-size: 10px;
   }
 }
