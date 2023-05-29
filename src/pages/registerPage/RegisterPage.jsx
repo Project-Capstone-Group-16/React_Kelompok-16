@@ -22,7 +22,7 @@ const RegisterPage = () => {
       if (status) {
         setIsLoading(false)
         message.success(`${res.message}`)
-        navigate('/login/admin')
+        navigate('/login')
       } else {
         setIsLoading(false)
         message.error(`${res.response.data.error}`)

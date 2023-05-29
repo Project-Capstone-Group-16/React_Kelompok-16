@@ -1,5 +1,7 @@
 .hubungi-kami {
   padding-top: 90px;
+  max-width: 1200px;
+  margin: auto;
 }
 
 .heading-3 {
@@ -13,7 +15,7 @@
   line-height: 27px;
   color: #5f5a5a;
   text-align: center;
-  max-width: 765px;
+  max-width: 875px;
 }
 
 .sosial-media-icon {
