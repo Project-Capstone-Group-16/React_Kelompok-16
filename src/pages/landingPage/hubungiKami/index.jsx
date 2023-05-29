@@ -21,15 +21,14 @@ function HubungiKami() {
             menguhubungi Kami dengan beberapa kontak yang dapat Anda hubungi.
           </p>
         </Space>
-      </Row>
-
-      <Row justify="center">
-        <Space size={192} className={styles['sosial-media-icon']}>
-          <img src={InstagramIcon} alt="ikon media sosial" />
-          <img src={WhatsappIcon} alt="ikon media sosial" />
-          <img src={FacebookIcon} alt="ikon media sosial" />
-          <img src={LineIcon} alt="ikon media sosial" />
-        </Space>
+        <Row justify="center">
+          <Space size={192} className={styles['sosial-media-icon']}>
+            <img src={FacebookIcon} alt="ikon media sosial" />
+            <img src={InstagramIcon} alt="ikon media sosial" />
+            <img src={WhatsappIcon} alt="ikon media sosial" />
+            <img src={LineIcon} alt="ikon media sosial" />
+          </Space>
+        </Row>
       </Row>
     </>
   )

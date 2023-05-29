@@ -3,8 +3,8 @@
 }
 
 .content-unduhan {
-  margin-top: 80px;
-  margin-bottom: 91px;
+  max-width: 1200px;
+  margin: 60px auto;
 }
 
 .title-unduhan {
@@ -13,6 +13,6 @@
 }
 
 .link-app-download {
-  margin-top: 88px;
-  margin-bottom: 81px;
+  max-width: 1200px;
+  margin: 60px auto;
 }
