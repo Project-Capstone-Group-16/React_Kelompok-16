@@ -4,6 +4,13 @@
   width: 100%;
 }
 
+.penitipan__outer__title {
+  margin-bottom: 45px !important;
+  font-weight: 700 !important;
+  color: #292d32 !important;
+  text-align: center;
+}
+
 .penitipan__card {
   overflow: hidden;
   border-radius: 33px;
@@ -11,15 +18,14 @@
 
 .penitipan__cover__image {
   width: 100%;
-  height: 250px;
-  border-radius: 20px !important;
+  border-radius: 20px;
   padding: 24px 24px 0 24px;
 }
 
 .penitipan__cover__image>img {
   width: 100%;
-  height: 100%;
-  border-radius: 20px;
+  height: 220px;
+  border-radius: inherit;
 }
 
 .penitipan__card__space {
@@ -44,14 +50,19 @@
     padding: 0 16px;
   }
 
+  .penitipan__outer__title {
+    font-size: 16px !important;
+  }
+
   .penitipan__card {
     border-radius: 4px;
     padding: 0 !important;
   }
 
   .penitipan__cover__image {
-    border-radius: 0 !important;
+    border-radius: 0;
     padding: 0;
+    height: 110px;
   }
 
   .penitipan__card__space {
