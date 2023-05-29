@@ -6,7 +6,7 @@ import styles from './styles.module.css'
 const Unggulan = () => {
   return (
     <section className={styles['container__unggulan']}>
-      <Typography.Title level={3} style={{ textAlign: 'center', marginBottom: 45 }}>
+      <Typography.Title level={3} className={styles['unggulan__outer__title']}>
         Fitur Unggulan Inventron
       </Typography.Title>
       <Row gutter={[24, 24]} align="middle">

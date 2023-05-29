@@ -6,7 +6,7 @@ import styles from './styles.module.css'
 const Penitipan = () => {
   return (
     <section className={styles['container__penitipan']}>
-      <Typography.Title level={3} style={{ textAlign: 'center', marginBottom: 45 }}>
+      <Typography.Title level={3} className={styles['penitipan__outer__title']}>
         Rekomendasi Penitipan
       </Typography.Title>
       <Row gutter={[24, 24]} align="middle">
