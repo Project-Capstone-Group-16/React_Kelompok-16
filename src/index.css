@@ -6,6 +6,7 @@
   padding: 0;
   font-family: 'Poppins', sans-serif;
   scroll-behavior: smooth;
+  background-color: #eef9f7;
 }
 
 .ant-card:not(.ant-card-bordered) {

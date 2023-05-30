@@ -14,7 +14,6 @@
   flex-direction: column;
   align-items: center;
   padding: 100px 30px;
-  margin-bottom: 30px;
 }
 
 .intro-content {
@@ -32,6 +31,7 @@
   color: #292d32;
   font-weight: 700;
   margin-bottom: 10px;
+  background-color: transparent;
 }
 
 .intro-content h4 {
@@ -39,6 +39,7 @@
   line-height: 48px;
   font-size: 24px;
   font-weight: 500;
+  background-color: transparent;
 }
 
 .intro-content h3 {
@@ -46,6 +47,15 @@
   line-height: 48px;
   font-size: 24px;
   font-weight: 600;
+  background-color: transparent;
+}
+
+.intro a {
+  text-decoration: none;
+  color: #292d32;
+  font-weight: 600;
+  font-size: 18px;
+  background-color: transparent;
 }
 
 .intro button {
@@ -59,6 +69,12 @@
   margin-top: 60px;
   height: 52px;
   width: 170px;
+  transition: all 0.3s ease-in-out;
+}
+
+.intro button:hover {
+  filter: brightness(120%);
+  cursor: pointer;
 }
 
 .list-container {
@@ -78,6 +94,12 @@
   margin-bottom: 30px;
 }
 
+.list-container>.mengapa {
+  padding-top: 75px;
+
+}
+
+
 .first-cards,
 .second-cards {
   display: grid;
@@ -91,6 +113,7 @@
   padding: 20px;
   box-sizing: border-box;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  background-color: #fff;
 }
 
 .second-card {
@@ -99,6 +122,7 @@
   padding: 25px 20px;
   box-sizing: border-box;
   box-shadow: -1px 2px 3px 2px rgba(0, 0, 0, 0.3);
+  background-color: #fff;
 }
 
 .first-card img,
@@ -116,6 +140,8 @@
   font-weight: 600;
   text-align: center;
   white-space: pre-wrap;
+  background-color: transparent;
+
 }
 
 .second-card h4 {
@@ -123,12 +149,15 @@
   color: #2f2f2f;
   font-size: 18px;
   font-weight: 600;
+  background-color: transparent;
+
 }
 
 .second-card p {
   color: #616161;
   font-size: 14px;
   font-weight: 600;
+  background-color: transparent;
 }
 
 @media (max-width: 992px) {

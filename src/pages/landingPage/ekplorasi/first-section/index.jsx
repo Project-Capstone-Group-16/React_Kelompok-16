@@ -10,10 +10,14 @@ const FirstSection = () => {
           <h4>Aplikasi Penyimpanan Barang yang Aman dan Terpercaya</h4>
           <h3>Simpan dan Titipkan Barang Anda di Sini</h3>
         </div>
-        <button>Mulai</button>
+        <a href="#mengapa">
+          <button>Mulai</button>
+        </a>
       </div>
       <div className={styles['list-container']}>
-        <h1>Mengapa Memilih Inventron?</h1>
+        <h1 className={styles['mengapa']} id="mengapa">
+          Mengapa Memilih Inventron?
+        </h1>
         <div className={styles['first-cards']}>
           {firstList.map((item, idx) => (
             <div key={idx} className={styles['first-card']}>
