@@ -5,10 +5,12 @@ import LoadingComponent from '../../components/loadingComponent'
 import { register } from '../../services/auth'
 import styles from './style.module.css'
 import { Link } from 'react-router-dom'
+import { useRegister } from './hooks/useRegister'
 
 const RegisterPage = () => {
   const navigate = useNavigate()
-  const [isLoading, setIsLoading] = useState(false)
+  // const [isLoading, setIsLoading] = useState(false)
+  const [isLoading, register] = useRegister()
   const onRegister = (values) => {
     const data = {
       full_name: values.full_name,
@@ -17,17 +19,22 @@ const RegisterPage = () => {
       password: values.password,
       confirm_password: values.confirm_password,
     }
-    setIsLoading(true)
-    register(data, (status, res) => {
-      if (status) {
-        setIsLoading(false)
-        message.success(`${res.message}`)
-        navigate('/login/admin')
-      } else {
-        setIsLoading(false)
-        message.error(`${res.response.data.error}`)
-      }
+    register(data, () => {
+      message.success('Register success!')
+      navigate('/login/admin')
     })
+
+    // setIsLoading(true)
+    // register(data, (status, res) => {
+    //   if (status) {
+    //     setIsLoading(false)
+    //     message.success(`${res.message}`)
+    //     navigate('/login/admin')
+    //   } else {
+    //     setIsLoading(false)
+    //     message.error(`${res.response.data.error}`)
+    //   }
+    // })
     console.log(data)
   }
   return (
