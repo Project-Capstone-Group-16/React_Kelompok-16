@@ -1,4 +1,4 @@
-import { useCallback } from 'react'
+import { useCallback, useState } from 'react'
 import { api } from '../../../api'
 
 export const useRegister = () => {
@@ -15,5 +15,5 @@ export const useRegister = () => {
       setIsLoading(false)
     }
   }, [])
-  return { isLoading, register }
+  return [isLoading, register]
 }

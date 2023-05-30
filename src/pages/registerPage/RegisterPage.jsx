@@ -1,15 +1,13 @@
 import { Button, Form, Input, message } from 'antd'
-import React, { useState } from 'react'
+import React from 'react'
 import { useNavigate } from 'react-router'
-import LoadingComponent from '../../components/loadingComponent'
-import { register } from '../../services/auth'
-import styles from './style.module.css'
 import { Link } from 'react-router-dom'
+import LoadingComponent from '../../components/loadingComponent'
 import { useRegister } from './hooks/useRegister'
+import styles from './style.module.css'
 
 const RegisterPage = () => {
   const navigate = useNavigate()
-  // const [isLoading, setIsLoading] = useState(false)
   const [isLoading, register] = useRegister()
   const onRegister = (values) => {
     const data = {
@@ -23,18 +21,6 @@ const RegisterPage = () => {
       message.success('Register success!')
       navigate('/login/admin')
     })
-
-    // setIsLoading(true)
-    // register(data, (status, res) => {
-    //   if (status) {
-    //     setIsLoading(false)
-    //     message.success(`${res.message}`)
-    //     navigate('/login/admin')
-    //   } else {
-    //     setIsLoading(false)
-    //     message.error(`${res.response.data.error}`)
-    //   }
-    // })
     console.log(data)
   }
   return (

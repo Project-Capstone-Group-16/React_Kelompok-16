@@ -1,14 +1,12 @@
 import { Button, Form, Input, message } from 'antd'
-import React, { useState } from 'react'
+import React from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import LoadingComponent from '../../components/loadingComponent'
-import { login } from '../../services/auth'
-import styles from './style.module.css'
 import { useLogin } from './hooks/useLogin'
+import styles from './style.module.css'
 
 const LoginPage = () => {
   const navigate = useNavigate()
-  // const [isLoading, setIsLoading] = useState(false)
   const [isLoading, login] = useLogin()
 
   const onLogin = (values) => {
@@ -20,21 +18,6 @@ const LoginPage = () => {
       message.success('Login success!')
       navigate('/admin/warehouse')
     })
-
-    // setIsLoading(true)
-    // login(data, (status, res) => {
-    //   if (status) {
-    //     setIsLoading(false)
-    //     message.success('Login success!')
-    //     localStorage.setItem('token', res)
-    //     console.log(res)
-    //     navigate('/admin/warehouse')
-    //   } else {
-    //     setIsLoading(false)
-    //     message.error(`Login failed! ${res.response.data}`)
-    //     // console.log(res.response.data)
-    //   }
-    // })
   }
   return (
     <div className={styles['container-login-page']}>

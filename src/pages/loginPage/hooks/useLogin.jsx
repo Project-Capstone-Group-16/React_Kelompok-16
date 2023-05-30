@@ -17,5 +17,5 @@ export const useLogin = () => {
       setIsLoading(false)
     }
   }, [])
-  return { isLoading, data, login }
+  return [isLoading, data, login]
 }
