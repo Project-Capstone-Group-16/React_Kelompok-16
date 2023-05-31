@@ -1,3 +1,4 @@
+import { message } from 'antd'
 import { useCallback, useState } from 'react'
 import { api } from '../../../api'
 
@@ -5,17 +6,25 @@ export const useLogin = () => {
   const [isLoading, setIsLoading] = useState(false)
   const [data, setData] = useState()
 
-  const login = useCallback(async (body, onSuccess) => {
+  const loginData = useCallback(async (body, onSuccess) => {
     try {
-      const res = await api.login(body)
-      setData(res.data.data.token)
       setIsLoading(true)
+      const res = await api.login(body)
+      console.log(res)
+      setData(res.data.data.token)
       onSuccess && onSuccess()
+      message.open({
+        type: 'success',
+        content: 'Login success!',
+      })
     } catch (err) {
-      console.log(err)
+      message.open({
+        type: 'error',
+        content: `${err?.message}`,
+      })
     } finally {
       setIsLoading(false)
     }
   }, [])
-  return [isLoading, data, login]
+  return [isLoading, data, loginData]
 }
