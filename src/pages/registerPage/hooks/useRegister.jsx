@@ -10,10 +10,6 @@ export const useRegister = () => {
       await api.register(body)
       setIsLoading(true)
       onSuccess && onSuccess()
-      message.open({
-        type: 'success',
-        content: 'Register success!',
-      })
     } catch (err) {
       message.open({
         type: 'error',
