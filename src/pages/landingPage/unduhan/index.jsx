@@ -25,7 +25,7 @@ function Unduhan() {
             Mulai Menyimpan Barang yang Aman dan Murah dengan Inventron!
           </Title>
 
-          <Space size={24}>
+          <Space size={24} className={styles['list-unduhan']}>
             <img src={UnduhanImage1} alt="" />
             <img src={UnduhanImage2} alt="" />
             <img src={UnduhanImage3} alt="" />
