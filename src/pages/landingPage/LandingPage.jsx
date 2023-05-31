@@ -7,7 +7,7 @@ import Unggulan from './ekplorasi/unggulan'
 import HubungiKami from './hubungiKami'
 import styles from './styles.module.css'
 import TentangKami from './tentangKami'
-import Unduhan from './unduhan'
+import Footer from './footer'
 
 const LandingPage = () => {
   return (
@@ -31,8 +31,8 @@ const LandingPage = () => {
       <Unggulan />
       <Penitipan />
       <TentangKami />
-      <HubungiKami />
-      <Unduhan />
+      {/* <HubungiKami /> */}
+      <Footer />
     </>
   )
 }
