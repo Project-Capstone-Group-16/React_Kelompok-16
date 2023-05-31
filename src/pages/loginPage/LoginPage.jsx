@@ -7,10 +7,9 @@ import styles from './style.module.css'
 
 const LoginPage = () => {
   const navigate = useNavigate()
-  const [isLoading, data, login] = useLogin()
+  const [isLoading, login] = useLogin()
 
   const onLogin = (values) => {
-    localStorage.setItem('token', data)
     const body = {
       email: values.email,
       password: values.password,
