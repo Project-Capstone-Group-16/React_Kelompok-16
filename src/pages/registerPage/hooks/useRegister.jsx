@@ -1,19 +1,27 @@
 import { useCallback, useState } from 'react'
 import { api } from '../../../api'
+import { message } from 'antd'
 
 export const useRegister = () => {
   const [isLoading, setIsLoading] = useState(false)
 
-  const register = useCallback(async (body, onSuccess) => {
+  const registerData = useCallback(async (body, onSuccess) => {
     try {
       await api.register(body)
       setIsLoading(true)
       onSuccess && onSuccess()
+      message.open({
+        type: 'success',
+        content: 'Register success!',
+      })
     } catch (err) {
-      console.log(err)
+      message.open({
+        type: 'error',
+        content: `${err?.message}`,
+      })
     } finally {
       setIsLoading(false)
     }
   }, [])
-  return [isLoading, register]
+  return [isLoading, registerData]
 }
