@@ -9,11 +9,10 @@
   background-size: cover;
   background-position: bottom;
   width: 100%;
-  min-height: calc(100vh - 80px);
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 100px 30px;
+  padding: 75px 30px;
 }
 
 .intro-content {
@@ -44,7 +43,7 @@
   color: #292d32;
   line-height: 48px;
   font-size: 24px;
-  font-weight: 600;
+  font-weight: 500;
 }
 
 .intro a {
@@ -55,7 +54,7 @@
 }
 
 .intro button {
-  background-color: #599ac2;
+  background-color: #010101;
   border-radius: 15px;
   border: none;
   outline: none;
@@ -69,7 +68,7 @@
 }
 
 .intro button:hover {
-  filter: brightness(120%);
+  background-color: #1652f9;
   cursor: pointer;
 }
 
@@ -185,10 +184,12 @@
   .intro h3 {
     margin-top: 20px;
     font-size: 20px;
+    font-weight: 600;
   }
   .intro h4 {
     line-height: 36px;
     font-size: 20px;
+    font-weight: 600;
   }
   .first-card {
     padding: 15px;
@@ -209,6 +210,15 @@
   }
   .second-card p {
     font-size: 10px;
+  }
+  .intro button {
+    width: 120px;
+    height: 40px;
+    font-size: 16px;
+    border-radius: 10px;
+  }
+  .intro {
+    padding: 50px 30px;
   }
 }
 
@@ -251,5 +261,14 @@
     margin-top: 10px;
     font-size: 12px;
     line-height: 30px;
+  }
+  .intro button {
+    width: 100px;
+    height: 32px;
+    font-size: 14px;
+    border-radius: 8px;
+  }
+  .intro {
+    padding: 30px;
   }
 }

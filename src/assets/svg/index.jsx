@@ -1,3 +1,3 @@
 import logo from './logo.svg'
-
-export { logo }
+import BurgerSVG from './burger-svg'
+export { logo, BurgerSVG }
