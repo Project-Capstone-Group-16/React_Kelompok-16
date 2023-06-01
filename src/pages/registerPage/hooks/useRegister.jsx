@@ -7,8 +7,8 @@ export const useRegister = () => {
 
   const registerData = useCallback(async (body, onSuccess) => {
     try {
-      await api.register(body)
       setIsLoading(true)
+      await api.register(body)
       onSuccess && onSuccess()
     } catch (err) {
       console.log(err)

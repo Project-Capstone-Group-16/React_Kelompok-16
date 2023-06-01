@@ -16,7 +16,7 @@ const LoginPage = () => {
     }
     login(body, () => {
       message.success('Login success!')
-      navigate('/admin')
+      navigate('/dashboard')
     })
   }
   return (
