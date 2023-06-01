@@ -3,15 +3,11 @@
   from = "/api/*"
   to = "http://143.198.92.250:8080/api/:splat"
   status = 200
-  [redirect.headers]
-    x-from = "Netlify"
 [[redirects]]
   force = true
   from = "/media/*"
   to = "hhttp://143.198.92.250:8080/api/:splat"
   status = 200
-  [redirect.headers]
-    x-from = "Netlify"
 [[redirects]]
   from = "/*"
   to = "/index.html"
