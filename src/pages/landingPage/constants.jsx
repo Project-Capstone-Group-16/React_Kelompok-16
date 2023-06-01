@@ -8,10 +8,6 @@ export const menu = [
     link: '#tentangKami',
   },
   {
-    label: 'Kontak',
-    link: '#kontak',
-  },
-  {
     label: 'Unduh',
     link: '#unduh',
   },
