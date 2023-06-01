@@ -3,9 +3,11 @@ import React, { useState } from 'react'
 import styles from './styles.module.css'
 import { MENU_ITEMS } from './constants'
 import { logoInventron, iconLogoutPutih, iconLogoutBiru } from '../../../assets/icons/admin'
+import { useNavigate } from 'react-router-dom'
 
 const SidebarComponent = () => {
   const [isHover, setIsHover] = useState(false)
+  const navigate = useNavigate()
   const { Sider } = Layout
   return (
     <>
@@ -26,7 +28,10 @@ const SidebarComponent = () => {
             onMouseLeave={() => {
               setIsHover(false)
             }}
-            onClick={() => console.log('logout')}
+            onClick={() => {
+              localStorage.removeItem('token')
+              navigate('/login')
+            }}
           >
             {isHover ? (
               <img className={styles['icon-logout']} src={iconLogoutBiru} alt="icon logout" />
