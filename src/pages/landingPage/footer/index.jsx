@@ -22,7 +22,7 @@ function Footer() {
 
   return (
     <>
-      <footer id="footer">
+      <footer>
         <Row justify="center" className={styles['footer-content']}>
           <Title level={3} className={styles['heading-3']}>
             Mulai Menyimpan Barang yang Aman dan Murah dengan Inventron!
@@ -36,7 +36,7 @@ function Footer() {
           </Space>
         </Row>
 
-        <Row justify="center" align="middle" className={styles['footer-bottom']}>
+        <Row justify="center" align="middle" className={styles['footer-bottom']} id="unduh">
           <Col span={8}>
             <img src={LogoBrandImage} />
             <Title level={4} className={styles['heading']}>

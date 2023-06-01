@@ -72,9 +72,14 @@ const RegisterPage = () => {
                   pattern: new RegExp(/^[0-9]+$/),
                   message: 'Nomor telpon tidak valid!',
                 },
+                ,
+                {
+                  max: 11,
+                  message: 'Nomor telpon maksimal 11 digit!',
+                },
               ]}
             >
-              <Input className={styles['input-register-page']} />
+              <Input className={styles['input-register-page-phone-number']} addonBefore="+62" size="large" />
             </Form.Item>
             <Form.Item
               className={styles['form-item-register-page']}
