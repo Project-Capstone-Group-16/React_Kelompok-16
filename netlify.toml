@@ -1,4 +1,12 @@
 [[redirects]]
-from = "/*"
-to = "/index.html"
-status = 200
+  from = "/*"
+  to = "/index.html"
+  status = 200
+
+[[redirects]]
+  from = "/search"
+  to = "http://143.198.92.250:8080"
+  status = 200
+  force = true
+  headers = {X-From = "Netlify"}
+
