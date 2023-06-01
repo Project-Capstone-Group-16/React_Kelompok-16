@@ -13,9 +13,10 @@ export const useLogin = () => {
       localStorage.setItem('token', res.data.data.token)
       onSuccess && onSuccess()
     } catch (err) {
+      console.log(err)
       message.open({
         type: 'error',
-        content: `${err?.message}`,
+        content: `${err.response.data}`,
       })
     } finally {
       setIsLoading(false)
