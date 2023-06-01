@@ -72,7 +72,6 @@ const RegisterPage = () => {
                   pattern: new RegExp(/^[0-9]+$/),
                   message: 'Nomor telpon tidak valid!',
                 },
-                ,
                 {
                   max: 11,
                   message: 'Nomor telpon maksimal 11 digit!',
