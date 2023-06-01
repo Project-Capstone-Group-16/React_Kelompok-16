@@ -1,5 +1,5 @@
-import React, { Suspense } from 'react'
-import { Route, Routes } from 'react-router-dom'
+import React, { Suspense, useEffect } from 'react'
+import { Route, Routes, useNavigate } from 'react-router-dom'
 import LayoutComponent from '../components/layout/LayoutComponent'
 import LoadingComponent from '../components/loadingComponent'
 import LandingPage from '../pages/landingPage/LandingPage'
@@ -12,6 +12,12 @@ import KelolaUser from '../pages/kelolaUser'
 
 const RouteManagement = () => {
   const token = localStorage.getItem('token')
+  const navigate = useNavigate()
+  useEffect(() => {
+    if (token) {
+      navigate('/dashboard')
+    }
+  }, [token, navigate])
 
   return (
     <Suspense fallback={<LoadingComponent />}>
