@@ -34,8 +34,18 @@
 }
 
 .input-register-page {
-    width: 475px;
+    width: 369px;
     height: 37px;
+}
+
+.input-register-page-phone-number input {
+    font-size: 14px;
+    line-height: 22px;
+}
+
+.input-register-page-phone-number span {
+    background-color: #B3B3B3;
+    border-radius: 10px;
 }
 
 .checkbox-register-page {
