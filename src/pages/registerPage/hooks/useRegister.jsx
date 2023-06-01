@@ -11,9 +11,10 @@ export const useRegister = () => {
       setIsLoading(true)
       onSuccess && onSuccess()
     } catch (err) {
+      console.log(err)
       message.open({
         type: 'error',
-        content: `${err?.message}`,
+        content: `${err.response.data.error}`,
       })
     } finally {
       setIsLoading(false)
