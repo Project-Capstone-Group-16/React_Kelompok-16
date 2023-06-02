@@ -34,6 +34,7 @@
   right: 0;
   background-color: white;
   padding: 10px 0px;
+  border-radius: 0px 0px 8px 8px;
 }
 .dropdown {
   display: none;
@@ -45,7 +46,9 @@
   font-size: 13px;
   font-weight: 500;
   padding: 8px 20px;
-  cursor: none;
+}
+.dropdown-active a:hover {
+  color: #599ac2;
 }
 
 h1 {
@@ -118,12 +121,16 @@ h1 {
 
 .menu a:hover {
   color: #599ac2;
+  cursor: pointer;
 }
 .burger-menu {
   display: none;
   outline: none;
   border: none;
   background: transparent;
+}
+.burger-menu:hover {
+  cursor: pointer;
 }
 @media (max-width: 768px) {
   .menu {
