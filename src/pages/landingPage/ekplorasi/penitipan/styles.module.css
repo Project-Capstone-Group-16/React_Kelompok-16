@@ -4,83 +4,94 @@
   width: 100%;
 }
 
+.container__penitipan {
+  padding: 0 16px;
+}
+
 .penitipan__outer__title {
   margin-bottom: 45px !important;
   font-weight: 700 !important;
   color: #292d32 !important;
   text-align: center;
+  font-size: 16px !important;
 }
 
 .penitipan__card {
   overflow: hidden;
-  border-radius: 33px;
+  border-radius: 4px;
+  padding: 0 !important;
   box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.1);
-
 }
 
 .penitipan__cover__image {
   width: 100%;
-  border-top-left-radius: 20px;
-  border-top-right-radius: 20px;
-  padding: 24px 24px 0 24px;
-
+  height: 200px;
+  border-radius: 0;
 }
 
-.penitipan__cover__image>img {
+.penitipan__cover__image > img {
   width: 100%;
-  height: 220px;
-  border-radius: 20px;
+  height: 100%;
+  object-fit: cover;
+  border-radius: inherit;
 }
 
 .penitipan__card__space {
-  padding: 24px;
-
+  padding: 12px;
 }
 
-.penitipan__card__space>.space__title {
-  font-size: 18px;
+.penitipan__card__space > .space__title {
+  font-size: 12px;
   font-weight: 700;
   color: #494949;
   margin-bottom: 0;
-
 }
 
-.penitipan__card__space>.space__subtitle {
-  font-size: 12px;
+.penitipan__card__space > .space__subtitle {
+  font-size: 10px;
   font-weight: 600;
   color: #b3b3b3;
-
 }
 
-@media (max-width: 991px) {
-  .container__penitipan {
-    padding: 0 16px;
-  }
-
-  .penitipan__outer__title {
-    font-size: 16px !important;
-  }
-
-  .penitipan__card {
-    border-radius: 4px;
-    padding: 0 !important;
-  }
-
+@media (max-width: 480px) {
   .penitipan__cover__image {
-    border-radius: 0;
-    padding: 0;
     height: 110px;
   }
+}
 
+@media only screen and (min-width: 481px) and (max-width: 639px) {
+  .penitipan__cover__image {
+    height: 150px;
+  }
+}
+
+@media only screen and (min-width: 640px) and (max-width: 767px) {
+  .penitipan__cover__image {
+    height: 180px;
+  }
+}
+
+@media (min-width: 1200px) {
+  .container__penitipan {
+    padding: 0;
+  }
+  .penitipan__outer__title {
+    font-size: 24px !important;
+  }
+  .penitipan__card {
+    border-radius: 33px;
+  }
+  .penitipan__cover__image {
+    border-radius: 33px;
+    padding: 24px 24px 0 24px;
+  }
   .penitipan__card__space {
-    padding: 12px;
+    padding: 24px;
   }
-
-  .penitipan__card__space>.space__title {
+  .penitipan__card__space > .space__title {
+    font-size: 18px;
+  }
+  .penitipan__card__space > .space__subtitle {
     font-size: 12px;
-  }
-
-  .penitipan__card__space>.space__subtitle {
-    font-size: 10px;
   }
 }
