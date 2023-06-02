@@ -2,13 +2,17 @@
 
 .body {
   display: flex;
+  flex-wrap: wrap;
   justify-content: center;
   align-items: center;
   font-family: 'Poppins', sans-serif;
+  margin: 20px;
 }
+
 .body-container {
   text-align: center;
 }
+
 .tentang {
   font-style: normal;
   font-weight: 700;
@@ -16,13 +20,16 @@
   line-height: 60px;
   color: #292d32;
 }
+
 .p-inventron {
   font-style: normal;
   font-weight: 500;
   font-size: 18px;
   color: #5f5a5a;
   line-height: 30px;
+  margin-bottom: 20px;
 }
+
 .inventron {
   font-style: normal;
   font-weight: 700;
@@ -30,25 +37,30 @@
   line-height: 72px;
   color: #292d32;
 }
+
 .p-variasi {
   height: 50px;
+  margin-bottom: 20px;
   font-style: normal;
   font-weight: 500;
   font-size: 18px;
   line-height: 27px;
   color: #5f5a5a;
 }
+
 .list-container {
   max-width: 1200px;
   margin-left: 5px;
   padding: 2px;
 }
+
 .first-cards,
 .second-cards {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   column-gap: 30px;
 }
+
 .first-card {
   border-radius: 20px;
   padding: 15px 13px;
@@ -57,17 +69,20 @@
   box-sizing: border-box;
   box-shadow: 0px 4px 15px rgba(89, 154, 194, 0.75);
 }
+
 .image {
   width: 173px;
   height: 145px;
   border-radius: 20px;
 }
+
 .p-label {
   font-size: 18px;
   margin-top: 25px;
   font-weight: 500;
 }
-/* @media screen and (max-width: 768px) {
+
+@media screen and (max-width: 768px) {
   .first-cards,
   .second-cards {
     grid-template-columns: repeat(2, 1fr);
@@ -75,10 +90,45 @@
   }
 
   .tentang {
+    line-height: 40px;
+    font-size: 18px;
+  }
+
+  .p-inventron {
     line-height: 20px;
+    font-size: 12px;
+  }
+
+  .inventron {
+    line-height: 30px;
+    font-size: 18px;
   }
 
   .p-variasi {
+    height: auto;
     line-height: 20px;
+    font-size: 12px;
   }
-} */
+
+  .list-container {
+    max-width: 100%;
+    margin-left: 0;
+    padding: 0;
+  }
+
+  .first-card {
+    width: 100%;
+    height: auto;
+    margin-bottom: 15px;
+  }
+
+  .image {
+    width: 100%;
+    height: auto;
+  }
+
+  .p-label {
+    margin-top: 15px;
+    font-size: 12px;
+  }
+}
