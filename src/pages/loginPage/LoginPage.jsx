@@ -10,18 +10,18 @@ const LoginPage = () => {
   const [isLoading, login] = useLogin()
 
   const onLogin = (values) => {
-    const data = {
+    const body = {
       email: values.email,
       password: values.password,
     }
-    login(data, () => {
+    login(body, () => {
       message.success('Login success!')
-      navigate('/admin/warehouse')
+      navigate('/dashboard')
     })
   }
   return (
     <div className={styles['container-login-page']}>
-      {isLoading && <LoadingComponent />}
+      {isLoading ? <LoadingComponent /> : null}
       <div className={styles['form-login-page']}>
         <h1 className={styles['title-login-page']}>Inventron</h1>
         <Form layout="vertical" onFinish={onLogin}>

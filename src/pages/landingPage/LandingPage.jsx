@@ -4,10 +4,9 @@ import { menu } from './constants'
 import FirstSection from './ekplorasi/first-section'
 import Penitipan from './ekplorasi/penitipan'
 import Unggulan from './ekplorasi/unggulan'
-import HubungiKami from './hubungiKami'
+import Footer from './footer'
 import styles from './styles.module.css'
 import TentangKami from './tentangKami'
-import Unduhan from './unduhan'
 
 const LandingPage = () => {
   const [drawer, setDrawer] = React.useState(false)
@@ -54,8 +53,8 @@ const LandingPage = () => {
       <Unggulan />
       <Penitipan />
       <TentangKami />
-      <HubungiKami />
-      <Unduhan />
+      {/* <HubungiKami /> */}
+      <Footer />
     </>
   )
 }

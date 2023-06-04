@@ -19,14 +19,13 @@ const RegisterPage = () => {
     }
     register(data, () => {
       message.success('Register success!')
-      navigate('/login/admin')
+      navigate('/login')
     })
-    console.log(data)
   }
   return (
     <>
       <div className={styles['container-register-page']}>
-        {isLoading && <LoadingComponent />}
+        {isLoading ? <LoadingComponent /> : null}
         <div className={styles['form-register-page']}>
           <h1 className={styles['title-register-page']}>Inventron</h1>
           <Form layout="vertical" onFinish={onRegister}>
@@ -73,9 +72,13 @@ const RegisterPage = () => {
                   pattern: new RegExp(/^[0-9]+$/),
                   message: 'Nomor telpon tidak valid!',
                 },
+                {
+                  max: 11,
+                  message: 'Nomor telpon maksimal 11 digit!',
+                },
               ]}
             >
-              <Input className={styles['input-register-page']} />
+              <Input className={styles['input-register-page-phone-number']} addonBefore="+62" size="large" />
             </Form.Item>
             <Form.Item
               className={styles['form-item-register-page']}
