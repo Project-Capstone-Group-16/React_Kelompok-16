@@ -1,0 +1,96 @@
+.container-register-page {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-image: url("../../assets/images/login-register/bg-login-register.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    color: white;
+    position: relative;
+}
+
+.form-register-page {
+    width: 800px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.title-register-page {
+    width: 242px;
+    height: 72px;
+    font-size: 48px;
+    font-weight: 700;
+    line-height: 72px;
+    margin-top: 30px;
+}
+
+
+.form-item-register-page label {
+    color: white !important;
+    width: 100%;
+}
+
+.input-register-page {
+    width: 369px;
+    height: 37px;
+}
+
+.input-register-page-phone-number input {
+    font-size: 14px;
+    line-height: 22px;
+}
+
+.input-register-page-phone-number span {
+    background-color: #B3B3B3;
+    border-radius: 10px;
+}
+
+.checkbox-register-page {
+    color: aliceblue;
+    position: relative;
+    left: 22px;
+    font-size: 15px;
+    font-weight: 500;
+}
+
+.button-register-page {
+    width: 170px;
+    height: 41px;
+    border-radius: 15px;
+    background-color: #B3B3B3;
+    font-size: 20px;
+    font-weight: 500;
+    color: black;
+    transition: all 0.3s ease-in-out;
+    border: none;
+    display: flex;
+    justify-content: center;
+    margin: 38px auto 0;
+}
+
+.button-register-page:hover {
+    filter: brightness(130%);
+    color: black !important;
+    cursor: pointer;
+}
+
+.text-register-page {
+    font-size: 18px;
+    font-weight: 400;
+    line-height: 27px;
+    text-align: center;
+    width: 100%;
+    border-top: 3px solid #A2A3A6;
+    color: white;
+    margin-top: 20px;
+    padding-top: 20px;
+}
+
+.text-register-page a {
+    color: white;
+    font-weight: bold;
+    text-decoration: none;
+}
