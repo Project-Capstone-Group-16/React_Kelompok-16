@@ -7,14 +7,16 @@ footer {
   margin: 60px auto;
 }
 
-.heading-3 {
+.footer-content .image-unduhan-wrap {
+  justify-content: center;
+}
+
+.footer-content .heading-3 {
   font-weight: 700 !important;
   margin-bottom: 72px !important;
 }
 
 .footer-bottom {
-  /* max-width: 1200px; */
-  /* margin: 60px auto; */
   margin-top: 60px;
   padding: 40px 0;
   background-color: #010101;
@@ -38,4 +40,29 @@ footer {
 
 .footer-bottom .img-unduh {
   width: 200px;
+}
+
+/* Mobile Styling */
+@media (min-height: 640px) {
+  /* .footer-content .heading-3 {
+    font-size: 14px;
+    font-weight: 700 !important;
+  } */
+
+  .footer-content .image-unduhan-wrap img {
+    height: 372px;
+  }
+
+  .footer-bottom {
+    flex-direction: column-reverse;
+    gap: 48px;
+  }
+
+  .footer-bottom .unduh-wrap {
+    justify-content: center;
+  }
+
+  .footer-bottom .unduh-wrap .img-unduh {
+    width: 163px;
+  }
 }
