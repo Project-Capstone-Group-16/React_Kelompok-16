@@ -71,12 +71,11 @@ function Footer() {
             </Space>
           </Col>
 
-          <Col xs={20} md={12} lg={8}>
+          <Col xs={20} md={12} lg={8} className={styles['unduh-wrap']}>
             <Title level={4} className={styles['heading']}>
               Download Aplikasi Inventron Disini
             </Title>
-            <Gap height={36} />
-            <Space size={32} block={true} wrap={true} className={styles['unduh-wrap']}>
+            <Space size={32} block={true} wrap={true} className={styles['unduh-button-wrap']}>
               <Link>
                 <img
                   src={GooglePlayImage}
