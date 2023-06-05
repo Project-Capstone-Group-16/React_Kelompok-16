@@ -1,23 +1,18 @@
-import React, { Suspense, useEffect } from 'react'
-import { Route, Routes, useNavigate } from 'react-router-dom'
+import React, { Suspense } from 'react'
+import { Route, Routes } from 'react-router-dom'
 import LayoutComponent from '../components/layout/LayoutComponent'
 import LoadingComponent from '../components/loadingComponent'
+import Dashboard from '../pages/dashboard'
+import KelolaAkun from '../pages/kelolaAkun'
+import KelolaBarang from '../pages/kelolaBarang'
+import KelolaTransaksi from '../pages/kelolaTransaksi'
+import KelolaWarehouse from '../pages/kelolaWarehouse'
 import LandingPage from '../pages/landingPage/LandingPage'
 import LoginPage from '../pages/loginPage/LoginPage'
 import RegisterPage from '../pages/registerPage/RegisterPage'
-import Dashboard from '../pages/dashboard'
-import KelolaTransaksi from '../pages/kelolaTransaksi'
-import KelolaBarang from '../pages/kelolaBarang'
-import KelolaUser from '../pages/kelolaUser'
 
 const RouteManagement = () => {
   const token = localStorage.getItem('token')
-  const navigate = useNavigate()
-  useEffect(() => {
-    if (token) {
-      navigate('/dashboard')
-    }
-  }, [token, navigate])
 
   return (
     <Suspense fallback={<LoadingComponent />}>
@@ -33,8 +28,9 @@ const RouteManagement = () => {
           <Routes>
             <Route path="/dashboard" element={<Dashboard />} />
             <Route path="/kelola-transaksi" element={<KelolaTransaksi />} />
+            <Route path="/kelola-warehouse" element={<KelolaWarehouse />} />
             <Route path="/kelola-barang" element={<KelolaBarang />} />
-            <Route path="/kelola-user" element={<KelolaUser />} />
+            <Route path="/kelola-akun" element={<KelolaAkun />} />
             <Route path="*" element={<h1>Not Found</h1>} />
           </Routes>
         </LayoutComponent>
