@@ -28,7 +28,7 @@ function Footer() {
             Mulai Menyimpan Barang yang Aman dan Murah dengan Inventron!
           </Title>
 
-          <Space size={24}>
+          <Space direction="horizontal" size={24} wrap={true} className={styles['image-unduhan-wrap']}>
             <img src={UnduhanImage1} alt="" />
             <img src={UnduhanImage2} alt="" />
             <img src={UnduhanImage3} alt="" />
@@ -37,7 +37,7 @@ function Footer() {
         </Row>
 
         <Row justify="center" align="middle" className={styles['footer-bottom']} id="unduh">
-          <Col span={8}>
+          <Col xs={20} md={12} lg={8}>
             <img src={LogoBrandImage} />
             <Title level={4} className={styles['heading']}>
               Inventron
@@ -50,11 +50,11 @@ function Footer() {
             <p className={styles['copyright-text']}>&copy; 2023 Inventron</p>
           </Col>
 
-          <Col span={8}>
+          <Col xs={20} md={12} lg={8}>
             <Title level={4} className={styles['heading']}>
               Hubungi Kami
             </Title>
-            <Gap height={46} />
+            <Gap height={24} />
             <Space size={28}>
               <Link>
                 <img src={FacebookIcon} />
@@ -71,12 +71,11 @@ function Footer() {
             </Space>
           </Col>
 
-          <Col span={8}>
+          <Col xs={20} md={12} lg={8} className={styles['unduh-wrap']}>
             <Title level={4} className={styles['heading']}>
               Download Aplikasi Inventron Disini
             </Title>
-            <Gap height={36} />
-            <Space size={32} block={true}>
+            <Space size={32} block={true} wrap={true} className={styles['unduh-button-wrap']}>
               <Link>
                 <img
                   src={GooglePlayImage}

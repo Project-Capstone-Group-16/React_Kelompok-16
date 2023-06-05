@@ -13,7 +13,7 @@ const TentangKami = () => {
       </p>
       <div className={styles['inventron']}>Ayo mulai menyimpan di Inventron</div>
       <p className={styles['p-variasi']}>Variasi penyimpanan yang beragam dan menarik untuk dipilih</p>
-      <Row gutter={[24, 24]} align="middle">
+      <Row gutter={[24, 24]} align="middle" className={styles['row-container']}>
         {inventron.map((item, idx) => (
           <Col xs={12} md={8} lg={6} key={idx}>
             <Card className={styles['first-card']} bodyStyle={{ padding: 0 }}>
