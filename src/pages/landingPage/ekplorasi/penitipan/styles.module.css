@@ -25,11 +25,11 @@
 
 .penitipan__cover__image {
   width: 100%;
-  height: 200px;
+  height: 250px;
   border-radius: 0;
 }
 
-.penitipan__cover__image > img {
+.penitipan__cover__image>img {
   width: 100%;
   height: 100%;
   object-fit: cover;
@@ -40,22 +40,28 @@
   padding: 12px;
 }
 
-.penitipan__card__space > .space__title {
+.penitipan__card__space>.space__title {
   font-size: 12px;
   font-weight: 700;
   color: #494949;
   margin-bottom: 0;
 }
 
-.penitipan__card__space > .space__subtitle {
+.penitipan__card__space>.space__subtitle {
   font-size: 10px;
   font-weight: 600;
   color: #b3b3b3;
 }
 
 @media (max-width: 480px) {
+  .penitipan__card {
+    border-radius: 12px;
+  }
+
   .penitipan__cover__image {
-    height: 110px;
+    height: 130px;
+    padding: 12px 12px 0 12px;
+    border-radius: 12px;
   }
 }
 
@@ -75,23 +81,29 @@
   .container__penitipan {
     padding: 0;
   }
+
   .penitipan__outer__title {
     font-size: 24px !important;
   }
+
   .penitipan__card {
     border-radius: 33px;
   }
+
   .penitipan__cover__image {
     border-radius: 33px;
     padding: 24px 24px 0 24px;
   }
+
   .penitipan__card__space {
     padding: 24px;
   }
-  .penitipan__card__space > .space__title {
+
+  .penitipan__card__space>.space__title {
     font-size: 18px;
   }
-  .penitipan__card__space > .space__subtitle {
+
+  .penitipan__card__space>.space__subtitle {
     font-size: 12px;
   }
 }
