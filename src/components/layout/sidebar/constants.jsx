@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom'
-import { iconDashboard, iconLoker, iconTransaksi, iconUser } from '../../../assets/icons/admin'
+import { iconDashboard, iconLoker, iconTransaksi, iconUser, iconBox } from '../../../assets/icons/admin'
 import styles from './styles.module.css'
 
 export const MENU_ITEMS = [
@@ -15,12 +15,17 @@ export const MENU_ITEMS = [
   },
   {
     key: '3',
-    label: <Link to="/kelola-barang">Kelola Barang</Link>,
+    label: <Link to="/kelola-warehouse">Kelola Warehouse</Link>,
     icon: <img className={styles['icon']} src={iconLoker} alt="icon loker" />,
   },
   {
     key: '4',
-    label: <Link to="/kelola-user">Kelola User</Link>,
+    label: <Link to="/kelola-barang">Kelola Barang</Link>,
+    icon: <img className={styles['icon']} src={iconBox} alt="icon loker" />,
+  },
+  {
+    key: '5',
+    label: <Link to="/kelola-akun">Kelola Akun</Link>,
     icon: <img className={styles['icon']} src={iconUser} alt="icon user" />,
   },
 ]
