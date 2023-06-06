@@ -13,33 +13,37 @@ const SidebarComponent = () => {
     <>
       <Sider className={styles['sidebar']}>
         <div className={styles['sidebar-item']}>
-          <img className={styles['logo']} src={logoInventron} alt="logo inventron" />
-          <Menu className={styles['menu-item']} mode="inline" defaultSelectedKeys={['4']} items={MENU_ITEMS} />
-          <div className={styles['image-sidebar']}>
-            <p>
-              <i>“Always available to save your storage”</i>
-            </p>
+          <div className={styles['sidebar-menu']}>
+            <img className={styles['logo']} src={logoInventron} alt="logo inventron" />
+            <Menu className={styles['menu-item']} mode="inline" defaultSelectedKeys={['1']} items={MENU_ITEMS} />
           </div>
-          <Button
-            className={styles['button-logout']}
-            onMouseEnter={() => {
-              setIsHover(true)
-            }}
-            onMouseLeave={() => {
-              setIsHover(false)
-            }}
-            onClick={() => {
-              localStorage.removeItem('token')
-              navigate('/login')
-            }}
-          >
-            {isHover ? (
-              <img className={styles['icon-logout']} src={iconLogoutBiru} alt="icon logout" />
-            ) : (
-              <img className={styles['icon-logout']} src={iconLogoutPutih} alt="icon logout" />
-            )}
-            Logout
-          </Button>
+          <div className={styles['sidebar-logout']}>
+            <div className={styles['image-sidebar']}>
+              <p>
+                <i>“Always available to save your storage”</i>
+              </p>
+            </div>
+            <Button
+              className={styles['button-logout']}
+              onMouseEnter={() => {
+                setIsHover(true)
+              }}
+              onMouseLeave={() => {
+                setIsHover(false)
+              }}
+              onClick={() => {
+                localStorage.removeItem('token')
+                navigate('/login')
+              }}
+            >
+              {isHover ? (
+                <img className={styles['icon-logout']} src={iconLogoutBiru} alt="icon logout" />
+              ) : (
+                <img className={styles['icon-logout']} src={iconLogoutPutih} alt="icon logout" />
+              )}
+              Logout
+            </Button>
+          </div>
         </div>
       </Sider>
     </>

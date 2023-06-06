@@ -5,5 +5,6 @@ import iconUser from './user.svg'
 import logoInventron from './inventron.svg'
 import iconLogoutPutih from './logout-putih.svg'
 import iconLogoutBiru from './logout-biru.svg'
+import iconBox from './box.svg'
 
-export { iconDashboard, iconUser, iconLoker, iconTransaksi, logoInventron, iconLogoutPutih, iconLogoutBiru }
+export { iconDashboard, iconUser, iconLoker, iconTransaksi, logoInventron, iconLogoutPutih, iconLogoutBiru, iconBox }
