@@ -10,8 +10,10 @@ const RegisterPage = () => {
   const navigate = useNavigate()
   const [isLoading, register] = useRegister()
   const onRegister = (values) => {
+    console.log('values', values)
     const data = {
-      full_name: values.full_name,
+      first_name: values.first_name,
+      last_name: values.last_name,
       email: values.email,
       phone_number: values.phone_number,
       password: values.password,
@@ -31,12 +33,25 @@ const RegisterPage = () => {
           <Form layout="vertical" onFinish={onRegister}>
             <Form.Item
               className={styles['form-item-register-page']}
-              label="Nama Lengkap"
-              name="full_name"
+              label="Nama Depan"
+              name="first_name"
               rules={[
                 {
                   required: true,
-                  message: 'Silahkan masukkan nama lengkap Anda!',
+                  message: 'Silahkan masukkan nama depan Anda!',
+                },
+              ]}
+            >
+              <Input className={styles['input-register-page']} />
+            </Form.Item>
+            <Form.Item
+              className={styles['form-item-register-page']}
+              label="Nama Belakang"
+              name="last_name"
+              rules={[
+                {
+                  required: true,
+                  message: 'Silahkan masukkan nama belakang Anda!',
                 },
               ]}
             >
