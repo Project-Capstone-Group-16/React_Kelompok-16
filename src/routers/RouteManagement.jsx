@@ -10,31 +10,27 @@ import KelolaWarehouse from '../pages/kelolaWarehouse'
 import LandingPage from '../pages/landingPage/LandingPage'
 import LoginPage from '../pages/loginPage/LoginPage'
 import RegisterPage from '../pages/registerPage/RegisterPage'
-
+import ProtectedRoute from './ProtectedRoute'
 const RouteManagement = () => {
-  const token = localStorage.getItem('token')
-
   return (
     <Suspense fallback={<LoadingComponent />}>
-      {token ? (
+      <LayoutComponent>
         <Routes>
           <Route path="/" element={<LandingPage />} />
-          <Route path="/login" element={<LoginPage />} />
-          <Route path="/register" element={<RegisterPage />} />
           <Route path="*" element={<h1>Not Found</h1>} />
-        </Routes>
-      ) : (
-        <LayoutComponent>
-          <Routes>
+          <Route element={<ProtectedRoute Auth={true} redirectPath="/login" />}>
             <Route path="/dashboard" element={<Dashboard />} />
             <Route path="/kelola-transaksi" element={<KelolaTransaksi />} />
             <Route path="/kelola-warehouse" element={<KelolaWarehouse />} />
             <Route path="/kelola-barang" element={<KelolaBarang />} />
             <Route path="/kelola-akun" element={<KelolaAkun />} />
-            <Route path="*" element={<h1>Not Found</h1>} />
-          </Routes>
-        </LayoutComponent>
-      )}
+          </Route>
+          <Route element={<ProtectedRoute Auth={false} redirectPath="/dashboard" />}>
+            <Route path="/login" element={<LoginPage />} />
+            <Route path="/register" element={<RegisterPage />} />
+          </Route>
+        </Routes>
+      </LayoutComponent>
     </Suspense>
   )
 }
