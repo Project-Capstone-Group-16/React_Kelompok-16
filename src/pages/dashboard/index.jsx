@@ -28,13 +28,7 @@ const Dashboard = () => {
               </Col>
             </Row>
           </Col>
-          <Col
-            className={styles['content-right']}
-            style={{
-              backgroundColor: 'red',
-            }}
-            span={6}
-          >
+          <Col className={styles['content-right']} span={6}>
             <Loker />
           </Col>
         </Row>

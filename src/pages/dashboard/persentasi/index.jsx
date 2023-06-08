@@ -38,7 +38,7 @@ const Persentasi = () => {
             </Col>
           </Row>
         </Col>
-        <Col span={12}>
+        <Col span={10}>
           <Row className={styles['container-total-pengguna']}>
             <Col span={24} className={styles['total-pengguna']}>
               <span className={styles['container-total-pengguna-1']}>
