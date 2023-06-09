@@ -1,0 +1,81 @@
+.radio-group-kelola-akun {
+  width: auto !important;
+  background: #431ddb;
+  padding: 15px 26px;
+  border-radius: 20px;
+}
+
+label.label-radio-btn-wrapper-custom {
+  background-color: #a2a3a6;
+  color: #333333;
+  padding: 8px 22px;
+  border: 0;
+  width: 443px;
+  height: 50px;
+  font-size: 24px;
+  font-weight: 700;
+}
+
+label.label-radio-btn-wrapper-custom-active {
+  background-color: #fff !important;
+  color: #000 !important;
+  padding: 8px 22px;
+  border: 0;
+  width: 443px;
+  height: 50px;
+  font-size: 24px;
+  font-weight: 700;
+}
+
+label.label-radio-btn-wrapper-custom:hover {
+  color: #fff !important;
+}
+
+.row-pengguna {
+  margin: 31px 0;
+}
+
+.img-pengguna {
+  margin-bottom: 16px;
+}
+
+.username-pengguna {
+  font-size: 15px;
+  font-weight: 700;
+}
+
+.histori-pengguna {
+  margin: 32px 0;
+  font-weight: 500;
+  line-height: 32px;
+  color: #6c757d;
+}
+
+.card-data-pengguna {
+  /* text-align: left; */
+  width: 100%;
+  box-shadow: 0px 4px 12px 0px rgba(45, 100, 251, 0.15);
+}
+
+.card-profil-pengguna {
+  border: 1px solid #e1e1e1;
+}
+
+.card-title-badge {
+  margin: auto;
+  padding: 8px 24px;
+  width: 433px;
+  background-color: #2d64fb;
+  color: #fff;
+  font-weight: 700;
+  text-align: center;
+  border-radius: 50px;
+}
+
+.form-data-pengguna {
+  margin-top: 32px;
+}
+
+.pagination-wrap {
+  margin: auto;
+}

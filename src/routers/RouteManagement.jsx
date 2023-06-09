@@ -16,7 +16,7 @@ const RouteManagement = () => {
 
   return (
     <Suspense fallback={<LoadingComponent />}>
-      {!token ? (
+      {token ? (
         <Routes>
           <Route path="/" element={<LandingPage />} />
           <Route path="/login" element={<LoginPage />} />
