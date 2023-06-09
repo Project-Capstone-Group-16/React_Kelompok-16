@@ -1,12 +1,87 @@
 import React, { useState } from 'react'
-import { Row, Col, Space, Radio, Card, Avatar, Form, Input, DatePicker, Select, Pagination } from 'antd'
+import {
+  Row,
+  Col,
+  Space,
+  Radio,
+  Card,
+  Avatar,
+  Form,
+  Input,
+  DatePicker,
+  Select,
+  Pagination,
+  Button,
+  Modal,
+  Upload,
+  message,
+} from 'antd'
+import { EnvironmentFilled, UploadOutlined } from '@ant-design/icons'
 import styles from './styles.module.css'
 
 const KelolaAkun = () => {
+  const [formDataWarehouse] = Form.useForm()
   const [section, setSection] = useState('pengguna')
+  const [openModal, setOpenModal] = useState(false)
+  const [rowData, setRowData] = useState()
+  const [isEdit, setIsEdit] = useState(false)
+
+  // Regex Validasi
+  const phoneNumberRegex = /^(^\+62\s?|^0)(\d{3,4}-?){2}\d{3,4}$/
 
   const handleChangeRadio = (event) => {
     setSection(event.target.value)
+  }
+
+  const showModal = () => {
+    setOpenModal(true)
+  }
+
+  const onCancel = () => {
+    setRowData()
+    setIsEdit(false)
+    formDataWarehouse.resetFields()
+    setOpenModal(false)
+  }
+
+  const onResetInput = () => {
+    formDataWarehouse.resetFields()
+  }
+
+  // handle edit button
+  const handleEdit = (row_data) => {
+    setOpenModal(true)
+    setRowData(row_data)
+    setIsEdit(true)
+    formDataWarehouse.setFieldsValue({
+      nama: row_data.nama,
+      jabatan: row_data.jabatan,
+      jenis_kelamin: row_data.jenis_kelamin,
+      tanggal_lahir: row_data.tanggal_lahir,
+      no_telepon: row_data.no_telepon,
+      alamat: row_data.alamat,
+    })
+  }
+
+  //   Add Data Pegawai
+  const onAdd = (values) => {
+    alert(
+      `Data berhasil ditambah \n nama : ${values.nama} \n jabatan : ${values.jabatan} \n Jenis Kelamin : ${values.jenis_kelamin} \n Tanggal Lahir : ${values.tanggal_lahir} \n No telepon : ${values.no_telepon} \n Alamat : ${values.alamat}`
+    )
+
+    setTimeout(() => {
+      formDataWarehouse.resetFields()
+      setOpenModal(false)
+    }, 500)
+  }
+
+  //   Edit Data from table
+  const onEdit = (values) => {
+    const body = {
+      ...values,
+    }
+
+    console.log(body)
   }
 
   return (
@@ -64,7 +139,7 @@ const KelolaAkun = () => {
                 <Col span={16}>
                   <p className={styles['card-title-badge']}>Data Pengguna</p>
 
-                  <Form className={styles['form-data-pengguna']} layout="vertical">
+                  <Form className={styles['form-data-pengguna']} layout="vertical" size="large">
                     <Row gutter={[32]}>
                       <Col span={12}>
                         <Form.Item label="Nama" name="nama">
@@ -149,7 +224,7 @@ const KelolaAkun = () => {
                       <Col span={12}>
                         <Form.Item label="Jenis Kelamin" name="jenis-kelamin">
                           <Select
-                            defaultValue="lucy"
+                            defaultValue="pria"
                             options={[
                               { value: 'pria', label: 'pria' },
                               { value: 'wanita', label: 'wanita' },
@@ -172,14 +247,241 @@ const KelolaAkun = () => {
                 </Col>
               </Row>
             </Card>
+            <div className={styles['pagination-wrap']}>
+              <Pagination defaultCurrent={1} total={50} />
+            </div>
           </Row>
-
-          <div className={styles['pagination-wrap']}>
-            <Pagination defaultCurrent={1} total={50} />
-          </div>
         </section>
       ) : (
-        <section id="section-pegawai"></section>
+        <section id="section-pegawai">
+          <Row>
+            <Button className={styles['add-data-btn']} type="primary" size="large" onClick={showModal}>
+              Input Data
+            </Button>
+
+            <Modal
+              className={styles['modal-form']}
+              title="Tambah Data Warehouse"
+              open={openModal}
+              footer={
+                <Row justify="space-between">
+                  <Button
+                    key="reset"
+                    type="primary"
+                    onClick={onResetInput}
+                    className={styles['reset-btn']}
+                    size="middle"
+                  >
+                    Reset
+                  </Button>
+
+                  <Button key="submit" type="primary" className={styles['submit-btn']} size="middle">
+                    {isEdit ? 'Simpan Perubahan' : 'Submit'}
+                  </Button>
+                </Row>
+              }
+              onCancel={onCancel}
+              width={627}
+              centered
+            >
+              <Form
+                className={styles['form-data-warehouse']}
+                name="form-data-warehouse"
+                form={formDataWarehouse}
+                onFinish={isEdit ? onEdit : onAdd}
+                layout="vertical"
+                size="large"
+              >
+                <Form.Item label="Upload Foto">
+                  <Upload>
+                    <Button icon={<UploadOutlined />}>Klik untuk Upload</Button>
+                  </Upload>
+                </Form.Item>
+
+                <Form.Item
+                  label="Nama"
+                  name="nama"
+                  rules={[
+                    {
+                      required: true,
+                      message: 'Masukkan nama lengkap Anda.',
+                    },
+                    {
+                      max: 100,
+                      message: 'Tidak boleh melebihi 100 huruf',
+                    },
+                    {
+                      whitespace: true,
+                      message: 'Tidak boleh dimulai dengan spasi',
+                    },
+                  ]}
+                >
+                  <Input placeholder="Silahkan mengisi nama lengkap Anda" />
+                </Form.Item>
+
+                <Form.Item
+                  label="Jabatan"
+                  name="jabatan"
+                  rules={[
+                    {
+                      required: true,
+                      message: 'Silahkan pilih jabatan Anda',
+                    },
+                  ]}
+                >
+                  <Select
+                    defaultValue="Pilih Jabatan"
+                    options={[
+                      { value: 'PIC', label: 'PIC' },
+                      { value: 'CS', label: 'CS' },
+                      { value: 'Manajer', label: 'Manajer' },
+                    ]}
+                  />
+                </Form.Item>
+
+                <Form.Item
+                  label="Jenis Kelamin"
+                  name="jenis_kelamin"
+                  rules={[
+                    {
+                      required: true,
+                      message: 'Silahkan pilih jenis kelamin Anda',
+                    },
+                  ]}
+                >
+                  <Select
+                    defaultValue="Pilih Jenis Kelamin"
+                    options={[
+                      { value: 'pria', label: 'pria' },
+                      { value: 'wanita', label: 'wanita' },
+                    ]}
+                  />
+                </Form.Item>
+
+                <Form.Item
+                  label="Tanggal Lahir"
+                  name="tanggal_lahir"
+                  rules={[{ required: true, message: 'Anda belum mengisi tanggal lahir' }]}
+                >
+                  <DatePicker placeholder="Silahkan mengisi tanggal lahir Anda" style={{ width: '100%' }} />
+                </Form.Item>
+
+                <Form.Item
+                  label="No Telepon"
+                  name="no_telepon"
+                  rules={[
+                    {
+                      required: true,
+                      message: 'Masukkan No Telepon',
+                    },
+                    {
+                      pattern: phoneNumberRegex,
+                      message: 'No Handphone tidak valid',
+                    },
+                    {
+                      whitespace: true,
+                      message: 'Tidak boleh diawali spasi',
+                    },
+                  ]}
+                >
+                  <Input placeholder="Silahkan mengisi nomor telepon Anda" />
+                </Form.Item>
+
+                <Form.Item
+                  label="Alamat"
+                  name="alamat"
+                  rules={[{ required: true, message: 'Anda belum mengisi alamat' }]}
+                >
+                  <Input.TextArea rows={2} showCount maxLength={250} placeholder="Silahkan mengisi alamat Anda" />
+                </Form.Item>
+              </Form>
+            </Modal>
+          </Row>
+
+          <Row gutter={32} className={styles['row-pegawai']}>
+            <Card bordered={true} className={styles['card-data-pegawai']}>
+              <Row gutter={[40]} align="middle">
+                <Col span={8}>
+                  <Card className={styles['card-profil-pegawai']}>
+                    <Avatar
+                      className={styles['img-pegawai']}
+                      shape="circle"
+                      size={150}
+                      src="https://gw.alipayobjects.com/zos/rmsportal/JiqGstEfoWAOHiTxclqi.png"
+                    />
+                    <p className={styles['username-pegawai']}>Username Pegawai</p>
+                  </Card>
+                </Col>
+
+                <Col span={16}>
+                  <Form className={styles['form-data-pegawai']} layout="vertical" size="large">
+                    <Row gutter={[24]}>
+                      <Col span={12}>
+                        <Form.Item label="Nama" name="nama">
+                          <Input style={{ width: '100%' }} />
+                        </Form.Item>
+                      </Col>
+
+                      <Col span={12}>
+                        <Form.Item label="Jabatan" name="jabatan">
+                          <Input style={{ width: '100%' }} />
+                        </Form.Item>
+                      </Col>
+                    </Row>
+
+                    <Row gutter={[24]}>
+                      <Col span={6}>
+                        <Form.Item label="Jenis Kelamin" name="jenis-kelamin">
+                          <Select
+                            defaultValue="Pria"
+                            options={[
+                              { value: 'pria', label: 'pria' },
+                              { value: 'wanita', label: 'wanita' },
+                            ]}
+                          />
+                        </Form.Item>
+                      </Col>
+
+                      <Col span={9}>
+                        <Form.Item label="Tanggal Lahir" name="tanggal-lahir">
+                          <DatePicker style={{ width: '100%' }} />
+                        </Form.Item>
+                      </Col>
+
+                      <Col span={9}>
+                        <Form.Item label="No Telepon">
+                          <Input />
+                        </Form.Item>
+                      </Col>
+                    </Row>
+
+                    <Row gutter={[24]} align="middle">
+                      <Col span={20}>
+                        <Form.Item label="Alamat" name="alamat">
+                          <Input.TextArea rows={4} showCount maxLength={250} />
+                        </Form.Item>
+                      </Col>
+
+                      <Col span={4}>
+                        <Space className={styles['action-card']} direction="vertical">
+                          <Button className={styles['btn-ubah']} type="primary" onClick={handleEdit} block>
+                            Ubah
+                          </Button>
+                          <Button className={styles['btn-hapus']} type="primary" danger block>
+                            Hapus
+                          </Button>
+                        </Space>
+                      </Col>
+                    </Row>
+                  </Form>
+                </Col>
+              </Row>
+            </Card>
+            <div className={styles['pagination-wrap']}>
+              <Pagination defaultCurrent={1} total={50} />
+            </div>
+          </Row>
+        </section>
       )}
     </>
   )

@@ -31,6 +31,7 @@ label.label-radio-btn-wrapper-custom:hover {
   color: #fff !important;
 }
 
+/* ===== STYLING SECTION PENGGUNA ===== */
 .row-pengguna {
   margin: 31px 0;
 }
@@ -52,13 +53,14 @@ label.label-radio-btn-wrapper-custom:hover {
 }
 
 .card-data-pengguna {
-  /* text-align: left; */
+  text-align: left;
   width: 100%;
   box-shadow: 0px 4px 12px 0px rgba(45, 100, 251, 0.15);
 }
 
 .card-profil-pengguna {
   border: 1px solid #e1e1e1;
+  text-align: center;
 }
 
 .card-title-badge {
@@ -78,4 +80,80 @@ label.label-radio-btn-wrapper-custom:hover {
 
 .pagination-wrap {
   margin: auto;
+}
+
+/* ===== STYLING SECTION PEGAWAI ===== */
+
+.add-data-btn {
+  display: inline-block !important;
+  text-align: left !important;
+  margin-top: 40px;
+  padding: 4px 32px !important;
+  font-weight: 700;
+  background-color: #3e9b12;
+  border-radius: 12px !important;
+}
+
+.row-pegawai {
+  margin: 31px 0;
+}
+
+.img-pegawai {
+  margin-bottom: 16px;
+}
+
+.username-pegawai {
+  font-size: 15px;
+  font-weight: 700;
+}
+
+.card-data-pegawai {
+  text-align: left;
+  width: 100%;
+  box-shadow: 0px 4px 12px 0px rgba(45, 100, 251, 0.15);
+}
+
+.card-profil-pegawai {
+  border: 1px solid #e1e1e1;
+  text-align: center;
+}
+
+.modal-form {
+  margin: 24px 0;
+}
+
+.form-data-warehouse {
+  margin-top: 40px !important;
+  margin-bottom: 56px !important;
+}
+
+.btn-ubah,
+.btn-hapus {
+  padding: 0 24px !important;
+  border-radius: 50px !important;
+}
+
+.btn-ubah {
+  background-color: #2b6d89;
+}
+
+.submit-btn,
+.reset-btn {
+  width: 211px;
+}
+
+.submit-btn {
+  background-color: #61a160 !important;
+}
+
+.submit-btn:hover {
+  background-color: #72b671 !important;
+}
+
+.reset-btn {
+  background-color: #8a4530 !important;
+}
+
+.reset-btn:hover {
+  background-color: #a75b44 !important;
 }
