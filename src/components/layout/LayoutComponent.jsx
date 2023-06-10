@@ -3,7 +3,9 @@ import { useLocation } from 'react-router-dom'
 import React from 'react'
 import SidebarComponent from './sidebar'
 import HeaderComponent from './header'
-// import FooterComponent from './footer'
+import FooterComponent from './footer'
+import styles from './styles.module.css'
+
 
 const LayoutComponent = ({ children }) => {
   const { Content } = Layout
@@ -19,29 +21,11 @@ const LayoutComponent = ({ children }) => {
     return children
   }
   return (
-    <Layout hasSider>
+    <Layout className={styles['layout']} hasSider>
       <SidebarComponent />
       <Layout className="site-layout">
-        <HeaderComponent />
-        <Content
-          style={
-            {
-              // margin: '24px 16px 0',
-              // overflow: 'initial',
-            }
-          }
-        >
-          <div
-            style={{
-              padding: '0px 24px',
-              background: '#EEF9F7',
-              height: '100vh',
-            }}
-          >
-            {children}
-          </div>
-        </Content>
-        {/* <FooterComponent /> */}
+        <Content className={styles['container-content']}>{children}</Content>
+        <FooterComponent />
       </Layout>
     </Layout>
   )

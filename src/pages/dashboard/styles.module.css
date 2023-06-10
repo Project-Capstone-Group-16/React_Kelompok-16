@@ -1,0 +1,63 @@
+.container-dashboard {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    padding: 0 20px;
+}
+
+.header {
+    justify-content: space-between;
+    align-items: center;
+}
+
+.header>h1 {
+    color: #2D64FB;
+    font-size: 48px;
+    line-height: 72px;
+    font-weight: 700;
+}
+
+.icon-profile {
+    width: 154px;
+    height: 45px;
+    border: 1px solid #A2A3A6;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20px;
+    border-radius: 20px;
+}
+
+.icon-profile>p {
+    font-size: 14px;
+    color: #1652F9;
+}
+
+.content {
+    height: 100%;
+}
+
+.content-left {
+    height: 100%;
+    width: 100%;
+}
+
+.container-content-left {
+    flex-direction: column;
+}
+
+.persentasi {
+    height: 100% !important;
+    max-width: 100% !important;
+}
+
+.diagram {
+    max-height: 100% !important;
+    max-width: 95% !important;
+}
+
+.content-right {
+    height: 100%;
+    width: 100%;
+}
