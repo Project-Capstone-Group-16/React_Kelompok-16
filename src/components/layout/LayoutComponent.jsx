@@ -6,6 +6,7 @@ import HeaderComponent from './header'
 import FooterComponent from './footer'
 import styles from './styles.module.css'
 
+
 const LayoutComponent = ({ children }) => {
   const { Content } = Layout
   const {
@@ -23,7 +24,6 @@ const LayoutComponent = ({ children }) => {
     <Layout className={styles['layout']} hasSider>
       <SidebarComponent />
       <Layout className="site-layout">
-        {/* <HeaderComponent /> */}
         <Content className={styles['container-content']}>{children}</Content>
         <FooterComponent />
       </Layout>
