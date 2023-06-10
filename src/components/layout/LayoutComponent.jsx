@@ -3,7 +3,7 @@ import { useLocation } from 'react-router-dom'
 import React from 'react'
 import SidebarComponent from './sidebar'
 import HeaderComponent from './header'
-import FooterComponent from './footer'
+// import FooterComponent from './footer'
 
 const LayoutComponent = ({ children }) => {
   const { Content } = Layout

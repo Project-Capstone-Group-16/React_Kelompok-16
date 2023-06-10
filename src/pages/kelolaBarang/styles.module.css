@@ -1,0 +1,129 @@
+.outer__title {
+  /* font-size: 48px !important; */
+  font-weight: 800 !important;
+  color: #2d64fb !important;
+}
+
+.card__outer {
+  border-radius: 20px;
+  margin-bottom: 14px;
+}
+
+.tag__barang {
+  background-color: #2d64fb;
+  border: 1px solid #a2a3a6;
+  border-radius: 15px;
+  color: #ffffff;
+  max-width: 400px;
+  width: 100%;
+  height: 42px;
+  padding: 10px;
+  font-size: 20px;
+  font-weight: 500;
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+.card__inner__left {
+  border-radius: 24px !important;
+  text-align: center;
+}
+
+.card__inner__right {
+  border-radius: 24px !important;
+}
+
+.card__name {
+  width: 143px;
+  height: 123px;
+  border-radius: 20px;
+  text-align: center;
+  overflow: hidden;
+}
+
+.text__barang__title {
+  font-weight: 500;
+  color: #000000;
+}
+
+.text__barang__name {
+  color: #000000;
+  font-weight: 500;
+  margin-top: 18px !important;
+  margin-bottom: 0 !important;
+}
+
+.card__size,
+.card__weight {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  max-width: 96px;
+  border-radius: 20px;
+  text-align: center;
+  padding: 12px 6px;
+  overflow: hidden;
+}
+
+.text__size__title,
+.text__weight__title {
+  font-weight: 500;
+  color: #000000;
+  font-size: 10px !important;
+}
+
+.text__size__name,
+.text__weight__name {
+  color: #000000;
+  font-weight: 500;
+  font-size: 10px !important;
+  margin-bottom: 0 !important;
+}
+
+.btn__action {
+  border-radius: 10px;
+  padding: 12px 6px;
+  width: 126px;
+  height: 50px;
+  font-weight: 500;
+  font-size: 15px;
+}
+
+.btn__action > span {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  width: 100%;
+}
+
+.btn__action--service {
+  color: #ffffff;
+  background-color: #2d64fb;
+}
+
+.btn__action--pickup {
+  color: #ffffff;
+  background-color: #bebcbc;
+}
+
+/* card detail */
+.card__detail {
+  width: 214px;
+  height: 211px;
+  border-radius: 20px;
+  overflow: hidden;
+}
+
+.detail__title {
+  font-size: 15px !important;
+  color: #431ddb !important;
+  margin-bottom: 0 !important;
+  margin-top: 0 !important;
+}
+
+.detail__value {
+  font-size: 13px !important;
+  margin-bottom: 0 !important;
+  color: #363636 !important;
+}
