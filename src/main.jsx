@@ -7,6 +7,14 @@ import { ConfigProvider } from 'antd'
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <BrowserRouter>
-    <App />
+    <ConfigProvider
+      theme={{
+        token: {
+          fontFamily: ['Poppins', 'sans-serif'],
+        },
+      }}
+    >
+      <App />
+    </ConfigProvider>
   </BrowserRouter>
 )

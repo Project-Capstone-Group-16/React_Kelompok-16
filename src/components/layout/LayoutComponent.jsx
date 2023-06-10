@@ -32,9 +32,9 @@ const LayoutComponent = ({ children }) => {
           <div
             style={{
               padding: 24,
-              textAlign: 'center',
+              // textAlign: 'center',
               background: colorBgContainer,
-              height: '100vh',
+              height: '100%',
             }}
           >
             {children}
