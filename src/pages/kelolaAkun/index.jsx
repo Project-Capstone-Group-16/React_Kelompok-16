@@ -17,9 +17,11 @@ import {
   message,
 } from 'antd'
 import { EnvironmentFilled, UploadOutlined } from '@ant-design/icons'
+import { DATA_PENGGUNA, DATA_PEGAWAI } from './constanst'
 import styles from './styles.module.css'
 
 const KelolaAkun = () => {
+  const { TextArea } = Input
   const [formDataWarehouse] = Form.useForm()
   const [section, setSection] = useState('pengguna')
   const [openModal, setOpenModal] = useState(false)
@@ -117,140 +119,77 @@ const KelolaAkun = () => {
 
       {section === 'pengguna' ? (
         <section id="section-pengguna">
-          <Row gutter={32} className={styles['row-pengguna']}>
-            <Card bordered={true} className={styles['card-data-pengguna']}>
-              <Row gutter={[40]} align="middle">
-                <Col span={8}>
-                  <Card className={styles['card-profil-pengguna']}>
-                    <Avatar
-                      className={styles['img-pengguna']}
-                      shape="circle"
-                      size={90}
-                      src="https://gw.alipayobjects.com/zos/rmsportal/JiqGstEfoWAOHiTxclqi.png"
-                    />
-                    <p className={styles['username-pengguna']}>Username Pengguna</p>
+          {DATA_PENGGUNA?.map((data, index) => (
+            <Row key={index} gutter={32} className={styles['row-pengguna']}>
+              <Card bordered={true} className={styles['card-data-pengguna']}>
+                <Row gutter={[40]} align="middle">
+                  <Col span={8}>
+                    <Card className={styles['card-profil-pengguna']}>
+                      <Avatar className={styles['img-pengguna']} shape="circle" size={90} src={data?.foto_profil} />
+                      <p className={styles['username-pengguna']}>{data?.nama}</p>
 
-                    <p className={styles['histori-pengguna']}>
-                      Histori Penyimpanan : <br /> <span>2x Penyimpanan</span>
-                    </p>
-                  </Card>
-                </Col>
+                      <p className={styles['histori-pengguna']}>
+                        Histori Penyimpanan : <br /> <span>{`${data?.histori_penyimpanan}x Penyimpanan`}</span>
+                      </p>
+                    </Card>
+                  </Col>
 
-                <Col span={16}>
-                  <p className={styles['card-title-badge']}>Data Pengguna</p>
+                  <Col span={16}>
+                    <p className={styles['card-title-badge']}>Data Pengguna</p>
 
-                  <Form className={styles['form-data-pengguna']} layout="vertical" size="large">
-                    <Row gutter={[32]}>
-                      <Col span={12}>
-                        <Form.Item label="Nama" name="nama">
-                          <Input style={{ width: '100%' }} />
-                        </Form.Item>
-                      </Col>
+                    <Form
+                      className={styles['form-data-pengguna']}
+                      layout="vertical"
+                      size="large"
+                      initialValues={{
+                        nama: data?.nama,
+                        tanggal_lahir: data?.tanggal_lahir,
+                        jenis_kelamin: data?.jenis_kelamin,
+                        no_telepon: data?.no_telepon,
+                        alamat: data?.alamat,
+                      }}
+                    >
+                      <Row gutter={[32]}>
+                        <Col span={12}>
+                          <Form.Item label="Nama" name="nama" className={styles['form-label-custom']}>
+                            <Input style={{ width: '100%' }} className={styles['input-custom']} readOnly />
+                          </Form.Item>
+                        </Col>
 
-                      <Col span={12}>
-                        <Form.Item label="Tanggal Lahir" name="tanggal-lahir">
-                          <DatePicker style={{ width: '100%' }} />
-                        </Form.Item>
-                      </Col>
-                    </Row>
+                        <Col span={12}>
+                          <Form.Item label="Tanggal Lahir" name="tanggal_lahir" className={styles['form-label-custom']}>
+                            <Input style={{ width: '100%' }} className={styles['input-custom']} readOnly />
+                          </Form.Item>
+                        </Col>
+                      </Row>
 
-                    <Row gutter={[32]}>
-                      <Col span={12}>
-                        <Form.Item label="Jenis Kelamin" name="jenis-kelamin">
-                          <Select
-                            defaultValue="lucy"
-                            options={[
-                              { value: 'pria', label: 'pria' },
-                              { value: 'wanita', label: 'wanita' },
-                            ]}
-                          />
-                        </Form.Item>
-                      </Col>
+                      <Row gutter={[32]}>
+                        <Col span={12}>
+                          <Form.Item label="Jenis Kelamin" name="jenis_kelamin" className={styles['form-label-custom']}>
+                            <Input className={styles['input-custom']} readOnly />
+                          </Form.Item>
+                        </Col>
 
-                      <Col span={12}>
-                        <Form.Item label="No Telepon">
-                          <Input />
-                        </Form.Item>
-                      </Col>
-                    </Row>
+                        <Col span={12}>
+                          <Form.Item label="No Telepon" name="no_telepon" className={styles['form-label-custom']}>
+                            <Input className={styles['input-custom']} readOnly />
+                          </Form.Item>
+                        </Col>
+                      </Row>
 
-                    <Form.Item label="Alamat" name="alamat">
-                      <Input.TextArea rows={4} showCount maxLength={250} />
-                    </Form.Item>
-                  </Form>
-                </Col>
-              </Row>
-            </Card>
-          </Row>
+                      <Form.Item label="Alamat" name="alamat" className={styles['form-label-custom']}>
+                        <TextArea className={styles['input-custom']} rows={3} readOnly />
+                      </Form.Item>
+                    </Form>
+                  </Col>
+                </Row>
+              </Card>
+            </Row>
+          ))}
 
-          <Row gutter={32} className={styles['row-pengguna']}>
-            <Card bordered={true} className={styles['card-data-pengguna']}>
-              <Row gutter={[40]} align="middle">
-                <Col span={8}>
-                  <Card className={styles['card-profil-pengguna']}>
-                    <Avatar
-                      className={styles['img-pengguna']}
-                      shape="circle"
-                      size={90}
-                      src="https://gw.alipayobjects.com/zos/rmsportal/JiqGstEfoWAOHiTxclqi.png"
-                    />
-                    <p className={styles['username-pengguna']}>Username Pengguna</p>
-
-                    <p className={styles['histori-pengguna']}>
-                      Histori Penyimpanan : <br /> <span>2x Penyimpanan</span>
-                    </p>
-                  </Card>
-                </Col>
-
-                <Col span={16}>
-                  <p className={styles['card-title-badge']}>Data Pengguna</p>
-
-                  <Form className={styles['form-data-pengguna']} layout="vertical">
-                    <Row gutter={[32]}>
-                      <Col span={12}>
-                        <Form.Item label="Nama" name="nama">
-                          <Input style={{ width: '100%' }} />
-                        </Form.Item>
-                      </Col>
-
-                      <Col span={12}>
-                        <Form.Item label="Tanggal Lahir" name="tanggal-lahir">
-                          <DatePicker style={{ width: '100%' }} />
-                        </Form.Item>
-                      </Col>
-                    </Row>
-
-                    <Row gutter={[32]}>
-                      <Col span={12}>
-                        <Form.Item label="Jenis Kelamin" name="jenis-kelamin">
-                          <Select
-                            defaultValue="pria"
-                            options={[
-                              { value: 'pria', label: 'pria' },
-                              { value: 'wanita', label: 'wanita' },
-                            ]}
-                          />
-                        </Form.Item>
-                      </Col>
-
-                      <Col span={12}>
-                        <Form.Item label="No Telepon">
-                          <Input />
-                        </Form.Item>
-                      </Col>
-                    </Row>
-
-                    <Form.Item label="Alamat" name="alamat">
-                      <Input.TextArea rows={4} showCount maxLength={250} />
-                    </Form.Item>
-                  </Form>
-                </Col>
-              </Row>
-            </Card>
-            <div className={styles['pagination-wrap']}>
-              <Pagination defaultCurrent={1} total={50} />
-            </div>
-          </Row>
+          <div className={styles['pagination-wrap']}>
+            <Pagination defaultCurrent={1} total={50} />
+          </div>
         </section>
       ) : (
         <section id="section-pegawai">
@@ -332,9 +271,11 @@ const KelolaAkun = () => {
                   <Select
                     defaultValue="Pilih Jabatan"
                     options={[
-                      { value: 'PIC', label: 'PIC' },
-                      { value: 'CS', label: 'CS' },
                       { value: 'Manajer', label: 'Manajer' },
+                      { value: 'PIC', label: 'PIC' },
+                      { value: 'Akuntan', label: 'Akuntan' },
+                      { value: 'CS', label: 'CS' },
+                      { value: 'Direktur', label: 'Direktur' },
                     ]}
                   />
                 </Form.Item>
@@ -398,89 +339,93 @@ const KelolaAkun = () => {
             </Modal>
           </Row>
 
-          <Row gutter={32} className={styles['row-pegawai']}>
-            <Card bordered={true} className={styles['card-data-pegawai']}>
-              <Row gutter={[40]} align="middle">
-                <Col span={8}>
-                  <Card className={styles['card-profil-pegawai']}>
-                    <Avatar
-                      className={styles['img-pegawai']}
-                      shape="circle"
-                      size={150}
-                      src="https://gw.alipayobjects.com/zos/rmsportal/JiqGstEfoWAOHiTxclqi.png"
-                    />
-                    <p className={styles['username-pegawai']}>Username Pegawai</p>
-                  </Card>
-                </Col>
+          {DATA_PEGAWAI?.map((data, index) => (
+            <Row key={index} gutter={32} className={styles['row-pegawai']}>
+              <Card bordered={true} className={styles['card-data-pegawai']}>
+                <Row gutter={[40]} align="middle">
+                  <Col span={8}>
+                    <Card className={styles['card-profil-pegawai']}>
+                      <Avatar className={styles['img-pegawai']} shape="circle" size={150} src={data?.foto_profil} />
+                      <p className={styles['username-pegawai']}>{data?.nama}</p>
+                    </Card>
+                  </Col>
 
-                <Col span={16}>
-                  <Form className={styles['form-data-pegawai']} layout="vertical" size="large">
-                    <Row gutter={[24]}>
-                      <Col span={12}>
-                        <Form.Item label="Nama" name="nama">
-                          <Input style={{ width: '100%' }} />
-                        </Form.Item>
-                      </Col>
+                  <Col span={16}>
+                    <Form
+                      className={styles['form-data-pegawai']}
+                      layout="vertical"
+                      size="large"
+                      initialValues={{
+                        nama: data?.nama,
+                        jabatan: data?.jabatan,
+                        jenis_kelamin: data?.jenis_kelamin,
+                        tanggal_lahir: data?.tanggal_lahir,
+                        no_telepon: data?.no_telepon,
+                        alamat: data?.alamat,
+                      }}
+                    >
+                      <Row gutter={[24]}>
+                        <Col span={12}>
+                          <Form.Item label="Nama" name="nama" className={styles['form-label-custom']}>
+                            <Input className={styles['input-custom']} readOnly />
+                          </Form.Item>
+                        </Col>
 
-                      <Col span={12}>
-                        <Form.Item label="Jabatan" name="jabatan">
-                          <Input style={{ width: '100%' }} />
-                        </Form.Item>
-                      </Col>
-                    </Row>
+                        <Col span={12}>
+                          <Form.Item label="Jabatan" name="jabatan" className={styles['form-label-custom']}>
+                            <Input className={styles['input-custom']} readOnly />
+                          </Form.Item>
+                        </Col>
+                      </Row>
 
-                    <Row gutter={[24]}>
-                      <Col span={6}>
-                        <Form.Item label="Jenis Kelamin" name="jenis-kelamin">
-                          <Select
-                            defaultValue="Pria"
-                            options={[
-                              { value: 'pria', label: 'pria' },
-                              { value: 'wanita', label: 'wanita' },
-                            ]}
-                          />
-                        </Form.Item>
-                      </Col>
+                      <Row gutter={[24]}>
+                        <Col span={6}>
+                          <Form.Item label="Jenis Kelamin" name="jenis_kelamin" className={styles['form-label-custom']}>
+                            <Input className={styles['input-custom']} readOnly />
+                          </Form.Item>
+                        </Col>
 
-                      <Col span={9}>
-                        <Form.Item label="Tanggal Lahir" name="tanggal-lahir">
-                          <DatePicker style={{ width: '100%' }} />
-                        </Form.Item>
-                      </Col>
+                        <Col span={9}>
+                          <Form.Item label="Tanggal Lahir" name="tanggal_lahir" className={styles['form-label-custom']}>
+                            <Input className={styles['input-custom']} readOnly />
+                          </Form.Item>
+                        </Col>
 
-                      <Col span={9}>
-                        <Form.Item label="No Telepon">
-                          <Input />
-                        </Form.Item>
-                      </Col>
-                    </Row>
+                        <Col span={9}>
+                          <Form.Item label="No Telepon" name="no_telepon" className={styles['form-label-custom']}>
+                            <Input className={styles['input-custom']} readOnly />
+                          </Form.Item>
+                        </Col>
+                      </Row>
 
-                    <Row gutter={[24]} align="middle">
-                      <Col span={20}>
-                        <Form.Item label="Alamat" name="alamat">
-                          <Input.TextArea rows={4} showCount maxLength={250} />
-                        </Form.Item>
-                      </Col>
+                      <Row gutter={[24]} align="middle">
+                        <Col span={20}>
+                          <Form.Item label="Alamat" name="alamat" className={styles['form-label-custom']}>
+                            <TextArea className={styles['input-custom']} rows={3} readOnly />
+                          </Form.Item>
+                        </Col>
 
-                      <Col span={4}>
-                        <Space className={styles['action-card']} direction="vertical">
-                          <Button className={styles['btn-ubah']} type="primary" onClick={handleEdit} block>
-                            Ubah
-                          </Button>
-                          <Button className={styles['btn-hapus']} type="primary" danger block>
-                            Hapus
-                          </Button>
-                        </Space>
-                      </Col>
-                    </Row>
-                  </Form>
-                </Col>
-              </Row>
-            </Card>
-            <div className={styles['pagination-wrap']}>
-              <Pagination defaultCurrent={1} total={50} />
-            </div>
-          </Row>
+                        <Col span={4}>
+                          <Space className={styles['action-card']} direction="vertical">
+                            <Button className={styles['btn-ubah']} type="primary" onClick={handleEdit} block>
+                              Ubah
+                            </Button>
+                            <Button className={styles['btn-hapus']} type="primary" danger block>
+                              Hapus
+                            </Button>
+                          </Space>
+                        </Col>
+                      </Row>
+                    </Form>
+                  </Col>
+                </Row>
+              </Card>
+            </Row>
+          ))}
+
+          <div className={styles['pagination-wrap']}>
+            <Pagination defaultCurrent={1} total={50} />
+          </div>
         </section>
       )}
     </>

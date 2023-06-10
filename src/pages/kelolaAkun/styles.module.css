@@ -157,3 +157,14 @@ label.label-radio-btn-wrapper-custom:hover {
 .reset-btn:hover {
   background-color: #a75b44 !important;
 }
+
+.form-label-custom label {
+  color: #2d64fb !important;
+  font-weight: 500;
+}
+
+.input-custom:hover[readOnly],
+.input-custom:focus[readOnly] {
+  border-color: #d9d9d9;
+  box-shadow: none;
+}
