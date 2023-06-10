@@ -15,9 +15,11 @@ body {
 .ant-card:not(.ant-card-bordered) {
   box-shadow: none;
 }
+
 .modalStyle .ant-modal-content {
   background-color: #eef9f7 !important;
 }
+
 .ant-modal {
   top: 50px !important;
 }
@@ -26,5 +28,7 @@ body {
   padding-bottom: 4px !important;
   font-weight: 700 !important;
 
-.ant-card:is(.ant-card-bordered) {
-  border: 1px solid #a2a3a6;
+  .ant-card:is(.ant-card-bordered) {
+    border: 1px solid #a2a3a6;
+  }
+}
