@@ -5,6 +5,7 @@
 }
 
 .list-item {
+    padding: 10px 0;
     border-radius: 20px;
     display: flex;
     flex-direction: column;
@@ -63,4 +64,10 @@
 .type-loker-number:hover {
     cursor: pointer;
     transform: scale(1.1);
+}
+
+.container-pagination{
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
 }

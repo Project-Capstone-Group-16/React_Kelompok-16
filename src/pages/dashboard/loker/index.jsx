@@ -1,19 +1,20 @@
-import React from 'react'
-import styles from './styles.module.css'
+import { Col, Pagination, Row, Tooltip } from 'antd'
+import React, { useState } from 'react'
 import { LOKER } from './constants'
-import { Col, List, Row, Tooltip } from 'antd'
+import styles from './styles.module.css'
 
 const Loker = () => {
+  const [page, setPage] = useState(1)
+  const start = page - 1
+  const end = page
+  const handlePaginate = (value) => {
+    setPage(value)
+  }
   return (
     <>
-      <List
-        className={styles['container-loker']}
-        pagination={{
-          pageSize: 1,
-        }}
-        dataSource={LOKER}
-        renderItem={(item) => (
-          <List.Item key={item.id} className={styles['list-item']}>
+      <div className="container-loker">
+        {LOKER?.slice(start, end)?.map((item) => (
+          <div key={item.id} className={styles['list-item']}>
             <span className={styles['container-title-loker']}>
               <p className={styles['title-loker']}>Inventron {item.name}</p>
               <p className={styles['title-loker']}>Kontrol Loker</p>
@@ -38,9 +39,12 @@ const Loker = () => {
                 ))}
               </Row>
             ))}
-          </List.Item>
-        )}
-      />
+          </div>
+        ))}
+        <div className={styles['container-pagination']}>
+          <Pagination defaultCurrent={1} total={LOKER?.length} pageSize={1} onChange={handlePaginate} />
+        </div>
+      </div>
     </>
   )
 }
