@@ -1,0 +1,63 @@
+.heading {
+  font-weight: 400;
+  color: #010101;
+  font-size: 16px;
+}
+.upload-image {
+  display: flex;
+  flex-direction: column;
+  margin-top: 15px;
+  margin-bottom: 10px;
+}
+.upload-label {
+  color: #010101;
+  margin-bottom: 4px;
+  font-size: 16px !important;
+}
+.field-container {
+  margin-bottom: 10px !important;
+}
+.input-label {
+  font-weight: 700;
+  font-size: 16px !important;
+}
+.input {
+  margin-top: 2px;
+  border-color: #2f2f2f !important;
+}
+.buttons {
+  width: 100%;
+  margin-top: 50px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  padding-bottom: 10px;
+}
+.reset-button {
+  background-color: #8a4530;
+  width: 210px;
+  padding: 3px 0px;
+  color: #f4fafb;
+  font-weight: 700;
+  text-align: center;
+  outline: none;
+  border: none;
+  border-radius: 5px;
+}
+.save-button {
+  background-color: #61a160;
+  width: 210px;
+  padding: 3px 0px;
+  color: #f4fafb;
+  font-weight: 700;
+  text-align: center;
+  outline: none;
+  border: none;
+  border-radius: 5px;
+}
+.reset-button:hover,
+.save-button:hover {
+  cursor: pointer;
+  opacity: 0.9;
+}
