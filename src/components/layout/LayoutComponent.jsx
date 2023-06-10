@@ -24,17 +24,18 @@ const LayoutComponent = ({ children }) => {
       <Layout className="site-layout">
         <HeaderComponent />
         <Content
-          style={{
-            margin: '24px 16px 0',
-            overflow: 'initial',
-          }}
+          style={
+            {
+              // margin: '24px 16px 0',
+              // overflow: 'initial',
+            }
+          }
         >
           <div
             style={{
-              padding: 24,
-              // textAlign: 'center',
-              background: colorBgContainer,
-              height: '100%',
+              padding: '0px 24px',
+              background: '#EEF9F7',
+              height: '100vh',
             }}
           >
             {children}
