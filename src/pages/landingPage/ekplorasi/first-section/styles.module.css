@@ -89,7 +89,7 @@
   margin-bottom: 30px;
 }
 
-.list-container > .mengapa {
+.list-container>.mengapa {
   padding-top: 75px;
 }
 
@@ -140,6 +140,7 @@
   color: #2f2f2f;
   font-size: 18px;
   font-weight: 600;
+  text-align: center;
 }
 
 .second-card p {
@@ -149,6 +150,7 @@
 }
 
 @media (max-width: 992px) {
+
   .first-cards,
   .second-cards {
     grid-template-columns: repeat(3, 1fr);
@@ -159,16 +161,20 @@
   .list-container {
     padding: 0px 50px;
   }
+
   .list-container h1 {
     font-size: 20px;
   }
+
   .first-card p {
     margin-top: 20px;
     font-size: 14px;
   }
+
   .second-card h4 {
     font-size: 14px;
   }
+
   .second-card p {
     font-size: 12px;
   }
@@ -178,80 +184,100 @@
   .intro-content {
     padding-bottom: 40px;
   }
+
   .intro h1 {
     font-size: 32px;
   }
+
   .intro h3 {
     margin-top: 20px;
     font-size: 20px;
     font-weight: 600;
   }
+
   .intro h4 {
     line-height: 36px;
     font-size: 20px;
     font-weight: 600;
   }
+
   .first-card {
     padding: 15px;
   }
+
   .first-card p {
     margin-top: 15px;
     font-size: 14px;
   }
+
   .list-container {
     padding: 0px 30px;
   }
+
   .second-card {
     padding: 18px 14px;
   }
+
   .second-card h4 {
     font-size: 12px;
     margin-top: 12px;
   }
+
   .second-card p {
     font-size: 10px;
   }
+
   .intro button {
     width: 120px;
     height: 40px;
     font-size: 16px;
     border-radius: 10px;
   }
+
   .intro {
     padding: 50px 30px;
   }
 }
 
 @media (max-width: 576px) {
+
   .first-cards,
   .second-cards {
     grid-template-columns: repeat(2, 1fr);
     row-gap: 30px;
     column-gap: 20px;
   }
+
   .first-card p {
     font-size: 12px;
   }
+
   .list-container {
     padding: 0px 24px;
   }
+
   .second-card {
     border-radius: 12px;
   }
+
   .second-card img {
     border-radius: 12px;
   }
+
   .list-container,
   .list-container h1 {
     margin-bottom: 40px;
   }
+
   .intro-content {
     padding-top: 30px;
     padding-bottom: 30px;
   }
+
   .intro-content h1 {
     font-size: 20px;
   }
+
   .intro-content h4 {
     font-size: 14px;
     line-height: 30px;
@@ -262,12 +288,14 @@
     font-size: 12px;
     line-height: 30px;
   }
+
   .intro button {
     width: 100px;
     height: 32px;
     font-size: 14px;
     border-radius: 8px;
   }
+
   .intro {
     padding: 30px;
   }

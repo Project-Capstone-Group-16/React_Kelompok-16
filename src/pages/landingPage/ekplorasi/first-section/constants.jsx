@@ -1,4 +1,13 @@
-import { image1, image2, image3, image4, image5, image6, image7, image8 } from '../../../../assets/images/explorasi'
+import {
+  image1,
+  image2,
+  image3,
+  image4,
+  lokasiBandung,
+  lokasiJakarta,
+  lokasiMalang,
+  lokasiSurabaya,
+} from '../../../../assets/images/explorasi'
 const menu = [
   {
     label: 'Eksplorasi',
@@ -26,9 +35,9 @@ const firstList = [
 ]
 
 const secondList = [
-  { image: image5, title: 'Inventron Malang', description: '10 Penyimpanan Tersedia' },
-  { image: image6, title: 'Inventron Surabaya', description: '10 Penyimpanan Tersedia' },
-  { image: image7, title: 'Inventron Semarang', description: '10 Penyimpanan Tersedia' },
-  { image: image8, title: 'Inventron Bandung', description: '10 Penyimpanan Tersedia' },
+  { image: lokasiMalang, title: 'Inventron Malang' },
+  { image: lokasiSurabaya, title: 'Inventron Surabaya' },
+  { image: lokasiBandung, title: 'Inventron Bandung' },
+  { image: lokasiJakarta, title: 'Inventron Jakarta' },
 ]
 export { menu, firstList, secondList }
