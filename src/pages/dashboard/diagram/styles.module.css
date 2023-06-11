@@ -1,0 +1,12 @@
+.container-diagram {
+    height: 100%;
+    width: 100%;
+    margin-top: 20px;
+}
+
+
+.title-diagram {
+    font-size: 36px;
+    font-weight: 500;
+    color: #2D64FB;
+}

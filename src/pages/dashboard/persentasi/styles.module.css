@@ -1,0 +1,104 @@
+.container-persentasi {
+    display: flex;
+    justify-content: space-between;
+    height: 100%;
+    width: 100%;
+}
+
+.container-persentasi-1 {
+    background-color: #1652F9;
+    height: 254px;
+    width: 441px;
+    border-radius: 26px;
+    padding: 20px;
+}
+
+.container-date {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.title-date, .date {
+    font-size: 15px;
+    font-weight: 700;
+    color: #F9F9F9;
+}
+
+.container-persentasi-terpakai {
+    margin-top: 30px !important;
+    width: 161px;
+    height: 80px;
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+}
+
+.container-persentasi-terpakai-1, .container-persentasi-terpakai-2 {
+    width: 100%;
+    height: 100%;
+    border: 2px solid #F9F9F9;
+    border-radius: 20px;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.title-persentasi {
+    font-size: 14px;
+    font-weight: 700;
+    color: #F9F9F9;
+}
+
+.number-persentasi {
+    font-size: 24px;
+    font-weight: 600;
+    color: #F9F9F9;
+}
+
+.container-persentasi-terpakai {
+    margin-top: 20px;
+    text-align: center;
+}
+
+.container-total-pengguna {
+    width: 238px;
+    height: 254px;
+    background-color: #1652F9;
+    margin: 0 auto;
+    border-radius: 20px;
+    padding: 20px;
+}
+
+.total-pengguna {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.container-total-pengguna-1, .container-total-pengguna-2 {
+    width: 171px;
+    height: 79px;
+    padding: 10px;
+    border: 2px solid #F9F9F9;
+    border-radius: 20px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+
+.title-total-pengguna {
+    font-size: 14px;
+    font-weight: 700;
+    color: #F9F9F9;
+}
+
+.number-total-pengguna {
+    font-size: 24px;
+    font-weight: 700;
+    color: #F9F9F9;
+}

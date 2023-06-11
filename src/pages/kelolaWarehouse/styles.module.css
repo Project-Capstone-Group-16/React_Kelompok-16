@@ -1,0 +1,45 @@
+.container {
+  width: 100%;
+  height: fit-content;
+  box-sizing: border-box;
+  background-color: #eef9f7;
+  padding: 0px 6px;
+  padding-bottom: 30px;
+}
+.heading {
+  color: #2d64fb;
+  font-size: 48px;
+  line-height: 72px;
+  font-weight: 800;
+  text-align: start;
+  margin-bottom: 60px;
+}
+.add-button {
+  color: #f4fafb;
+  font-size: 14px;
+  font-weight: 700;
+  outline: none;
+  border: none;
+  padding: 10px 16px;
+  background-color: #3e9b12;
+  border-radius: 12px;
+}
+.add-button:hover {
+  cursor: pointer;
+  opacity: 0.9;
+}
+
+.pagination {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  margin-top: 60px;
+}
+
+.info-page {
+  color: rgba(0, 0, 0, 0.85);
+  font-size: 14px;
+  font-weight: 400;
+}

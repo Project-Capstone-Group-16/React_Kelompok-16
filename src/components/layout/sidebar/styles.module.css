@@ -1,4 +1,7 @@
 .sidebar {
+    overflow: auto;
+    position: relative;
+    left: 0;
     flex: 0 0 305px !important;
     max-width: 305px !important;
     background-color: #1652F9 !important;
@@ -7,11 +10,11 @@
 .sidebar-item {
     width: 305px;
     margin-top: 20px;
+    height: 100vh;
     position: fixed;
     top: 0;
     left: 0;
-    bottom: 0;
-    z-index: 100;
+    z-index: 1;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -19,7 +22,7 @@
 
 }
 
-.sidebar-menu{
+.sidebar-menu {
     width: 100%;
     display: flex;
     flex-direction: column;
@@ -45,7 +48,7 @@
     margin-top: 10px !important;
 }
 
-.sidebar-logout{
+.sidebar-logout {
     width: 100%;
     display: flex;
     flex-direction: column;
