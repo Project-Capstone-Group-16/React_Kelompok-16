@@ -10,13 +10,6 @@ const KelolaTransaksi = () => {
   const handlePaginate = (value) => {
     setPage(value)
   }
-  // const getButtonClassName = (status) => {
-  //   if (status === 'Disewa') {
-  //     return `${styles['penitipan']} ${styles['penitipan-blue']}`
-  //   } else {
-  //     return styles['penitipan']
-  //   }
-  // }
   return (
     <div>
       <div className={styles['body']}>
