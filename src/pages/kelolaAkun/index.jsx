@@ -1,23 +1,22 @@
-import React, { useState } from 'react'
+import { UploadOutlined } from '@ant-design/icons'
 import {
-  Row,
-  Col,
-  Space,
-  Radio,
-  Card,
   Avatar,
+  Button,
+  Card,
+  Col,
+  DatePicker,
   Form,
   Input,
-  DatePicker,
-  Select,
-  Pagination,
-  Button,
   Modal,
+  Pagination,
+  Radio,
+  Row,
+  Select,
+  Space,
   Upload,
-  message,
 } from 'antd'
-import { EnvironmentFilled, UploadOutlined } from '@ant-design/icons'
-import { DATA_PENGGUNA, DATA_PEGAWAI } from './constanst'
+import React, { useState } from 'react'
+import { DATA_PEGAWAI, DATA_PENGGUNA } from './constanst'
 import styles from './styles.module.css'
 
 const KelolaAkun = () => {
@@ -27,6 +26,12 @@ const KelolaAkun = () => {
   const [openModal, setOpenModal] = useState(false)
   const [rowData, setRowData] = useState()
   const [isEdit, setIsEdit] = useState(false)
+  const [page, setPage] = useState(1)
+  const start = (page - 1) * 2
+  const end = page * 2
+  const handlePaginate = (value) => {
+    setPage(value)
+  }
 
   // Regex Validasi
   const phoneNumberRegex = /^(^\+62\s?|^0)(\d{3,4}-?){2}\d{3,4}$/
@@ -119,7 +124,7 @@ const KelolaAkun = () => {
 
       {section === 'pengguna' ? (
         <section id="section-pengguna">
-          {DATA_PENGGUNA?.map((data, index) => (
+          {DATA_PENGGUNA?.slice(start, end)?.map((data, index) => (
             <Row key={index} gutter={32} className={styles['row-pengguna']}>
               <Card bordered={true} className={styles['card-data-pengguna']}>
                 <Row gutter={[40]} align="middle">
@@ -188,7 +193,14 @@ const KelolaAkun = () => {
           ))}
 
           <div className={styles['pagination-wrap']}>
-            <Pagination defaultCurrent={1} total={50} />
+            <Pagination
+              defaultCurrent={1}
+              total={DATA_PENGGUNA?.length}
+              pageSize={2}
+              onChange={handlePaginate}
+              showTotal={(total, range) => `${range[0]}-${range[1]} dari ${Math.ceil(total / 2)} halaman `}
+              showSizeChanger={false}
+            />
           </div>
         </section>
       ) : (
@@ -339,7 +351,7 @@ const KelolaAkun = () => {
             </Modal>
           </Row>
 
-          {DATA_PEGAWAI?.map((data, index) => (
+          {DATA_PEGAWAI?.slice(start, end)?.map((data, index) => (
             <Row key={index} gutter={32} className={styles['row-pegawai']}>
               <Card bordered={true} className={styles['card-data-pegawai']}>
                 <Row gutter={[40]} align="middle">
@@ -424,7 +436,14 @@ const KelolaAkun = () => {
           ))}
 
           <div className={styles['pagination-wrap']}>
-            <Pagination defaultCurrent={1} total={50} />
+            <Pagination
+              defaultCurrent={1}
+              total={DATA_PEGAWAI?.length}
+              pageSize={2}
+              onChange={handlePaginate}
+              showTotal={(total, range) => `${range[0]}-${range[1]} dari ${Math.ceil(total / 2)} halaman `}
+              showSizeChanger={false}
+            />
           </div>
         </section>
       )}
