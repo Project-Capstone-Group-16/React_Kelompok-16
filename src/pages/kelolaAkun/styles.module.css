@@ -1,0 +1,171 @@
+.radio-group-kelola-akun {
+  width: auto !important;
+  background: #431ddb;
+  padding: 15px 26px;
+  border-radius: 20px;
+}
+
+label.label-radio-btn-wrapper-custom {
+  background-color: #a2a3a6;
+  color: #333333;
+  padding: 8px 22px;
+  border: 0;
+  width: 443px;
+  height: 50px;
+  font-size: 24px;
+  font-weight: 700;
+}
+
+label.label-radio-btn-wrapper-custom-active {
+  background-color: #fff !important;
+  color: #000 !important;
+  padding: 8px 22px;
+  border: 0;
+  width: 443px;
+  height: 50px;
+  font-size: 24px;
+  font-weight: 700;
+}
+
+label.label-radio-btn-wrapper-custom:hover {
+  color: #fff !important;
+}
+
+/* ===== STYLING SECTION PENGGUNA ===== */
+.row-pengguna {
+  margin: 31px 0;
+}
+
+.img-pengguna {
+  margin-bottom: 16px;
+}
+
+.username-pengguna {
+  font-size: 15px;
+  font-weight: 700;
+}
+
+.histori-pengguna {
+  margin: 32px 0;
+  font-weight: 500;
+  line-height: 32px;
+  color: #6c757d;
+}
+
+.card-data-pengguna {
+  text-align: left;
+  width: 100%;
+  box-shadow: 0px 4px 12px 0px rgba(45, 100, 251, 0.15);
+}
+
+.card-profil-pengguna {
+  border: 1px solid #e1e1e1;
+  text-align: center;
+}
+
+.card-title-badge {
+  margin: auto;
+  padding: 8px 24px;
+  width: 433px;
+  background-color: #2d64fb;
+  color: #fff;
+  font-weight: 700;
+  text-align: center;
+  border-radius: 50px;
+}
+
+.form-data-pengguna {
+  margin-top: 32px;
+}
+
+.pagination-wrap {
+  margin: auto;
+}
+
+/* ===== STYLING SECTION PEGAWAI ===== */
+
+.add-data-btn {
+  display: inline-block !important;
+  text-align: left !important;
+  margin-top: 40px;
+  padding: 4px 32px !important;
+  font-weight: 700;
+  background-color: #3e9b12;
+  border-radius: 12px !important;
+}
+
+.row-pegawai {
+  margin: 31px 0;
+}
+
+.img-pegawai {
+  margin-bottom: 16px;
+}
+
+.username-pegawai {
+  font-size: 15px;
+  font-weight: 700;
+}
+
+.card-data-pegawai {
+  text-align: left;
+  width: 100%;
+  box-shadow: 0px 4px 12px 0px rgba(45, 100, 251, 0.15);
+}
+
+.card-profil-pegawai {
+  border: 1px solid #e1e1e1;
+  text-align: center;
+}
+
+.modal-form {
+  margin: 24px 0;
+}
+
+.form-data-warehouse {
+  margin-top: 40px !important;
+  margin-bottom: 56px !important;
+}
+
+.btn-ubah,
+.btn-hapus {
+  padding: 0 24px !important;
+  border-radius: 50px !important;
+}
+
+.btn-ubah {
+  background-color: #2b6d89;
+}
+
+.submit-btn,
+.reset-btn {
+  width: 211px;
+}
+
+.submit-btn {
+  background-color: #61a160 !important;
+}
+
+.submit-btn:hover {
+  background-color: #72b671 !important;
+}
+
+.reset-btn {
+  background-color: #8a4530 !important;
+}
+
+.reset-btn:hover {
+  background-color: #a75b44 !important;
+}
+
+.form-label-custom label {
+  color: #2d64fb !important;
+  font-weight: 500;
+}
+
+.input-custom:hover[readOnly],
+.input-custom:focus[readOnly] {
+  border-color: #d9d9d9;
+  box-shadow: none;
+  cursor: no-drop;
+}

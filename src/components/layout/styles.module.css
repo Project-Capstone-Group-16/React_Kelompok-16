@@ -1,0 +1,8 @@
+.layout{
+    min-height: 100vh;
+}
+.container-content {
+    padding: 24px;
+    background-color: #EEF9F7;
+    min-height: 400px;
+}
