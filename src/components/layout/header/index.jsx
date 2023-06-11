@@ -10,7 +10,7 @@ const HeaderComponent = () => {
     <Header
       style={{
         padding: 0,
-        background: colorBgContainer,
+        background: '#EEF9F7',
       }}
     />
   )
