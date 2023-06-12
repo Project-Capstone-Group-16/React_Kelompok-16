@@ -11,6 +11,11 @@ footer {
   justify-content: center;
 }
 
+.image-unduhan-wrap .image-unduhan {
+  width: 280px;
+  height:100%;
+}
+
 .footer-content .heading-3 {
   font-weight: 700 !important;
   margin-bottom: 72px !important;
@@ -58,16 +63,12 @@ footer {
 
 /* Mobile Styling */
 @media (max-width: 992px) {
-  .footer-bottom .unduh-wrap{
+  .footer-bottom .unduh-wrap {
     margin-top: 20px;
   }
 }
 
 @media (max-width: 768px) {
-  .footer-content .image-unduhan-wrap img {
-    height: 372px;
-  }
-
   .footer-bottom {
     flex-direction: column-reverse;
     gap: 48px;
