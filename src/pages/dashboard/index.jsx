@@ -1,14 +1,22 @@
-import React from 'react'
-import styles from './styles.module.css'
-import { iconProfile } from '../../assets/icons/admin'
 import { Col, Row } from 'antd'
-import Persentasi from './persentasi'
+import React, { useEffect } from 'react'
+import { iconProfile } from '../../assets/icons/admin'
+import LoadingComponent from './../../components/loadingComponent/index'
 import Diagram from './diagram'
+import { useDashboard } from './hooks/useDashboard'
 import Loker from './loker'
+import Persentasi from './persentasi'
+import styles from './styles.module.css'
 
 const Dashboard = () => {
+  const [isLoadingDashboard, dataDashboard, getDataDashboard] = useDashboard()
+  console.log({ dataDashboard })
+  useEffect(() => {
+    getDataDashboard()
+  }, [])
   return (
     <>
+      {isLoadingDashboard ? <LoadingComponent /> : null}
       <div className={styles['container-dashboard']}>
         <Row className={styles['header']}>
           <h1>Dashboard</h1>
@@ -21,10 +29,10 @@ const Dashboard = () => {
           <Col className={styles['content-left']} span={18}>
             <Row className={styles['container-content-left']}>
               <Col className={styles['persentasi']} span={12}>
-                <Persentasi />
+                <Persentasi data={dataDashboard} />
               </Col>
               <Col className={styles['diagram']} span={12}>
-                <Diagram />
+                <Diagram data={dataDashboard} />
               </Col>
             </Row>
           </Col>
