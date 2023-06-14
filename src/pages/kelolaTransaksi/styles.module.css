@@ -5,79 +5,79 @@
   margin-left: 1px;
 }
 
-.body h1 {
+.body>h1 {
   font-style: normal;
   font-weight: 800;
   font-size: 44px;
-  margin-right: 499px;
-  /* margin-bottom: 10px; */
   line-height: 70px;
   color: #2d64fb;
 }
 
 .container {
+  width: 970px;
+  height: 260px;
+  margin: 10px 0;
+  padding: 10px;
   display: flex;
   flex-direction: row;
   flex-wrap: nowrap;
   justify-content: space-between;
-  align-items: stretch;
-  align-content: stretch;
+  align-items: center;
+  border: 2px solid #A2A3A6;
+  border-radius: 20px;
 }
 
 .containerOne {
   width: 300px;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5px;
 }
 
 .containerTwo {
-  margin-top: 45px;
-  width: 340px;
+  width: 380px;
 }
 
 .containerThree {
   width: 240px;
-  height: 100px;
-  margin-left: 0px;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 10px;
+  text-align: center;
 }
 
-.body-box {
-  width: 880px;
-  height: 220px;
-  margin-left: 1px;
-  margin-bottom: 15px;
-  border: 1px solid #a2a3a6;
-  border-radius: 20px;
-}
-
-.button {
-  margin-top: 7px;
+.label {
   width: 270px;
   height: 35px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   background: #2d64fb;
   color: #ffff;
-  border: 1px solid #a2a3a6;
   border-radius: 15px;
-  margin-bottom: 8px;
-  margin-right: 2px;
+  margin: 10px 0;
 }
+
+.images {
+  border-radius: 10px;
+}
+
 .kode {
   font-family: 'Poppins';
   font-style: normal;
   font-weight: 600;
   font-size: 12px;
-  line-height: 60px;
-  /* margin-right: px; */
   color: #000000;
 }
-.images {
-  width: 270px;
-  height: 154px;
-  left: 20px;
-  border-radius: 10px;
-}
+
+
 .kategori {
-  /* width: 300px; */
-  /* left: 300px; */
-  /* top: 90px; */
   font-family: 'Poppins';
   font-style: normal;
   font-weight: 500;
@@ -89,6 +89,7 @@
   flex-direction: column;
   text-align: left;
 }
+
 .kategori-item {
   text-align: left;
   width: 170px;
@@ -98,20 +99,15 @@
   font-weight: 500;
   font-size: 16px;
   line-height: 24px;
-  /* color: #000000; */
 }
+
 .with-span {
-  /* width: 150px; */
-  /* padding-right: 10px; */
   font-weight: 400;
   font-size: 16px;
   text-align: left;
 }
 
 .with-spans3 {
-  /* width: 167px; */
-  /* left: 190px; */
-  /* top: 110px; */
   font-weight: 400;
   font-size: 16px;
   text-align: left;
@@ -120,45 +116,49 @@
 .pembayaran {
   width: 193px;
   height: 48px;
-  /* left: 680px; */
-  margin-top: 20px;
-  margin-left: 13px;
   font-family: 'Poppins';
-  font-style: normal;
   font-weight: 600;
   font-size: 16px;
-  text-align: center;
   color: #000000;
 }
 
 .tunai {
   color: #1712f5;
 }
+
 .button-selesai {
   width: 189px;
   height: 34px;
-  /* left: 650px; */
-  margin-top: 44px;
-  margin-right: 15px;
   background: #14d63f;
-  /* background: #02b3ff; */
   border-radius: 15px;
   border: none;
   font-weight: 500;
   font-size: 14px;
+  transition: all 0.3s ease-in-out;
 }
+
+.button-selesai:hover {
+  filter: brightness(120%);
+  cursor: pointer;
+}
+
 .button-sewa {
   width: 189px;
   height: 34px;
-  margin-top: 44px;
-  margin-right: 15px;
-  /* background: #14d63f; */
   background: #02b3ff;
   border-radius: 15px;
   border: none;
   font-weight: 500;
   font-size: 14px;
+  transition: all 0.3s ease-in-out;
 }
+
+.button-sewa:hover {
+  filter: brightness(120%);
+  cursor: pointer;
+}
+
 .pagination {
-  margin-bottom: 10px;
+  display: flex;
+  justify-content: center;
 }

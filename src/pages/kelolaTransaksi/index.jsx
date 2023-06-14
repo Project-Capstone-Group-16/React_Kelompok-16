@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import styles from './styles.module.css'
 import { kelolaTransaksi } from './constant'
-import { Pagination } from 'antd'
+import { Image, Pagination } from 'antd'
 
 const KelolaTransaksi = () => {
   const [page, setPage] = useState(1)
@@ -11,57 +11,53 @@ const KelolaTransaksi = () => {
     setPage(value)
   }
   return (
-    <div>
+    <>
       <div className={styles['body']}>
         <h1> Kelola Transaksi</h1>
         {kelolaTransaksi?.slice(start, end)?.map((item, idx) => (
-          <div className={`${styles['body-box']}`}>
-            <div className={styles['container']} key={idx} id={`id-${idx + 2}`}>
-              <div className={styles['containerOne']}>
-                <button className={styles['button']}>{item.label}</button>
-                <img className={styles['images']} src={item.image} />
-              </div>
+          <div key={idx} className={styles['container']} id={`id-${idx + 2}`}>
+            <div className={styles['containerOne']}>
+              <p className={styles['label']}>{item.label}</p>
+              <Image width={270} height={170} className={styles['images']} src={item.image} />
+            </div>
 
-              <div className={styles['containerTwo']}>
-                <tbody>
-                  <tr>
-                    <td className={styles['kategori-item']}>kategori loker</td>
-                    <td>:</td>
-                    <td className={styles['with-span']}>&nbsp; {item.kLoker}</td>
-                  </tr>
-                  <tr>
-                    <td className={styles['kategori-item']}>Barang</td>
-                    <td>:</td>
-                    <td className={styles['with-span']}>&nbsp; {item.barang}</td>
-                  </tr>
-                  <tr>
-                    <td className={styles['kategori-item']}>Tanggal Check In</td>
-                    <td>:</td>
-                    <td className={styles['with-span']}>&nbsp; {item.chckin}</td>
-                  </tr>
-                  <tr>
-                    <td className={styles['kategori-item']}>Tanggal Check Out</td>
-                    <td>:</td>
-                    <td className={styles['with-span']}>&nbsp; {item.chcout}</td>
-                  </tr>
-                  <tr>
-                    <td className={styles['kategori-item']}>Alamat Pickup</td>
-                    <td>:</td>
-                    <td className={styles['with-spans3']}>&nbsp; {item.location}</td>
-                  </tr>
-                </tbody>
-              </div>
+            <table className={styles['containerTwo']}>
+              <tr>
+                <td className={styles['kategori-item']}>kategori loker</td>
+                <td>:</td>
+                <td className={styles['with-span']}>&nbsp; {item.kLoker}</td>
+              </tr>
+              <tr>
+                <td className={styles['kategori-item']}>Barang</td>
+                <td>:</td>
+                <td className={styles['with-span']}>&nbsp; {item.barang}</td>
+              </tr>
+              <tr>
+                <td className={styles['kategori-item']}>Tanggal Check In</td>
+                <td>:</td>
+                <td className={styles['with-span']}>&nbsp; {item.chckin}</td>
+              </tr>
+              <tr>
+                <td className={styles['kategori-item']}>Tanggal Check Out</td>
+                <td>:</td>
+                <td className={styles['with-span']}>&nbsp; {item.chcout}</td>
+              </tr>
+              <tr>
+                <td className={styles['kategori-item']}>Alamat Pickup</td>
+                <td>:</td>
+                <td className={styles['with-spans3']}>&nbsp; {item.location}</td>
+              </tr>
+            </table>
 
-              <div className={styles['containerThree']}>
-                <span className={styles['kode']}>{item.kode}</span>
-                <p className={styles['pembayaran']}>
-                  Pembayaran: <br />
-                  <span className={styles['tunai']}>{item.rp} </span>
-                </p>
-                <button className={styles[item.status === 'Penitipan Selesai' ? 'button-selesai' : 'button-sewa']}>
-                  {item.status}
-                </button>
-              </div>
+            <div className={styles['containerThree']}>
+              <span className={styles['kode']}>{item.kode}</span>
+              <p className={styles['pembayaran']}>
+                Pembayaran: <br />
+                <span className={styles['tunai']}>{item.rp} </span>
+              </p>
+              <button className={styles[item.status === 'Penitipan Selesai' ? 'button-selesai' : 'button-sewa']}>
+                {item.status}
+              </button>
             </div>
           </div>
         ))}
@@ -76,7 +72,7 @@ const KelolaTransaksi = () => {
           />
         </div>
       </div>
-    </div>
+    </>
   )
 }
 

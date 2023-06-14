@@ -29,10 +29,10 @@ function Footer() {
           </Title>
 
           <Space direction="horizontal" size={24} wrap={true} className={styles['image-unduhan-wrap']}>
-            <img src={UnduhanImage1} alt="" />
-            <img src={UnduhanImage2} alt="" />
-            <img src={UnduhanImage3} alt="" />
-            <img src={UnduhanImage4} alt="" />
+            <img className={styles['image-unduhan']} src={UnduhanImage1} alt="" />
+            <img className={styles['image-unduhan']} src={UnduhanImage2} alt="" />
+            <img className={styles['image-unduhan']} src={UnduhanImage3} alt="" />
+            <img className={styles['image-unduhan']} src={UnduhanImage4} alt="" />
           </Space>
         </Row>
 

@@ -34,7 +34,6 @@ const FirstSection = () => {
             <div key={idx} className={styles['second-card']}>
               <img src={item.image} alt={item.label} />
               <h4>{item.title}</h4>
-              <p>{item.description}</p>
             </div>
           ))}
         </div>
