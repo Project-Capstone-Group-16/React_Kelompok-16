@@ -105,4 +105,13 @@ export const api = {
       },
     })
   },
+
+  //get all transaction
+  getTransaction: () => {
+    return baseAPI.get('/admin/transactions', {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    })
+  },
 }
