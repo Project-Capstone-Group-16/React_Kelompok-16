@@ -7,7 +7,6 @@ export const useWarehouse = () => {
   const getDataWarehouse = useCallback(async () => {
     try {
       const res = await api.getWarehouse()
-      console.log({ res })
       setData(res.data)
     } catch (err) {
       console.log({ err })

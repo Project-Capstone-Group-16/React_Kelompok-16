@@ -39,7 +39,7 @@ export const api = {
   },
   //update warehouse
   updateWarehouse: (id, body) => {
-    return baseAPI.put('/admin/warehouse/', id, body, {
+    return baseAPI.put(`/admin/warehouse/${id}`, body, {
       headers: {
         Authorization: `Bearer ${token}`,
       },
@@ -47,7 +47,7 @@ export const api = {
   },
   //delete warehouse
   deleteWatrehouse: (id) => {
-    return baseAPI.delete('/admin/warehouse/', id, {
+    return baseAPI.delete(`/admin/warehouse/${id}`, {
       headers: {
         Authorization: `Bearer ${token}`,
       },
