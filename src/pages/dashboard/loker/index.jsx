@@ -52,41 +52,45 @@ const Loker = ({ data }) => {
   }
   return (
     <>
-      <div className="container-loker">
-        {data?.slice(start, end)?.map((item) => (
-          <div key={item.ID} className={styles['list-item']}>
-            <span className={styles['container-title-loker']}>
-              <p className={styles['title-loker']}>{item.name}</p>
-              <p className={styles['title-loker']}>Kontrol Loker</p>
-            </span>
-            {typeLoker(data?.[page - 1])?.map((type) => (
-              <Row key={type.id} span={24} className={styles['container-type-loker']}>
-                <Col className={styles['type-loker']} span={24}>
-                  {type.type}
-                </Col>
-                {type.Loker.map((loker) => (
-                  <Tooltip key={loker.id} title={loker.available === 'Available' ? 'Tersedia' : 'Tidak Tersedia'}>
-                    <Col
-                      span={5}
-                      className={styles['type-loker-number']}
-                      style={{
-                        backgroundColor: loker.available === 'Available' ? '#D9D9D9' : ' #FCB3B3',
-                      }}
-                    >
-                      <p>{loker.name}</p>
-                    </Col>
-                  </Tooltip>
-                ))}
-              </Row>
-            ))}
+      {data ? (
+        <div className="container-loker">
+          {data?.slice(start, end)?.map((item) => (
+            <div key={item.ID} className={styles['list-item']}>
+              <span className={styles['container-title-loker']}>
+                <p className={styles['title-loker']}>{item.name}</p>
+                <p className={styles['title-loker']}>Kontrol Loker</p>
+              </span>
+              {typeLoker(data?.[page - 1])?.map((type) => (
+                <Row key={type.id} span={24} className={styles['container-type-loker']}>
+                  <Col className={styles['type-loker']} span={24}>
+                    {type.type}
+                  </Col>
+                  {type.Loker.map((loker) => (
+                    <Tooltip key={loker.id} title={loker.available === 'Available' ? 'Tersedia' : 'Tidak Tersedia'}>
+                      <Col
+                        span={5}
+                        className={styles['type-loker-number']}
+                        style={{
+                          backgroundColor: loker.available === 'Available' ? '#D9D9D9' : ' #FCB3B3',
+                        }}
+                      >
+                        <p>{loker.name}</p>
+                      </Col>
+                    </Tooltip>
+                  ))}
+                </Row>
+              ))}
+            </div>
+          ))}
+          <div className={styles['container-pagination']}>
+            {data ? (
+              <Pagination defaultCurrent={1} value={page} total={data?.length} pageSize={1} onChange={handlePaginate} />
+            ) : null}
           </div>
-        ))}
-        <div className={styles['container-pagination']}>
-          {data ? (
-            <Pagination defaultCurrent={1} value={page} total={data?.length} pageSize={1} onChange={handlePaginate} />
-          ) : null}
         </div>
-      </div>
+      ) : (
+        'Loker tidak tersedia'
+      )}
     </>
   )
 }
