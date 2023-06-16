@@ -10,7 +10,6 @@ export const useWarehouse = () => {
     try {
       setIsLoading(true)
       const res = await api.getWarehouse()
-      // console.log('data hooks', res.data.data)
       setDataWarehouse(res.data.data)
     } catch (err) {
       console.log({ err })
