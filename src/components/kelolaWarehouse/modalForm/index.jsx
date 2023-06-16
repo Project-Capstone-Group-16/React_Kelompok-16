@@ -33,8 +33,8 @@ const FormModal = ({ open, setOpen, title, formState, refetch, imageUrl, setImag
   }
   const handleUpload = async (file) => {
     uploadImage(file, (data) => {
-      formState.setFieldValue('image_url', data?.url)
-      setImageUrl(data?.url)
+      formState.setFieldValue('image_url', data)
+      setImageUrl(data)
     })
   }
 

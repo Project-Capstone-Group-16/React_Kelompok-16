@@ -15,7 +15,7 @@ export const api = {
 
   //upload image
   uploadImage: (body) => {
-    return baseAPI.post('/upload/image', body)
+    return baseAPI.post('/upload/imageweb', body)
   },
 
   //ENDPOINT YANG MENGGUNAKAN TOKEN
