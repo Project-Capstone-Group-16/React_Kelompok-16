@@ -20,6 +20,13 @@ export const api = {
 
   //ENDPOINT YANG MENGGUNAKAN TOKEN
   //dashboard
+  getDashboard: () => {
+    return baseAPI.get('/admin/dashboard', {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    })
+  },
   //get data warehouse
   getWarehouse: () => {
     return baseAPI.get('/admin/warehouse', {

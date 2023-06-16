@@ -1,11 +1,11 @@
-import { Col, Progress, Row, Space } from 'antd'
-import dayjs from 'dayjs'
+import { Col, Progress, Row } from 'antd'
 import React from 'react'
+import { FORMAT_DATE, RUPIAH } from '../../../helpers'
 import styles from './styles.module.css'
 
-const Persentasi = () => {
-  const date = new Date()
-  const dateNow = dayjs(date).format('dddd, DD MMMM YYYY')
+const Persentasi = ({ data }) => {
+  // console.log({ data })
+  const persentasi = (data?.total_used_lockers / data?.total_lockers) * 100
 
   return (
     <>
@@ -14,22 +14,22 @@ const Persentasi = () => {
           <Row className={styles['container-persentasi-1']}>
             <Col className={styles['container-date']} span={24}>
               <p className={styles['title-date']}>Hari Ini</p>
-              <p className={styles['date']}>{dateNow}</p>
+              <p className={styles['date']}>{FORMAT_DATE(data?.todey)}</p>
             </Col>
             <Col span={24} className={styles['container-persentasi-terpakai']}>
               <span className={styles['container-persentasi-terpakai-1']}>
                 <p className={styles['title-persentasi']}>Total Penyimpanan</p>
-                <p className={styles['number-persentasi']}>200</p>
+                <p className={styles['number-persentasi']}>{data?.total_lockers}</p>
               </span>
               <span className={styles['container-persentasi-terpakai-2']}>
                 <p className={styles['title-persentasi']}>Terpakai</p>
-                <p className={styles['number-persentasi']}>7</p>
+                <p className={styles['number-persentasi']}>{data?.total_used_lockers}</p>
               </span>
             </Col>
             <Col span={24} className={styles['container-persentasi-terpakai']}>
               <Progress
                 className={styles['progress']}
-                percent={30}
+                percent={persentasi}
                 showInfo={false}
                 strokeColor={'white'}
                 size={[345, 12]}
@@ -43,11 +43,11 @@ const Persentasi = () => {
             <Col span={24} className={styles['total-pengguna']}>
               <span className={styles['container-total-pengguna-1']}>
                 <p className={styles['title-total-pengguna']}>Total Pengguna</p>
-                <p className={styles['number-total-pengguna']}>2</p>
+                <p className={styles['number-total-pengguna']}>{data?.total_users}</p>
               </span>
               <span className={styles['container-total-pengguna-2']}>
                 <p className={styles['title-total-pengguna']}>Total Pendapatan</p>
-                <p className={styles['number-total-pengguna']}>Rp 45.000</p>
+                <p className={styles['number-total-pengguna']}>{RUPIAH(data?.total_income)}</p>
               </span>
             </Col>
           </Row>
