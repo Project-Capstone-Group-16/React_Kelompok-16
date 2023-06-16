@@ -4,7 +4,6 @@ import { FORMAT_DATE, RUPIAH } from '../../../helpers'
 import styles from './styles.module.css'
 
 const Persentasi = ({ data }) => {
-  // console.log({ data })
   const persentasi = (data?.total_used_lockers / data?.total_lockers) * 100
 
   return (
@@ -19,11 +18,11 @@ const Persentasi = ({ data }) => {
             <Col span={24} className={styles['container-persentasi-terpakai']}>
               <span className={styles['container-persentasi-terpakai-1']}>
                 <p className={styles['title-persentasi']}>Total Penyimpanan</p>
-                <p className={styles['number-persentasi']}>{data?.total_lockers}</p>
+                <p className={styles['number-persentasi']}>{data ? data?.total_lockers : 0}</p>
               </span>
               <span className={styles['container-persentasi-terpakai-2']}>
                 <p className={styles['title-persentasi']}>Terpakai</p>
-                <p className={styles['number-persentasi']}>{data?.total_used_lockers}</p>
+                <p className={styles['number-persentasi']}>{data ? data?.total_used_lockers : 0}</p>
               </span>
             </Col>
             <Col span={24} className={styles['container-persentasi-terpakai']}>
@@ -43,11 +42,11 @@ const Persentasi = ({ data }) => {
             <Col span={24} className={styles['total-pengguna']}>
               <span className={styles['container-total-pengguna-1']}>
                 <p className={styles['title-total-pengguna']}>Total Pengguna</p>
-                <p className={styles['number-total-pengguna']}>{data?.total_users}</p>
+                <p className={styles['number-total-pengguna']}>{data ? data?.total_users : 0}</p>
               </span>
               <span className={styles['container-total-pengguna-2']}>
                 <p className={styles['title-total-pengguna']}>Total Pendapatan</p>
-                <p className={styles['number-total-pengguna']}>{RUPIAH(data?.total_income)}</p>
+                <p className={styles['number-total-pengguna']}>{RUPIAH(data ? data?.total_income : 0)}</p>
               </span>
             </Col>
           </Row>
