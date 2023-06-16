@@ -7,16 +7,19 @@ import { useDashboard } from './hooks/useDashboard'
 import Loker from './loker'
 import Persentasi from './persentasi'
 import styles from './styles.module.css'
+import { useWarehouse } from './hooks/useWarehouse'
 
 const Dashboard = () => {
   const [isLoadingDashboard, dataDashboard, getDataDashboard] = useDashboard()
-  console.log({ dataDashboard })
+  const [isLoadingWarehouse, dataWarehouse, getDataWarehouse] = useWarehouse()
+  // console.log(dataWarehouse)
   useEffect(() => {
     getDataDashboard()
+    getDataWarehouse()
   }, [])
   return (
     <>
-      {isLoadingDashboard ? <LoadingComponent /> : null}
+      {isLoadingDashboard && isLoadingWarehouse ? <LoadingComponent /> : null}
       <div className={styles['container-dashboard']}>
         <Row className={styles['header']}>
           <h1>Dashboard</h1>
@@ -37,7 +40,7 @@ const Dashboard = () => {
             </Row>
           </Col>
           <Col className={styles['content-right']} span={6}>
-            <Loker />
+            <Loker data={dataWarehouse} />
           </Col>
         </Row>
       </div>

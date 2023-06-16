@@ -4,14 +4,14 @@ import { message } from 'antd'
 
 export const useWarehouse = () => {
   const [isLoading, setIsLoading] = useState(false)
-  const [data, setData] = useState()
+  const [dataWarehouse, setDataWarehouse] = useState()
 
   const getDataWarehouse = useCallback(async () => {
     try {
       setIsLoading(true)
       const res = await api.getWarehouse()
-      console.log({ res })
-      setData(res.data)
+      // console.log('data hooks', res.data.data)
+      setDataWarehouse(res.data.data)
     } catch (err) {
       console.log({ err })
       message.open({
@@ -27,5 +27,5 @@ export const useWarehouse = () => {
     }
   }, [])
 
-  return [isLoading, data, getDataWarehouse]
+  return [isLoading, dataWarehouse, getDataWarehouse]
 }

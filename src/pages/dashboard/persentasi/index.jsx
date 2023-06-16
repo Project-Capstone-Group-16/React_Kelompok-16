@@ -4,7 +4,7 @@ import { FORMAT_DATE, RUPIAH } from '../../../helpers'
 import styles from './styles.module.css'
 
 const Persentasi = ({ data }) => {
-  console.log({ data })
+  // console.log({ data })
   const persentasi = (data?.total_used_lockers / data?.total_lockers) * 100
 
   return (
