@@ -86,7 +86,7 @@ const KelolaBarang = () => {
                     Kategori
                   </Typography.Title>
                   <Typography.Paragraph ellipsis className={styles['detail__value']} id="detail__value">
-                    M-17
+                    {dt.Locker?.LockerType?.name}-{dt.Locker.LockerType?.ID}
                   </Typography.Paragraph>
                   <Typography.Title level={5} className={styles['detail__title']} id="detail__title">
                     Waktu Check In
@@ -107,15 +107,17 @@ const KelolaBarang = () => {
         </Card>
       ))}
 
-      <Row justify="center" style={{ marginTop: 20 }} align="middle">
-        <Pagination
-          total={data?.length}
-          current={page}
-          pageSize={2}
-          onChange={handlePaginate}
-          showTotal={(total) => `${page} dari ${Math.ceil(total / data?.length)} halaman`}
-        />
-      </Row>
+      {data.length > 0 && (
+        <Row justify="center" style={{ marginTop: 20 }} align="middle">
+          <Pagination
+            total={data?.length}
+            current={page}
+            pageSize={2}
+            onChange={handlePaginate}
+            showTotal={(total) => `${page} dari ${Math.ceil(total / data?.length)} halaman`}
+          />
+        </Row>
+      )}
     </section>
   )
 }
