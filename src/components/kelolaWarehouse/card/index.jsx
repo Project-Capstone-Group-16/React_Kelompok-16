@@ -1,11 +1,11 @@
 import React from 'react'
 import styles from './styles.module.css'
-import { logoLoker } from '../../../assets/images/admin'
 import { Popconfirm } from 'antd'
-import { useDeleteWarehouse, useGetWarehouses } from '../../../pages/kelolaWarehouse/hooks/useWarehouses'
+import { Image } from 'antd'
+import { useDeleteWarehouse } from '../../../pages/kelolaWarehouse/hooks/useWarehouses'
 import LoadingComponent from '../../loadingComponent'
 const Card = ({ data, onEdit, refetch }) => {
-  const { name, city, address, description, ID } = data
+  const { name, city, address, description, ID, image_url } = data
   const [isLoadingDelete, deleteData] = useDeleteWarehouse()
   const onDelete = async () => {
     await deleteData(ID, refetch)
@@ -14,7 +14,7 @@ const Card = ({ data, onEdit, refetch }) => {
   return (
     <>
       <div className={styles['warehouse-container']}>
-        <img className={styles['image-warehouse']} src={logoLoker} alt="image warehouse" />
+        <Image className={styles['image-warehouse']} src={image_url} alt="image warehouse" width={148} height={205} />
 
         <div className={styles['warehouse-card']}>
           <div className={styles['card-title']}>Alamat</div>
