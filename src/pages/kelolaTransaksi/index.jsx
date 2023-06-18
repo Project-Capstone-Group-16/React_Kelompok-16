@@ -69,12 +69,6 @@ const KelolaTransaksi = () => {
                 <br />
                 <span className={styles['tunai']}>{'Rp. ' + item.amount + ',-'} </span>
               </p>
-              {/* 
-              - Waiting For Payment
-              - On Going
-              - Done
-              - Canceled
-              */}
               <button
                 className={
                   styles[

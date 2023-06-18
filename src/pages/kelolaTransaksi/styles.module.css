@@ -186,6 +186,11 @@
   transition: all 0.3s ease-in-out;
 }
 
+.button-batal:hover {
+  filter: brightness(120%);
+  cursor: pointer;
+}
+
 .pagination {
   display: flex;
   justify-content: center;

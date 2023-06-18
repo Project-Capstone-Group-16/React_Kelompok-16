@@ -26,10 +26,10 @@ const KelolaBarang = () => {
         Kelola Barang
       </Typography.Title>
 
-      {data.slice(start, end).map((dt, idx) => (
-        <Card className={styles['card__outer']} bodyStyle={{ padding: '22px 14px' }} id="card__outer">
+      {data?.slice(start, end)?.map((dt) => (
+        <Card key={data.ID} className={styles['card__outer']} bodyStyle={{ padding: '22px 14px' }} id="card__outer">
           <Tag className={styles['tag__barang']} id="tag__barang">
-            Barang {idx + 1}
+            Barang {data.ID + 1}
           </Tag>
 
           <Row>
