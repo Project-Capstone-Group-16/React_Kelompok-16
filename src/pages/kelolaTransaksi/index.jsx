@@ -69,21 +69,47 @@ const KelolaTransaksi = () => {
                 <br />
                 <span className={styles['tunai']}>{'Rp. ' + item.amount + ',-'} </span>
               </p>
-              <button className={styles[item.status === 'On Going' ? 'button-sewa' : 'button-selesai']}>
-                {item.status === 'On Going' ? 'Sedang Disewa' : 'Penitipan Selesai'}
+              {/* 
+              - Waiting For Payment
+              - On Going
+              - Done
+              - Canceled
+              */}
+              <button
+                className={
+                  styles[
+                    item.status === 'Waiting for Payment'
+                      ? 'button-menunggu'
+                      : item.status === 'On Going'
+                      ? 'button-sewa'
+                      : item.status === 'Done'
+                      ? 'button-selesai'
+                      : 'button-batal'
+                  ]
+                }
+              >
+                {item.status === 'Waiting for Payment'
+                  ? 'Bayar Dulu Cuy'
+                  : item.status === 'On Going'
+                  ? 'Sedang Disewakan'
+                  : item.status === 'Done'
+                  ? 'Penitipan Selesai'
+                  : 'Dibatalkan'}
               </button>
             </div>
           </div>
         ))}
         <div className={styles['pagination']}>
-          <Pagination
-            defaultCurrent={1}
-            total={dataTransaction?.length}
-            pageSize={2}
-            onChange={handlePaginate}
-            showTotal={(total) => `${page} dari ${Math.ceil(total / 2)} halaman`}
-            showSizeChanger={false}
-          />
+          {dataTransaction ? (
+            <Pagination
+              defaultCurrent={1}
+              total={dataTransaction?.length}
+              pageSize={2}
+              onChange={handlePaginate}
+              showTotal={(total) => `${page} dari ${Math.ceil(total / 2)} halaman`}
+              showSizeChanger={false}
+            />
+          ) : null}
         </div>
       </div>
     </>
