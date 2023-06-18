@@ -3,6 +3,10 @@
   background: #431ddb;
   padding: 15px 26px;
   border-radius: 20px;
+  text-align: center;
+  position: relative;
+  left: 50%;
+  transform: translate(-50%);
 }
 
 label.label-radio-btn-wrapper-custom {
@@ -80,6 +84,7 @@ label.label-radio-btn-wrapper-custom:hover {
 
 .pagination-wrap {
   margin: auto;
+  text-align: center;
 }
 
 /* ===== STYLING SECTION PEGAWAI ===== */

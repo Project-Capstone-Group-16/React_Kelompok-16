@@ -1,3 +1,4 @@
+import React, { useState, useEffect } from 'react'
 import { UploadOutlined } from '@ant-design/icons'
 import {
   Avatar,
@@ -15,29 +16,35 @@ import {
   Space,
   Upload,
 } from 'antd'
-import React, { useState } from 'react'
 import { DATA_PEGAWAI, DATA_PENGGUNA } from './constanst'
+import { useGetUsers } from './hooks/useUsers'
+import { useGetStaff, usePostStaff } from './hooks/useStaff'
 import styles from './styles.module.css'
 
 const KelolaAkun = () => {
   const { TextArea } = Input
-  const [formDataWarehouse] = Form.useForm()
   const [section, setSection] = useState('pengguna')
   const [openModal, setOpenModal] = useState(false)
+
+  const [formDataWarehouse] = Form.useForm()
+  const [isLoadingUsers, dataUsers, getUsers] = useGetUsers()
+  const [isLoadingStaff, dataStaff, getStaff] = useGetStaff()
+  const [isLoadingCreateStaff, createStaff] = usePostStaff()
+
   const [rowData, setRowData] = useState()
   const [isEdit, setIsEdit] = useState(false)
+
+  // Pagination
   const [page, setPage] = useState(1)
   const start = (page - 1) * 2
   const end = page * 2
-  const handlePaginate = (value) => {
-    setPage(value)
-  }
 
   // Regex Validasi
   const phoneNumberRegex = /^(^\+62\s?|^0)(\d{3,4}-?){2}\d{3,4}$/
 
   const handleChangeRadio = (event) => {
     setSection(event.target.value)
+    setPage(1)
   }
 
   const showModal = () => {
@@ -72,9 +79,10 @@ const KelolaAkun = () => {
 
   //   Add Data Pegawai
   const onAdd = (values) => {
-    alert(
-      `Data berhasil ditambah \n nama : ${values.nama} \n jabatan : ${values.jabatan} \n Jenis Kelamin : ${values.jenis_kelamin} \n Tanggal Lahir : ${values.tanggal_lahir} \n No telepon : ${values.no_telepon} \n Alamat : ${values.alamat}`
-    )
+    createStaff(values, () => {
+      getStaff()
+      formDataWarehouse.resetFields()
+    })
 
     setTimeout(() => {
       formDataWarehouse.resetFields()
@@ -90,6 +98,11 @@ const KelolaAkun = () => {
 
     console.log(body)
   }
+
+  useEffect(() => {
+    getUsers()
+    getStaff()
+  }, [])
 
   return (
     <>
@@ -124,17 +137,17 @@ const KelolaAkun = () => {
 
       {section === 'pengguna' ? (
         <section id="section-pengguna">
-          {DATA_PENGGUNA?.slice(start, end)?.map((data, index) => (
-            <Row key={index} gutter={32} className={styles['row-pengguna']}>
+          {dataUsers?.slice(start, end)?.map((user) => (
+            <Row key={user?.id} gutter={32} className={styles['row-pengguna']}>
               <Card bordered={true} className={styles['card-data-pengguna']}>
                 <Row gutter={[40]} align="middle">
                   <Col span={8}>
                     <Card className={styles['card-profil-pengguna']}>
-                      <Avatar className={styles['img-pengguna']} shape="circle" size={90} src={data?.foto_profil} />
-                      <p className={styles['username-pengguna']}>{data?.nama}</p>
+                      <Avatar className={styles['img-pengguna']} shape="circle" size={90} src={user?.image_url} />
+                      <p className={styles['username-pengguna']}>{user?.fullname}</p>
 
                       <p className={styles['histori-pengguna']}>
-                        Histori Penyimpanan : <br /> <span>{`${data?.histori_penyimpanan}x Penyimpanan`}</span>
+                        Histori Penyimpanan : <br /> <span>{`${user?.transaction_histroies}x Penyimpanan`}</span>
                       </p>
                     </Card>
                   </Col>
@@ -147,22 +160,22 @@ const KelolaAkun = () => {
                       layout="vertical"
                       size="large"
                       initialValues={{
-                        nama: data?.nama,
-                        tanggal_lahir: data?.tanggal_lahir,
-                        jenis_kelamin: data?.jenis_kelamin,
-                        no_telepon: data?.no_telepon,
-                        alamat: data?.alamat,
+                        fullname: user?.fullname,
+                        birth_date: user?.birth_date,
+                        gender: user?.gender,
+                        phone_number: user?.phone_number,
+                        address: user?.address,
                       }}
                     >
                       <Row gutter={[32]}>
                         <Col span={12}>
-                          <Form.Item label="Nama" name="nama" className={styles['form-label-custom']}>
+                          <Form.Item label="Nama" name="fullname" className={styles['form-label-custom']}>
                             <Input style={{ width: '100%' }} className={styles['input-custom']} readOnly />
                           </Form.Item>
                         </Col>
 
                         <Col span={12}>
-                          <Form.Item label="Tanggal Lahir" name="tanggal_lahir" className={styles['form-label-custom']}>
+                          <Form.Item label="Tanggal Lahir" name="birth_date" className={styles['form-label-custom']}>
                             <Input style={{ width: '100%' }} className={styles['input-custom']} readOnly />
                           </Form.Item>
                         </Col>
@@ -170,19 +183,19 @@ const KelolaAkun = () => {
 
                       <Row gutter={[32]}>
                         <Col span={12}>
-                          <Form.Item label="Jenis Kelamin" name="jenis_kelamin" className={styles['form-label-custom']}>
+                          <Form.Item label="Jenis Kelamin" name="gender" className={styles['form-label-custom']}>
                             <Input className={styles['input-custom']} readOnly />
                           </Form.Item>
                         </Col>
 
                         <Col span={12}>
-                          <Form.Item label="No Telepon" name="no_telepon" className={styles['form-label-custom']}>
+                          <Form.Item label="No Telepon" name="phone_number" className={styles['form-label-custom']}>
                             <Input className={styles['input-custom']} readOnly />
                           </Form.Item>
                         </Col>
                       </Row>
 
-                      <Form.Item label="Alamat" name="alamat" className={styles['form-label-custom']}>
+                      <Form.Item label="Alamat" name="address" className={styles['form-label-custom']}>
                         <TextArea className={styles['input-custom']} rows={3} readOnly />
                       </Form.Item>
                     </Form>
@@ -191,17 +204,6 @@ const KelolaAkun = () => {
               </Card>
             </Row>
           ))}
-
-          <div className={styles['pagination-wrap']}>
-            <Pagination
-              defaultCurrent={1}
-              total={DATA_PENGGUNA?.length}
-              pageSize={2}
-              onChange={handlePaginate}
-              showTotal={(total, range) => `${range[0]}-${range[1]} dari ${Math.ceil(total / 2)} halaman `}
-              showSizeChanger={false}
-            />
-          </div>
         </section>
       ) : (
         <section id="section-pegawai">
@@ -351,14 +353,14 @@ const KelolaAkun = () => {
             </Modal>
           </Row>
 
-          {DATA_PEGAWAI?.slice(start, end)?.map((data, index) => (
-            <Row key={index} gutter={32} className={styles['row-pegawai']}>
+          {dataStaff?.slice(start, end)?.map((staff) => (
+            <Row key={staff?.id} gutter={32} className={styles['row-pegawai']}>
               <Card bordered={true} className={styles['card-data-pegawai']}>
                 <Row gutter={[40]} align="middle">
                   <Col span={8}>
                     <Card className={styles['card-profil-pegawai']}>
-                      <Avatar className={styles['img-pegawai']} shape="circle" size={150} src={data?.foto_profil} />
-                      <p className={styles['username-pegawai']}>{data?.nama}</p>
+                      <Avatar className={styles['img-pegawai']} shape="circle" size={150} src={staff?.image_url} />
+                      <p className={styles['username-pegawai']}>{staff?.full_name}</p>
                     </Card>
                   </Col>
 
@@ -368,23 +370,23 @@ const KelolaAkun = () => {
                       layout="vertical"
                       size="large"
                       initialValues={{
-                        nama: data?.nama,
-                        jabatan: data?.jabatan,
-                        jenis_kelamin: data?.jenis_kelamin,
-                        tanggal_lahir: data?.tanggal_lahir,
-                        no_telepon: data?.no_telepon,
-                        alamat: data?.alamat,
+                        full_name: staff?.full_name,
+                        occupation: staff?.occupation,
+                        gender: staff?.gender,
+                        birth_date: staff?.birth_date,
+                        phone_number: staff?.phone_number,
+                        address: staff?.address,
                       }}
                     >
                       <Row gutter={[24]}>
                         <Col span={12}>
-                          <Form.Item label="Nama" name="nama" className={styles['form-label-custom']}>
+                          <Form.Item label="Nama" name="full_name" className={styles['form-label-custom']}>
                             <Input className={styles['input-custom']} readOnly />
                           </Form.Item>
                         </Col>
 
                         <Col span={12}>
-                          <Form.Item label="Jabatan" name="jabatan" className={styles['form-label-custom']}>
+                          <Form.Item label="Jabatan" name="occupation" className={styles['form-label-custom']}>
                             <Input className={styles['input-custom']} readOnly />
                           </Form.Item>
                         </Col>
@@ -392,19 +394,19 @@ const KelolaAkun = () => {
 
                       <Row gutter={[24]}>
                         <Col span={6}>
-                          <Form.Item label="Jenis Kelamin" name="jenis_kelamin" className={styles['form-label-custom']}>
+                          <Form.Item label="Jenis Kelamin" name="gender" className={styles['form-label-custom']}>
                             <Input className={styles['input-custom']} readOnly />
                           </Form.Item>
                         </Col>
 
                         <Col span={9}>
-                          <Form.Item label="Tanggal Lahir" name="tanggal_lahir" className={styles['form-label-custom']}>
+                          <Form.Item label="Tanggal Lahir" name="birth_date" className={styles['form-label-custom']}>
                             <Input className={styles['input-custom']} readOnly />
                           </Form.Item>
                         </Col>
 
                         <Col span={9}>
-                          <Form.Item label="No Telepon" name="no_telepon" className={styles['form-label-custom']}>
+                          <Form.Item label="No Telepon" name="phone_number" className={styles['form-label-custom']}>
                             <Input className={styles['input-custom']} readOnly />
                           </Form.Item>
                         </Col>
@@ -412,7 +414,7 @@ const KelolaAkun = () => {
 
                       <Row gutter={[24]} align="middle">
                         <Col span={20}>
-                          <Form.Item label="Alamat" name="alamat" className={styles['form-label-custom']}>
+                          <Form.Item label="Alamat" name="address" className={styles['form-label-custom']}>
                             <TextArea className={styles['input-custom']} rows={3} readOnly />
                           </Form.Item>
                         </Col>
@@ -434,19 +436,18 @@ const KelolaAkun = () => {
               </Card>
             </Row>
           ))}
-
-          <div className={styles['pagination-wrap']}>
-            <Pagination
-              defaultCurrent={1}
-              total={DATA_PEGAWAI?.length}
-              pageSize={2}
-              onChange={handlePaginate}
-              showTotal={(total, range) => `${range[0]}-${range[1]} dari ${Math.ceil(total / 2)} halaman `}
-              showSizeChanger={false}
-            />
-          </div>
         </section>
       )}
+
+      <div className={styles['pagination-wrap']}>
+        <Pagination
+          defaultCurrent={1}
+          total={section === 'pengguna' ? dataUsers?.length : dataStaff?.length}
+          pageSize={2}
+          showTotal={(total) => `${page} dari ${Math.ceil(total / 2)} halaman`}
+          showSizeChanger={false}
+        />
+      </div>
     </>
   )
 }
