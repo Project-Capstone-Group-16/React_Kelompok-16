@@ -55,3 +55,32 @@ export const usePostStaff = () => {
 
   return [isLoading, createStaff]
 }
+
+// Update Data
+export const useUpdateStaff = () => {
+  const [isLoading, setIsLoading] = useState(false)
+
+  const updateData = useCallback(async (id, body, onSuccess) => {
+    try {
+      setIsLoading(true)
+      await api.updateStaff(id, body)
+      onSuccess && onSuccess()
+
+      message.open({
+        type: 'success',
+        content: 'Berhasil ubah data Staff!',
+      })
+
+      setIsLoading(false)
+    } catch (err) {
+      message.open({
+        type: 'error',
+        content: `${err.message}`,
+      })
+    } finally {
+      setIsLoading(false)
+    }
+  }, [])
+
+  return [isLoading, updateData]
+}
