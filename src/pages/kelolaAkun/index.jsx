@@ -1,4 +1,3 @@
-import React, { useState, useEffect } from 'react'
 import { UploadOutlined } from '@ant-design/icons'
 import {
   Avatar,
@@ -7,24 +6,25 @@ import {
   Col,
   DatePicker,
   Form,
+  Image,
   Input,
   Modal,
   Pagination,
+  Popconfirm,
   Radio,
   Row,
   Select,
   Space,
-  Upload,
   Spin,
-  Image,
-  Popconfirm,
+  Upload,
 } from 'antd'
 import dayjs from 'dayjs'
-import { useGetUsers } from './hooks/useUsers'
-import { useGetStaff, usePostStaff, useUpdateStaff, useDeleteStaff } from './hooks/useStaff'
+import React, { useEffect, useState } from 'react'
+import LoadingComponent from './../../components/loadingComponent/index'
+import { useDeleteStaff, useGetStaff, usePostStaff, useUpdateStaff } from './hooks/useStaff'
 import useUploadImage from './hooks/useUploadImage'
+import { useGetUsers } from './hooks/useUsers'
 import styles from './styles.module.css'
-import { FORMAT_DATE } from '../../helpers'
 
 const KelolaAkun = () => {
   const { TextArea } = Input
@@ -109,8 +109,6 @@ const KelolaAkun = () => {
       ...values,
       birth_date: dayjs(values.birth_date).format('DD/MM/YYYY'),
     }
-    // console.log(id)
-    // console.log(body)
     updateStaff(id, body, () => {
       getStaff()
       formStaff.resetFields()
@@ -169,7 +167,8 @@ const KelolaAkun = () => {
 
       {section === 'pengguna' ? (
         <section id="section-pengguna">
-          {dataUsers?.slice(start, end)?.map((user, index) => (
+          {isLoadingUsers ? <LoadingComponent /> : null}
+          {dataUsers?.slice(start, end)?.map((user) => (
             <Row key={user?.ID} gutter={32} className={styles['row-pengguna']}>
               <Card bordered={true} className={styles['card-data-pengguna']}>
                 <Row gutter={[40]} align="middle">
@@ -183,10 +182,8 @@ const KelolaAkun = () => {
                       </p>
                     </Card>
                   </Col>
-
                   <Col span={16}>
                     <p className={styles['card-title-badge']}>Data Pengguna</p>
-
                     <Form
                       className={styles['form-data-pengguna']}
                       layout="vertical"
@@ -205,28 +202,24 @@ const KelolaAkun = () => {
                             <Input style={{ width: '100%' }} className={styles['input-custom']} readOnly />
                           </Form.Item>
                         </Col>
-
                         <Col span={12}>
                           <Form.Item label="Tanggal Lahir" name="birth_date" className={styles['form-label-custom']}>
                             <Input style={{ width: '100%' }} className={styles['input-custom']} readOnly />
                           </Form.Item>
                         </Col>
                       </Row>
-
                       <Row gutter={[32]}>
                         <Col span={12}>
                           <Form.Item label="Jenis Kelamin" name="gender" className={styles['form-label-custom']}>
                             <Input className={styles['input-custom']} readOnly />
                           </Form.Item>
                         </Col>
-
                         <Col span={12}>
                           <Form.Item label="No Telepon" name="phone_number" className={styles['form-label-custom']}>
                             <Input className={styles['input-custom']} readOnly />
                           </Form.Item>
                         </Col>
                       </Row>
-
                       <Form.Item label="Alamat" name="address" className={styles['form-label-custom']}>
                         <TextArea className={styles['input-custom']} rows={3} readOnly />
                       </Form.Item>
@@ -239,6 +232,7 @@ const KelolaAkun = () => {
         </section>
       ) : (
         <section id="section-pegawai">
+          {isLoadingStaff ? <LoadingComponent /> : null}
           <Row>
             <Button className={styles['add-data-btn']} type="primary" size="large" onClick={showModal}>
               Input Data
@@ -271,6 +265,7 @@ const KelolaAkun = () => {
                       className={styles['submit-btn']}
                       size="middle"
                       onClick={formStaff.submit}
+                      loading={isLoadingUpdateStaff}
                     >
                       Simpan Perubahan
                     </Button>
@@ -288,6 +283,7 @@ const KelolaAkun = () => {
                       className={styles['submit-btn']}
                       size="middle"
                       onClick={formStaff.submit}
+                      loading={isLoadingCreateStaff}
                     >
                       Submit
                     </Button>
@@ -419,7 +415,7 @@ const KelolaAkun = () => {
                       whitespace: true,
                       message: 'Tidak boleh diawali spasi',
                     },
-                    { min: 11, message: 'Minimal 11 karakter' },
+                    { max: 11, message: 'Minimal 11 karakter' },
                   ]}
                 >
                   <Input placeholder="Silahkan mengisi nomor telepon Anda" addonBefore="+62" />
@@ -435,7 +431,6 @@ const KelolaAkun = () => {
               </Form>
             </Modal>
           </Row>
-
           {dataStaff?.slice(start, end)?.map((staff, index) => (
             <Row key={staff?.ID} gutter={32} className={styles['row-pegawai']}>
               <Card bordered={true} className={styles['card-data-pegawai']}>
@@ -521,6 +516,7 @@ const KelolaAkun = () => {
                               onConfirm={() => {
                                 onDelete(staff.ID)
                               }}
+                              loading={isLoadingDeleteStaff}
                             >
                               <Button className={styles['btn-hapus']} type="primary" danger block>
                                 Hapus
