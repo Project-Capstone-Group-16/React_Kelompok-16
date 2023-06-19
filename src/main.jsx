@@ -5,6 +5,10 @@ import App from './App.jsx'
 import './index.css'
 import { ConfigProvider } from 'antd'
 
+import dayjs from 'dayjs'
+
+dayjs.locale('id')
+
 ReactDOM.createRoot(document.getElementById('root')).render(
   <BrowserRouter>
     <ConfigProvider
