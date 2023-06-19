@@ -33,7 +33,7 @@ export const useGetStaff = () => {
 export const usePostStaff = () => {
   const [isLoading, setIsLoading] = useState(false)
 
-  const createStaff = useCallback(async (body, onSuccess) => {
+  const createData = useCallback(async (body, onSuccess) => {
     try {
       setIsLoading(true)
       await api.createStaff(body)
@@ -53,7 +53,7 @@ export const usePostStaff = () => {
     }
   }, [])
 
-  return [isLoading, createStaff]
+  return [isLoading, createData]
 }
 
 // Update Data

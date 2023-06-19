@@ -16,7 +16,6 @@ import {
   Space,
   Upload,
 } from 'antd'
-import { DATA_PEGAWAI, DATA_PENGGUNA } from './constanst'
 import { useGetUsers } from './hooks/useUsers'
 import { useGetStaff, usePostStaff } from './hooks/useStaff'
 import styles from './styles.module.css'
@@ -26,7 +25,7 @@ const KelolaAkun = () => {
   const [section, setSection] = useState('pengguna')
   const [openModal, setOpenModal] = useState(false)
 
-  const [formDataWarehouse] = Form.useForm()
+  const [formStaff] = Form.useForm()
   const [isLoadingUsers, dataUsers, getUsers] = useGetUsers()
   const [isLoadingStaff, dataStaff, getStaff] = useGetStaff()
   const [isLoadingCreateStaff, createStaff] = usePostStaff()
@@ -54,38 +53,39 @@ const KelolaAkun = () => {
   const onCancel = () => {
     setRowData()
     setIsEdit(false)
-    formDataWarehouse.resetFields()
+    formStaff.resetFields()
     setOpenModal(false)
   }
 
   const onResetInput = () => {
-    formDataWarehouse.resetFields()
+    formStaff.resetFields()
   }
 
   // handle edit button
   const handleEdit = (row_data) => {
+    const formValue = {
+      full_name: dataStaff?.full_name,
+      occupation: dataStaff?.occupation,
+      gender: dataStaff?.gender,
+      birth_date: dataStaff?.birth_date,
+      address: dataStaff?.address,
+    }
+
     setOpenModal(true)
     setRowData(row_data)
     setIsEdit(true)
-    formDataWarehouse.setFieldsValue({
-      nama: row_data.nama,
-      jabatan: row_data.jabatan,
-      jenis_kelamin: row_data.jenis_kelamin,
-      tanggal_lahir: row_data.tanggal_lahir,
-      no_telepon: row_data.no_telepon,
-      alamat: row_data.alamat,
-    })
   }
 
   //   Add Data Pegawai
   const onAdd = (values) => {
+    console.log(values)
     createStaff(values, () => {
       getStaff()
-      formDataWarehouse.resetFields()
+      formStaff.resetFields()
     })
 
     setTimeout(() => {
-      formDataWarehouse.resetFields()
+      formStaff.resetFields()
       setOpenModal(false)
     }, 500)
   }
@@ -214,38 +214,65 @@ const KelolaAkun = () => {
 
             <Modal
               className={styles['modal-form']}
-              title="Tambah Data Warehouse"
+              title={isEdit ? 'Ubah Data Warehouse' : 'Tambah Data Warehouse'}
               open={openModal}
-              footer={
-                <Row justify="space-between">
-                  <Button
-                    key="reset"
-                    type="primary"
-                    onClick={onResetInput}
-                    className={styles['reset-btn']}
-                    size="middle"
-                  >
-                    Reset
-                  </Button>
-
-                  <Button key="submit" type="primary" className={styles['submit-btn']} size="middle">
-                    {isEdit ? 'Simpan Perubahan' : 'Submit'}
-                  </Button>
-                </Row>
-              }
-              onCancel={onCancel}
               width={627}
+              onOk={formStaff.submit}
+              onCancel={onCancel}
+              footer={
+                isEdit ? (
+                  <Row justify="space-between">
+                    <Button
+                      key="reset"
+                      type="primary"
+                      onClick={onResetInput}
+                      className={styles['reset-btn']}
+                      size="middle"
+                    >
+                      Reset
+                    </Button>
+
+                    <Button
+                      key="submit"
+                      htmlType="submit"
+                      type="primary"
+                      className={styles['submit-btn']}
+                      size="middle"
+                    >
+                      Simpan Perubahan
+                    </Button>
+                  </Row>
+                ) : (
+                  <Row justify="space-between">
+                    <Button key="reset" type="primary" onClick={onCancel} size="middle" danger>
+                      Cancel
+                    </Button>
+
+                    <Button
+                      key="submit"
+                      htmlType="submit"
+                      type="primary"
+                      className={styles['submit-btn']}
+                      size="middle"
+                      onClick={formStaff.submit}
+                    >
+                      Submit
+                    </Button>
+                  </Row>
+                )
+              }
               centered
             >
               <Form
                 className={styles['form-data-warehouse']}
-                name="form-data-warehouse"
-                form={formDataWarehouse}
+                name="formStaff"
+                form={formStaff}
                 onFinish={isEdit ? onEdit : onAdd}
                 layout="vertical"
                 size="large"
+                scrollToFirstError={true}
               >
-                <Form.Item label="Upload Foto">
+                <Form.Item label="Upload Foto" name="img_url">
                   <Upload>
                     <Button icon={<UploadOutlined />}>Klik untuk Upload</Button>
                   </Upload>
@@ -253,7 +280,7 @@ const KelolaAkun = () => {
 
                 <Form.Item
                   label="Nama"
-                  name="nama"
+                  name="full_name"
                   rules={[
                     {
                       required: true,
@@ -274,7 +301,7 @@ const KelolaAkun = () => {
 
                 <Form.Item
                   label="Jabatan"
-                  name="jabatan"
+                  name="occupation"
                   rules={[
                     {
                       required: true,
@@ -285,7 +312,7 @@ const KelolaAkun = () => {
                   <Select
                     defaultValue="Pilih Jabatan"
                     options={[
-                      { value: 'Manajer', label: 'Manajer' },
+                      { value: 'Manager', label: 'Manager' },
                       { value: 'PIC', label: 'PIC' },
                       { value: 'Akuntan', label: 'Akuntan' },
                       { value: 'CS', label: 'CS' },
@@ -296,7 +323,7 @@ const KelolaAkun = () => {
 
                 <Form.Item
                   label="Jenis Kelamin"
-                  name="jenis_kelamin"
+                  name="gender"
                   rules={[
                     {
                       required: true,
@@ -307,15 +334,15 @@ const KelolaAkun = () => {
                   <Select
                     defaultValue="Pilih Jenis Kelamin"
                     options={[
-                      { value: 'pria', label: 'pria' },
-                      { value: 'wanita', label: 'wanita' },
+                      { value: 'Pria', label: 'Pria' },
+                      { value: 'Wanita', label: 'Wanita' },
                     ]}
                   />
                 </Form.Item>
 
                 <Form.Item
                   label="Tanggal Lahir"
-                  name="tanggal_lahir"
+                  name="birth_date"
                   rules={[{ required: true, message: 'Anda belum mengisi tanggal lahir' }]}
                 >
                   <DatePicker placeholder="Silahkan mengisi tanggal lahir Anda" style={{ width: '100%' }} />
@@ -323,7 +350,7 @@ const KelolaAkun = () => {
 
                 <Form.Item
                   label="No Telepon"
-                  name="no_telepon"
+                  name="phone_number"
                   rules={[
                     {
                       required: true,
@@ -337,6 +364,7 @@ const KelolaAkun = () => {
                       whitespace: true,
                       message: 'Tidak boleh diawali spasi',
                     },
+                    { min: 11, message: 'Minimal 11 karakter' },
                   ]}
                 >
                   <Input placeholder="Silahkan mengisi nomor telepon Anda" />
@@ -344,7 +372,7 @@ const KelolaAkun = () => {
 
                 <Form.Item
                   label="Alamat"
-                  name="alamat"
+                  name="address"
                   rules={[{ required: true, message: 'Anda belum mengisi alamat' }]}
                 >
                   <Input.TextArea rows={2} showCount maxLength={250} placeholder="Silahkan mengisi alamat Anda" />
