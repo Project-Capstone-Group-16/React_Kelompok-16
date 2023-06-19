@@ -1,3 +1,4 @@
+import React, { useState, useEffect } from 'react'
 import { UploadOutlined } from '@ant-design/icons'
 import {
   Avatar,
@@ -14,30 +15,42 @@ import {
   Select,
   Space,
   Upload,
+  Spin,
+  Image,
+  Popconfirm,
 } from 'antd'
-import React, { useState } from 'react'
-import { DATA_PEGAWAI, DATA_PENGGUNA } from './constanst'
+import dayjs from 'dayjs'
+import { useGetUsers } from './hooks/useUsers'
+import { useGetStaff, usePostStaff, useUpdateStaff, useDeleteStaff } from './hooks/useStaff'
+import useUploadImage from './hooks/useUploadImage'
 import styles from './styles.module.css'
+import { FORMAT_DATE } from '../../helpers'
 
 const KelolaAkun = () => {
   const { TextArea } = Input
-  const [formDataWarehouse] = Form.useForm()
   const [section, setSection] = useState('pengguna')
   const [openModal, setOpenModal] = useState(false)
+
+  const [formStaff] = Form.useForm()
+  const [uploadImage, isLoadingImage] = useUploadImage()
+  const [isLoadingUsers, dataUsers, getUsers] = useGetUsers()
+  const [isLoadingStaff, dataStaff, getStaff] = useGetStaff()
+  const [isLoadingCreateStaff, createStaff] = usePostStaff()
+  const [isLoadingUpdateStaff, updateStaff] = useUpdateStaff()
+  const [isLoadingDeleteStaff, deleteStaff] = useDeleteStaff()
+
+  const [imageUrl, setImageUrl] = useState()
   const [rowData, setRowData] = useState()
   const [isEdit, setIsEdit] = useState(false)
+
+  // Pagination
   const [page, setPage] = useState(1)
   const start = (page - 1) * 2
   const end = page * 2
-  const handlePaginate = (value) => {
-    setPage(value)
-  }
-
-  // Regex Validasi
-  const phoneNumberRegex = /^(^\+62\s?|^0)(\d{3,4}-?){2}\d{3,4}$/
 
   const handleChangeRadio = (event) => {
     setSection(event.target.value)
+    setPage(1)
   }
 
   const showModal = () => {
@@ -47,49 +60,81 @@ const KelolaAkun = () => {
   const onCancel = () => {
     setRowData()
     setIsEdit(false)
-    formDataWarehouse.resetFields()
+    formStaff.resetFields()
     setOpenModal(false)
   }
 
   const onResetInput = () => {
-    formDataWarehouse.resetFields()
+    formStaff.resetFields()
   }
 
   // handle edit button
   const handleEdit = (row_data) => {
+    const formValue = {
+      image_url: row_data?.image_url,
+      full_name: row_data?.full_name,
+      occupation: row_data?.occupation,
+      gender: row_data?.gender,
+      birth_date: dayjs(row_data?.birth_date, 'YYYY-MM-DD'),
+      phone_number: row_data?.phone_number,
+      address: row_data?.address,
+    }
+
+    setImageUrl(row_data?.image_url)
+    formStaff.setFieldsValue(formValue)
     setOpenModal(true)
     setRowData(row_data)
     setIsEdit(true)
-    formDataWarehouse.setFieldsValue({
-      nama: row_data.nama,
-      jabatan: row_data.jabatan,
-      jenis_kelamin: row_data.jenis_kelamin,
-      tanggal_lahir: row_data.tanggal_lahir,
-      no_telepon: row_data.no_telepon,
-      alamat: row_data.alamat,
-    })
   }
 
   //   Add Data Pegawai
   const onAdd = (values) => {
-    alert(
-      `Data berhasil ditambah \n nama : ${values.nama} \n jabatan : ${values.jabatan} \n Jenis Kelamin : ${values.jenis_kelamin} \n Tanggal Lahir : ${values.tanggal_lahir} \n No telepon : ${values.no_telepon} \n Alamat : ${values.alamat}`
-    )
+    console.log(values)
+
+    createStaff({ ...values, birth_date: dayjs(values.birth_date).format('DD/MM/YYYY') }, () => {
+      getStaff()
+      formStaff.resetFields()
+    })
 
     setTimeout(() => {
-      formDataWarehouse.resetFields()
+      formStaff.resetFields()
       setOpenModal(false)
     }, 500)
   }
 
   //   Edit Data from table
   const onEdit = (values) => {
+    const id = rowData.ID
     const body = {
       ...values,
+      birth_date: dayjs(values.birth_date).format('DD/MM/YYYY'),
     }
-
-    console.log(body)
+    // console.log(id)
+    // console.log(body)
+    updateStaff(id, body, () => {
+      getStaff()
+      formStaff.resetFields()
+      setOpenModal(false)
+    })
   }
+
+  const handleUpload = async (file) => {
+    uploadImage(file, (data) => {
+      formStaff.setFieldValue('image_url', data)
+      setImageUrl(data)
+    })
+  }
+
+  const onDelete = (id) => {
+    deleteStaff(id, () => {
+      getStaff()
+    })
+  }
+
+  useEffect(() => {
+    getUsers()
+    getStaff()
+  }, [])
 
   return (
     <>
@@ -124,17 +169,17 @@ const KelolaAkun = () => {
 
       {section === 'pengguna' ? (
         <section id="section-pengguna">
-          {DATA_PENGGUNA?.slice(start, end)?.map((data, index) => (
-            <Row key={index} gutter={32} className={styles['row-pengguna']}>
+          {dataUsers?.slice(start, end)?.map((user, index) => (
+            <Row key={user?.ID} gutter={32} className={styles['row-pengguna']}>
               <Card bordered={true} className={styles['card-data-pengguna']}>
                 <Row gutter={[40]} align="middle">
                   <Col span={8}>
                     <Card className={styles['card-profil-pengguna']}>
-                      <Avatar className={styles['img-pengguna']} shape="circle" size={90} src={data?.foto_profil} />
-                      <p className={styles['username-pengguna']}>{data?.nama}</p>
+                      <Avatar className={styles['img-pengguna']} shape="circle" size={90} src={user?.image_url} />
+                      <p className={styles['username-pengguna']}>{user?.fullname}</p>
 
                       <p className={styles['histori-pengguna']}>
-                        Histori Penyimpanan : <br /> <span>{`${data?.histori_penyimpanan}x Penyimpanan`}</span>
+                        Histori Penyimpanan : <br /> <span>{`${user?.transaction_histroies}x Penyimpanan`}</span>
                       </p>
                     </Card>
                   </Col>
@@ -147,22 +192,22 @@ const KelolaAkun = () => {
                       layout="vertical"
                       size="large"
                       initialValues={{
-                        nama: data?.nama,
-                        tanggal_lahir: data?.tanggal_lahir,
-                        jenis_kelamin: data?.jenis_kelamin,
-                        no_telepon: data?.no_telepon,
-                        alamat: data?.alamat,
+                        fullname: user?.fullname,
+                        birth_date: user?.birth_date,
+                        gender: user?.gender,
+                        phone_number: user?.phone_number,
+                        address: user?.address,
                       }}
                     >
                       <Row gutter={[32]}>
                         <Col span={12}>
-                          <Form.Item label="Nama" name="nama" className={styles['form-label-custom']}>
+                          <Form.Item label="Nama" name="fullname" className={styles['form-label-custom']}>
                             <Input style={{ width: '100%' }} className={styles['input-custom']} readOnly />
                           </Form.Item>
                         </Col>
 
                         <Col span={12}>
-                          <Form.Item label="Tanggal Lahir" name="tanggal_lahir" className={styles['form-label-custom']}>
+                          <Form.Item label="Tanggal Lahir" name="birth_date" className={styles['form-label-custom']}>
                             <Input style={{ width: '100%' }} className={styles['input-custom']} readOnly />
                           </Form.Item>
                         </Col>
@@ -170,19 +215,19 @@ const KelolaAkun = () => {
 
                       <Row gutter={[32]}>
                         <Col span={12}>
-                          <Form.Item label="Jenis Kelamin" name="jenis_kelamin" className={styles['form-label-custom']}>
+                          <Form.Item label="Jenis Kelamin" name="gender" className={styles['form-label-custom']}>
                             <Input className={styles['input-custom']} readOnly />
                           </Form.Item>
                         </Col>
 
                         <Col span={12}>
-                          <Form.Item label="No Telepon" name="no_telepon" className={styles['form-label-custom']}>
+                          <Form.Item label="No Telepon" name="phone_number" className={styles['form-label-custom']}>
                             <Input className={styles['input-custom']} readOnly />
                           </Form.Item>
                         </Col>
                       </Row>
 
-                      <Form.Item label="Alamat" name="alamat" className={styles['form-label-custom']}>
+                      <Form.Item label="Alamat" name="address" className={styles['form-label-custom']}>
                         <TextArea className={styles['input-custom']} rows={3} readOnly />
                       </Form.Item>
                     </Form>
@@ -191,17 +236,6 @@ const KelolaAkun = () => {
               </Card>
             </Row>
           ))}
-
-          <div className={styles['pagination-wrap']}>
-            <Pagination
-              defaultCurrent={1}
-              total={DATA_PENGGUNA?.length}
-              pageSize={2}
-              onChange={handlePaginate}
-              showTotal={(total, range) => `${range[0]}-${range[1]} dari ${Math.ceil(total / 2)} halaman `}
-              showSizeChanger={false}
-            />
-          </div>
         </section>
       ) : (
         <section id="section-pegawai">
@@ -212,46 +246,100 @@ const KelolaAkun = () => {
 
             <Modal
               className={styles['modal-form']}
-              title="Tambah Data Warehouse"
+              title={isEdit ? 'Ubah Data Warehouse' : 'Tambah Data Warehouse'}
               open={openModal}
-              footer={
-                <Row justify="space-between">
-                  <Button
-                    key="reset"
-                    type="primary"
-                    onClick={onResetInput}
-                    className={styles['reset-btn']}
-                    size="middle"
-                  >
-                    Reset
-                  </Button>
-
-                  <Button key="submit" type="primary" className={styles['submit-btn']} size="middle">
-                    {isEdit ? 'Simpan Perubahan' : 'Submit'}
-                  </Button>
-                </Row>
-              }
-              onCancel={onCancel}
               width={627}
+              onOk={formStaff.submit}
+              onCancel={onCancel}
+              footer={
+                isEdit ? (
+                  <Row justify="space-between">
+                    <Button
+                      key="reset"
+                      type="primary"
+                      onClick={onResetInput}
+                      className={styles['reset-btn']}
+                      size="middle"
+                    >
+                      Reset
+                    </Button>
+
+                    <Button
+                      key="submit"
+                      htmlType="submit"
+                      type="primary"
+                      className={styles['submit-btn']}
+                      size="middle"
+                      onClick={formStaff.submit}
+                    >
+                      Simpan Perubahan
+                    </Button>
+                  </Row>
+                ) : (
+                  <Row justify="space-between">
+                    <Button key="reset" type="primary" onClick={onCancel} size="middle" danger>
+                      Cancel
+                    </Button>
+
+                    <Button
+                      key="submit"
+                      htmlType="submit"
+                      type="primary"
+                      className={styles['submit-btn']}
+                      size="middle"
+                      onClick={formStaff.submit}
+                    >
+                      Submit
+                    </Button>
+                  </Row>
+                )
+              }
               centered
             >
               <Form
                 className={styles['form-data-warehouse']}
-                name="form-data-warehouse"
-                form={formDataWarehouse}
+                name="formStaff"
+                form={formStaff}
                 onFinish={isEdit ? onEdit : onAdd}
                 layout="vertical"
                 size="large"
+                scrollToFirstError={true}
               >
-                <Form.Item label="Upload Foto">
-                  <Upload>
-                    <Button icon={<UploadOutlined />}>Klik untuk Upload</Button>
-                  </Upload>
+                <Form.Item label="Upload Foto" name="image_url">
+                  {!!imageUrl ? (
+                    <div className={styles['image-container']}>
+                      <Image src={imageUrl} width={100} height={100} />
+                      <Button
+                        type="link"
+                        danger
+                        onClick={() => {
+                          formStaff.setFieldValue('image-url', null)
+                          setImageUrl(null)
+                        }}
+                        className={styles['ml20']}
+                      >
+                        Delete Image
+                      </Button>
+                    </div>
+                  ) : (
+                    <Upload
+                      showUploadList={false}
+                      name="file"
+                      maxCount={1}
+                      customRequest={() => {}}
+                      onChange={handleUpload}
+                      disabled={isLoadingImage}
+                    >
+                      <Button icon={<UploadOutlined />}>
+                        Upload Foto {!!isLoadingImage && <Spin size="small" style={{ paddingLeft: 10 }} />}
+                      </Button>
+                    </Upload>
+                  )}
                 </Form.Item>
 
                 <Form.Item
                   label="Nama"
-                  name="nama"
+                  name="full_name"
                   rules={[
                     {
                       required: true,
@@ -272,7 +360,7 @@ const KelolaAkun = () => {
 
                 <Form.Item
                   label="Jabatan"
-                  name="jabatan"
+                  name="occupation"
                   rules={[
                     {
                       required: true,
@@ -281,9 +369,9 @@ const KelolaAkun = () => {
                   ]}
                 >
                   <Select
-                    defaultValue="Pilih Jabatan"
+                    placeholder="Pilih Jabatan"
                     options={[
-                      { value: 'Manajer', label: 'Manajer' },
+                      { value: 'Manager', label: 'Manager' },
                       { value: 'PIC', label: 'PIC' },
                       { value: 'Akuntan', label: 'Akuntan' },
                       { value: 'CS', label: 'CS' },
@@ -294,7 +382,7 @@ const KelolaAkun = () => {
 
                 <Form.Item
                   label="Jenis Kelamin"
-                  name="jenis_kelamin"
+                  name="gender"
                   rules={[
                     {
                       required: true,
@@ -303,17 +391,17 @@ const KelolaAkun = () => {
                   ]}
                 >
                   <Select
-                    defaultValue="Pilih Jenis Kelamin"
+                    placeholder="Pilih Jenis Kelamin"
                     options={[
-                      { value: 'pria', label: 'pria' },
-                      { value: 'wanita', label: 'wanita' },
+                      { value: 'Pria', label: 'Pria' },
+                      { value: 'Wanita', label: 'Wanita' },
                     ]}
                   />
                 </Form.Item>
 
                 <Form.Item
                   label="Tanggal Lahir"
-                  name="tanggal_lahir"
+                  name="birth_date"
                   rules={[{ required: true, message: 'Anda belum mengisi tanggal lahir' }]}
                 >
                   <DatePicker placeholder="Silahkan mengisi tanggal lahir Anda" style={{ width: '100%' }} />
@@ -321,28 +409,25 @@ const KelolaAkun = () => {
 
                 <Form.Item
                   label="No Telepon"
-                  name="no_telepon"
+                  name="phone_number"
                   rules={[
                     {
                       required: true,
                       message: 'Masukkan No Telepon',
                     },
                     {
-                      pattern: phoneNumberRegex,
-                      message: 'No Handphone tidak valid',
-                    },
-                    {
                       whitespace: true,
                       message: 'Tidak boleh diawali spasi',
                     },
+                    { min: 11, message: 'Minimal 11 karakter' },
                   ]}
                 >
-                  <Input placeholder="Silahkan mengisi nomor telepon Anda" />
+                  <Input placeholder="Silahkan mengisi nomor telepon Anda" addonBefore="+62" />
                 </Form.Item>
 
                 <Form.Item
                   label="Alamat"
-                  name="alamat"
+                  name="address"
                   rules={[{ required: true, message: 'Anda belum mengisi alamat' }]}
                 >
                   <Input.TextArea rows={2} showCount maxLength={250} placeholder="Silahkan mengisi alamat Anda" />
@@ -351,14 +436,14 @@ const KelolaAkun = () => {
             </Modal>
           </Row>
 
-          {DATA_PEGAWAI?.slice(start, end)?.map((data, index) => (
-            <Row key={index} gutter={32} className={styles['row-pegawai']}>
+          {dataStaff?.slice(start, end)?.map((staff, index) => (
+            <Row key={staff?.ID} gutter={32} className={styles['row-pegawai']}>
               <Card bordered={true} className={styles['card-data-pegawai']}>
                 <Row gutter={[40]} align="middle">
                   <Col span={8}>
                     <Card className={styles['card-profil-pegawai']}>
-                      <Avatar className={styles['img-pegawai']} shape="circle" size={150} src={data?.foto_profil} />
-                      <p className={styles['username-pegawai']}>{data?.nama}</p>
+                      <Avatar className={styles['img-pegawai']} shape="circle" size={150} src={staff?.image_url} />
+                      <p className={styles['username-pegawai']}>{staff?.full_name}</p>
                     </Card>
                   </Col>
 
@@ -368,23 +453,23 @@ const KelolaAkun = () => {
                       layout="vertical"
                       size="large"
                       initialValues={{
-                        nama: data?.nama,
-                        jabatan: data?.jabatan,
-                        jenis_kelamin: data?.jenis_kelamin,
-                        tanggal_lahir: data?.tanggal_lahir,
-                        no_telepon: data?.no_telepon,
-                        alamat: data?.alamat,
+                        full_name: staff?.full_name,
+                        occupation: staff?.occupation,
+                        gender: staff?.gender,
+                        birth_date: dayjs(staff?.birth_date).format('DD/MM/YYYY'),
+                        phone_number: staff?.phone_number,
+                        address: staff?.address,
                       }}
                     >
                       <Row gutter={[24]}>
                         <Col span={12}>
-                          <Form.Item label="Nama" name="nama" className={styles['form-label-custom']}>
+                          <Form.Item label="Nama" name="full_name" className={styles['form-label-custom']}>
                             <Input className={styles['input-custom']} readOnly />
                           </Form.Item>
                         </Col>
 
                         <Col span={12}>
-                          <Form.Item label="Jabatan" name="jabatan" className={styles['form-label-custom']}>
+                          <Form.Item label="Jabatan" name="occupation" className={styles['form-label-custom']}>
                             <Input className={styles['input-custom']} readOnly />
                           </Form.Item>
                         </Col>
@@ -392,19 +477,19 @@ const KelolaAkun = () => {
 
                       <Row gutter={[24]}>
                         <Col span={6}>
-                          <Form.Item label="Jenis Kelamin" name="jenis_kelamin" className={styles['form-label-custom']}>
+                          <Form.Item label="Jenis Kelamin" name="gender" className={styles['form-label-custom']}>
                             <Input className={styles['input-custom']} readOnly />
                           </Form.Item>
                         </Col>
 
                         <Col span={9}>
-                          <Form.Item label="Tanggal Lahir" name="tanggal_lahir" className={styles['form-label-custom']}>
+                          <Form.Item label="Tanggal Lahir" name="birth_date" className={styles['form-label-custom']}>
                             <Input className={styles['input-custom']} readOnly />
                           </Form.Item>
                         </Col>
 
                         <Col span={9}>
-                          <Form.Item label="No Telepon" name="no_telepon" className={styles['form-label-custom']}>
+                          <Form.Item label="No Telepon" name="phone_number" className={styles['form-label-custom']}>
                             <Input className={styles['input-custom']} readOnly />
                           </Form.Item>
                         </Col>
@@ -412,19 +497,35 @@ const KelolaAkun = () => {
 
                       <Row gutter={[24]} align="middle">
                         <Col span={20}>
-                          <Form.Item label="Alamat" name="alamat" className={styles['form-label-custom']}>
+                          <Form.Item label="Alamat" name="address" className={styles['form-label-custom']}>
                             <TextArea className={styles['input-custom']} rows={3} readOnly />
                           </Form.Item>
                         </Col>
 
                         <Col span={4}>
                           <Space className={styles['action-card']} direction="vertical">
-                            <Button className={styles['btn-ubah']} type="primary" onClick={handleEdit} block>
+                            <Button
+                              className={styles['btn-ubah']}
+                              type="primary"
+                              onClick={() => {
+                                handleEdit(staff)
+                              }}
+                              block
+                            >
                               Ubah
                             </Button>
-                            <Button className={styles['btn-hapus']} type="primary" danger block>
-                              Hapus
-                            </Button>
+
+                            <Popconfirm
+                              title="Yakin ingin dihapus?"
+                              arrow={false}
+                              onConfirm={() => {
+                                onDelete(staff.ID)
+                              }}
+                            >
+                              <Button className={styles['btn-hapus']} type="primary" danger block>
+                                Hapus
+                              </Button>
+                            </Popconfirm>
                           </Space>
                         </Col>
                       </Row>
@@ -434,19 +535,22 @@ const KelolaAkun = () => {
               </Card>
             </Row>
           ))}
-
-          <div className={styles['pagination-wrap']}>
-            <Pagination
-              defaultCurrent={1}
-              total={DATA_PEGAWAI?.length}
-              pageSize={2}
-              onChange={handlePaginate}
-              showTotal={(total, range) => `${range[0]}-${range[1]} dari ${Math.ceil(total / 2)} halaman `}
-              showSizeChanger={false}
-            />
-          </div>
         </section>
       )}
+
+      <div className={styles['pagination-wrap']}>
+        <Pagination
+          current={page}
+          onChange={(value) => {
+            setPage(value)
+          }}
+          defaultCurrent={1}
+          total={section === 'pengguna' ? dataUsers?.length : dataStaff?.length}
+          pageSize={2}
+          showTotal={(total) => `${page} dari ${Math.ceil(total / 2)} halaman`}
+          showSizeChanger={false}
+        />
+      </div>
     </>
   )
 }
