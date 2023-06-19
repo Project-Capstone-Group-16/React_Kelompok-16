@@ -61,3 +61,13 @@
   cursor: pointer;
   opacity: 0.9;
 }
+.upload-field {
+  margin-top: 20px;
+}
+.image-container {
+  display: flex;
+  align-items: center;
+}
+.ml20 {
+  margin-right: 20px;
+}

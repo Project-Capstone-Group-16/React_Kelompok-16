@@ -1,14 +1,25 @@
-import React from 'react'
-import styles from './styles.module.css'
-import { iconProfile } from '../../assets/icons/admin'
 import { Col, Row } from 'antd'
-import Persentasi from './persentasi'
+import React, { useEffect } from 'react'
+import { iconProfile } from '../../assets/icons/admin'
+import LoadingComponent from './../../components/loadingComponent/index'
 import Diagram from './diagram'
+import { useDashboard } from './hooks/useDashboard'
 import Loker from './loker'
+import Persentasi from './persentasi'
+import styles from './styles.module.css'
+import { useWarehouse } from './hooks/useWarehouse'
 
 const Dashboard = () => {
+  const [isLoadingDashboard, dataDashboard, getDataDashboard] = useDashboard()
+  const [isLoadingWarehouse, dataWarehouse, getDataWarehouse] = useWarehouse()
+  // console.log(dataWarehouse)
+  useEffect(() => {
+    getDataDashboard()
+    getDataWarehouse()
+  }, [])
   return (
     <>
+      {isLoadingDashboard && isLoadingWarehouse ? <LoadingComponent /> : null}
       <div className={styles['container-dashboard']}>
         <Row className={styles['header']}>
           <h1>Dashboard</h1>
@@ -21,15 +32,15 @@ const Dashboard = () => {
           <Col className={styles['content-left']} span={18}>
             <Row className={styles['container-content-left']}>
               <Col className={styles['persentasi']} span={12}>
-                <Persentasi />
+                <Persentasi data={dataDashboard} />
               </Col>
               <Col className={styles['diagram']} span={12}>
-                <Diagram />
+                <Diagram data={dataDashboard} />
               </Col>
             </Row>
           </Col>
           <Col className={styles['content-right']} span={6}>
-            <Loker />
+            <Loker data={dataWarehouse} />
           </Col>
         </Row>
       </div>

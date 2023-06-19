@@ -15,11 +15,18 @@ export const api = {
 
   //upload image
   uploadImage: (body) => {
-    return baseAPI.post('/upload/image', body)
+    return baseAPI.post('/upload/imageweb', body)
   },
 
   //ENDPOINT YANG MENGGUNAKAN TOKEN
   //dashboard
+  getDashboard: () => {
+    return baseAPI.get('/admin/dashboard', {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    })
+  },
   //get data warehouse
   getWarehouse: () => {
     return baseAPI.get('/admin/warehouse', {
@@ -39,7 +46,7 @@ export const api = {
   },
   //update warehouse
   updateWarehouse: (id, body) => {
-    return baseAPI.put('/admin/warehouse/', id, body, {
+    return baseAPI.put(`/admin/warehouse/${id}`, body, {
       headers: {
         Authorization: `Bearer ${token}`,
       },
@@ -47,7 +54,7 @@ export const api = {
   },
   //delete warehouse
   deleteWatrehouse: (id) => {
-    return baseAPI.delete('/admin/warehouse/', id, {
+    return baseAPI.delete(`/admin/warehouse/${id}`, {
       headers: {
         Authorization: `Bearer ${token}`,
       },
@@ -93,6 +100,15 @@ export const api = {
   //delete staff
   deleteStaff: (id) => {
     return baseAPI.delete('/admin/staff', id, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    })
+  },
+
+  //get all transaction
+  getTransaction: () => {
+    return baseAPI.get('/admin/transactions', {
       headers: {
         Authorization: `Bearer ${token}`,
       },

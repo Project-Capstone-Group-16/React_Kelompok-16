@@ -2,15 +2,15 @@ import { useCallback, useState } from 'react'
 import { api } from '../../../api'
 import { message } from 'antd'
 
-export const useWarehouse = () => {
+export const useDashboard = () => {
   const [isLoading, setIsLoading] = useState(false)
-  const [dataWarehouse, setDataWarehouse] = useState()
+  const [dataDashboard, setDataDashboard] = useState()
 
-  const getDataWarehouse = useCallback(async () => {
+  const getDataDashboard = useCallback(async () => {
     try {
       setIsLoading(true)
-      const res = await api.getWarehouse()
-      setDataWarehouse(res.data.data)
+      const res = await api.getDashboard()
+      setDataDashboard(res.data.data)
     } catch (err) {
       console.log({ err })
       message.open({
@@ -19,12 +19,7 @@ export const useWarehouse = () => {
       })
     } finally {
       setIsLoading(false)
-      message.open({
-        type: 'success',
-        content: `Berhasil fetch data!`,
-      })
     }
   }, [])
-
-  return [isLoading, dataWarehouse, getDataWarehouse]
+  return [isLoading, dataDashboard, getDataDashboard]
 }
