@@ -90,7 +90,7 @@ export const api = {
 
   //update staff
   updateStaff: (id, body) => {
-    return baseAPI.put('/admin/staff/', id, body, {
+    return baseAPI.put(`/admin/staff/${id}`, body, {
       headers: {
         Authorization: `Bearer ${token}`,
       },
@@ -99,7 +99,7 @@ export const api = {
 
   //delete staff
   deleteStaff: (id) => {
-    return baseAPI.delete('/admin/staff', id, {
+    return baseAPI.delete(`/admin/staff/${id}`, {
       headers: {
         Authorization: `Bearer ${token}`,
       },

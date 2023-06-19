@@ -84,3 +84,31 @@ export const useUpdateStaff = () => {
 
   return [isLoading, updateData]
 }
+
+// Delete Data
+export const useDeleteStaff = () => {
+  const [isLoading, setIsLoading] = useState(false)
+
+  const deleteData = useCallback(async (id, onSuccess) => {
+    try {
+      setIsLoading(true)
+
+      await api.deleteStaff(id)
+      onSuccess && onSuccess()
+
+      message.open({
+        type: 'success',
+        content: 'Berhasil Delete Data!',
+      })
+    } catch (err) {
+      message.open({
+        type: 'error',
+        content: `${err.message}`,
+      })
+    } finally {
+      setIsLoading(false)
+    }
+  }, [])
+
+  return [isLoading, deleteData]
+}

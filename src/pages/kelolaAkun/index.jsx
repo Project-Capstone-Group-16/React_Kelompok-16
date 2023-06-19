@@ -15,10 +15,16 @@ import {
   Select,
   Space,
   Upload,
+  Spin,
+  Image,
+  Popconfirm,
 } from 'antd'
+import dayjs from 'dayjs'
 import { useGetUsers } from './hooks/useUsers'
-import { useGetStaff, usePostStaff } from './hooks/useStaff'
+import { useGetStaff, usePostStaff, useUpdateStaff, useDeleteStaff } from './hooks/useStaff'
+import useUploadImage from './hooks/useUploadImage'
 import styles from './styles.module.css'
+import { FORMAT_DATE } from '../../helpers'
 
 const KelolaAkun = () => {
   const { TextArea } = Input
@@ -26,10 +32,14 @@ const KelolaAkun = () => {
   const [openModal, setOpenModal] = useState(false)
 
   const [formStaff] = Form.useForm()
+  const [uploadImage, isLoadingImage] = useUploadImage()
   const [isLoadingUsers, dataUsers, getUsers] = useGetUsers()
   const [isLoadingStaff, dataStaff, getStaff] = useGetStaff()
   const [isLoadingCreateStaff, createStaff] = usePostStaff()
+  const [isLoadingUpdateStaff, updateStaff] = useUpdateStaff()
+  const [isLoadingDeleteStaff, deleteStaff] = useDeleteStaff()
 
+  const [imageUrl, setImageUrl] = useState()
   const [rowData, setRowData] = useState()
   const [isEdit, setIsEdit] = useState(false)
 
@@ -37,9 +47,6 @@ const KelolaAkun = () => {
   const [page, setPage] = useState(1)
   const start = (page - 1) * 2
   const end = page * 2
-
-  // Regex Validasi
-  const phoneNumberRegex = /^(^\+62\s?|^0)(\d{3,4}-?){2}\d{3,4}$/
 
   const handleChangeRadio = (event) => {
     setSection(event.target.value)
@@ -64,13 +71,17 @@ const KelolaAkun = () => {
   // handle edit button
   const handleEdit = (row_data) => {
     const formValue = {
-      full_name: dataStaff?.full_name,
-      occupation: dataStaff?.occupation,
-      gender: dataStaff?.gender,
-      birth_date: dataStaff?.birth_date,
-      address: dataStaff?.address,
+      image_url: row_data?.image_url,
+      full_name: row_data?.full_name,
+      occupation: row_data?.occupation,
+      gender: row_data?.gender,
+      birth_date: dayjs(row_data?.birth_date, 'YYYY-MM-DD'),
+      phone_number: row_data?.phone_number,
+      address: row_data?.address,
     }
 
+    setImageUrl(row_data?.image_url)
+    formStaff.setFieldsValue(formValue)
     setOpenModal(true)
     setRowData(row_data)
     setIsEdit(true)
@@ -79,7 +90,8 @@ const KelolaAkun = () => {
   //   Add Data Pegawai
   const onAdd = (values) => {
     console.log(values)
-    createStaff(values, () => {
+
+    createStaff({ ...values, birth_date: dayjs(values.birth_date).format('DD/MM/YYYY') }, () => {
       getStaff()
       formStaff.resetFields()
     })
@@ -92,11 +104,31 @@ const KelolaAkun = () => {
 
   //   Edit Data from table
   const onEdit = (values) => {
+    const id = rowData.ID
     const body = {
       ...values,
+      birth_date: dayjs(values.birth_date).format('DD/MM/YYYY'),
     }
+    // console.log(id)
+    // console.log(body)
+    updateStaff(id, body, () => {
+      getStaff()
+      formStaff.resetFields()
+      setOpenModal(false)
+    })
+  }
 
-    console.log(body)
+  const handleUpload = async (file) => {
+    uploadImage(file, (data) => {
+      formStaff.setFieldValue('image_url', data)
+      setImageUrl(data)
+    })
+  }
+
+  const onDelete = (id) => {
+    deleteStaff(id, () => {
+      getStaff()
+    })
   }
 
   useEffect(() => {
@@ -137,8 +169,8 @@ const KelolaAkun = () => {
 
       {section === 'pengguna' ? (
         <section id="section-pengguna">
-          {dataUsers?.slice(start, end)?.map((user) => (
-            <Row key={user?.id} gutter={32} className={styles['row-pengguna']}>
+          {dataUsers?.slice(start, end)?.map((user, index) => (
+            <Row key={user?.ID} gutter={32} className={styles['row-pengguna']}>
               <Card bordered={true} className={styles['card-data-pengguna']}>
                 <Row gutter={[40]} align="middle">
                   <Col span={8}>
@@ -238,6 +270,7 @@ const KelolaAkun = () => {
                       type="primary"
                       className={styles['submit-btn']}
                       size="middle"
+                      onClick={formStaff.submit}
                     >
                       Simpan Perubahan
                     </Button>
@@ -272,10 +305,36 @@ const KelolaAkun = () => {
                 size="large"
                 scrollToFirstError={true}
               >
-                <Form.Item label="Upload Foto" name="img_url">
-                  <Upload>
-                    <Button icon={<UploadOutlined />}>Klik untuk Upload</Button>
-                  </Upload>
+                <Form.Item label="Upload Foto" name="image_url">
+                  {!!imageUrl ? (
+                    <div className={styles['image-container']}>
+                      <Image src={imageUrl} width={100} height={100} />
+                      <Button
+                        type="link"
+                        danger
+                        onClick={() => {
+                          formStaff.setFieldValue('image-url', null)
+                          setImageUrl(null)
+                        }}
+                        className={styles['ml20']}
+                      >
+                        Delete Image
+                      </Button>
+                    </div>
+                  ) : (
+                    <Upload
+                      showUploadList={false}
+                      name="file"
+                      maxCount={1}
+                      customRequest={() => {}}
+                      onChange={handleUpload}
+                      disabled={isLoadingImage}
+                    >
+                      <Button icon={<UploadOutlined />}>
+                        Upload Foto {!!isLoadingImage && <Spin size="small" style={{ paddingLeft: 10 }} />}
+                      </Button>
+                    </Upload>
+                  )}
                 </Form.Item>
 
                 <Form.Item
@@ -310,7 +369,7 @@ const KelolaAkun = () => {
                   ]}
                 >
                   <Select
-                    defaultValue="Pilih Jabatan"
+                    placeholder="Pilih Jabatan"
                     options={[
                       { value: 'Manager', label: 'Manager' },
                       { value: 'PIC', label: 'PIC' },
@@ -332,7 +391,7 @@ const KelolaAkun = () => {
                   ]}
                 >
                   <Select
-                    defaultValue="Pilih Jenis Kelamin"
+                    placeholder="Pilih Jenis Kelamin"
                     options={[
                       { value: 'Pria', label: 'Pria' },
                       { value: 'Wanita', label: 'Wanita' },
@@ -357,17 +416,13 @@ const KelolaAkun = () => {
                       message: 'Masukkan No Telepon',
                     },
                     {
-                      pattern: phoneNumberRegex,
-                      message: 'No Handphone tidak valid',
-                    },
-                    {
                       whitespace: true,
                       message: 'Tidak boleh diawali spasi',
                     },
                     { min: 11, message: 'Minimal 11 karakter' },
                   ]}
                 >
-                  <Input placeholder="Silahkan mengisi nomor telepon Anda" />
+                  <Input placeholder="Silahkan mengisi nomor telepon Anda" addonBefore="+62" />
                 </Form.Item>
 
                 <Form.Item
@@ -381,8 +436,8 @@ const KelolaAkun = () => {
             </Modal>
           </Row>
 
-          {dataStaff?.slice(start, end)?.map((staff) => (
-            <Row key={staff?.id} gutter={32} className={styles['row-pegawai']}>
+          {dataStaff?.slice(start, end)?.map((staff, index) => (
+            <Row key={staff?.ID} gutter={32} className={styles['row-pegawai']}>
               <Card bordered={true} className={styles['card-data-pegawai']}>
                 <Row gutter={[40]} align="middle">
                   <Col span={8}>
@@ -401,7 +456,7 @@ const KelolaAkun = () => {
                         full_name: staff?.full_name,
                         occupation: staff?.occupation,
                         gender: staff?.gender,
-                        birth_date: staff?.birth_date,
+                        birth_date: dayjs(staff?.birth_date).format('DD/MM/YYYY'),
                         phone_number: staff?.phone_number,
                         address: staff?.address,
                       }}
@@ -449,12 +504,28 @@ const KelolaAkun = () => {
 
                         <Col span={4}>
                           <Space className={styles['action-card']} direction="vertical">
-                            <Button className={styles['btn-ubah']} type="primary" onClick={handleEdit} block>
+                            <Button
+                              className={styles['btn-ubah']}
+                              type="primary"
+                              onClick={() => {
+                                handleEdit(staff)
+                              }}
+                              block
+                            >
                               Ubah
                             </Button>
-                            <Button className={styles['btn-hapus']} type="primary" danger block>
-                              Hapus
-                            </Button>
+
+                            <Popconfirm
+                              title="Yakin ingin dihapus?"
+                              arrow={false}
+                              onConfirm={() => {
+                                onDelete(staff.ID)
+                              }}
+                            >
+                              <Button className={styles['btn-hapus']} type="primary" danger block>
+                                Hapus
+                              </Button>
+                            </Popconfirm>
                           </Space>
                         </Col>
                       </Row>
@@ -469,6 +540,10 @@ const KelolaAkun = () => {
 
       <div className={styles['pagination-wrap']}>
         <Pagination
+          current={page}
+          onChange={(value) => {
+            setPage(value)
+          }}
           defaultCurrent={1}
           total={section === 'pengguna' ? dataUsers?.length : dataStaff?.length}
           pageSize={2}
