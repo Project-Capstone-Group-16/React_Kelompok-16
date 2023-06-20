@@ -1,5 +1,6 @@
 import { useCallback, useState } from 'react'
 import { api } from '../../../api/index'
+import { message } from 'antd'
 
 const useKelolaTransaksiApi = () => {
   const [isLoading, setIsLoading] = useState(false)
@@ -9,8 +10,6 @@ const useKelolaTransaksiApi = () => {
     try {
       setIsLoading(true)
       const res = await api.getTransaction()
-      // console.log({ err })
-      console.log(res)
       setDataTransaction(res?.data?.data)
     } catch (err) {
       console.log({ err })

@@ -1,6 +1,6 @@
 import React from 'react'
 import styles from './styles.module.css'
-import { Popconfirm } from 'antd'
+import { Button, Popconfirm } from 'antd'
 import { Image } from 'antd'
 import { useDeleteWarehouse } from '../../../pages/kelolaWarehouse/hooks/useWarehouses'
 import LoadingComponent from '../../loadingComponent'
@@ -50,7 +50,8 @@ const Card = ({ data, onEdit, refetch }) => {
             okText="Yes"
             cancelText="No"
           >
-            <button className={styles['delete-button']}>Hapus</button>
+            {/* <button className={styles['delete-button']}>Hapus</button> */}
+            <Button disabled={true}>Hapus</Button>
           </Popconfirm>
         </div>
       </div>

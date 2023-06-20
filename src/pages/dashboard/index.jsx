@@ -12,7 +12,6 @@ import { useWarehouse } from './hooks/useWarehouse'
 const Dashboard = () => {
   const [isLoadingDashboard, dataDashboard, getDataDashboard] = useDashboard()
   const [isLoadingWarehouse, dataWarehouse, getDataWarehouse] = useWarehouse()
-  // console.log(dataWarehouse)
   useEffect(() => {
     getDataDashboard()
     getDataWarehouse()
