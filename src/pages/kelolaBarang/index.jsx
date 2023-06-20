@@ -1,10 +1,9 @@
 import React, { useEffect, useState } from 'react'
-
-import { Button, Card, Image, Pagination, Row, Space, Tag, Typography } from 'antd'
-
-import styles from './styles.module.css'
-import { useKelolaBarang } from './hooks/useKelolaBarang'
+import { Card, Image, Pagination, Row, Tag, Typography } from 'antd'
 import dayjs from 'dayjs'
+import { useKelolaBarang } from './hooks/useKelolaBarang'
+import styles from './styles.module.css'
+import { imageBarangKosong } from '../../assets/images/admin'
 
 const KelolaBarang = () => {
   const [page, setPage] = useState(1)
@@ -27,9 +26,9 @@ const KelolaBarang = () => {
       </Typography.Title>
 
       {data?.slice(start, end)?.map((dt) => (
-        <Card key={data.ID} className={styles['card__outer']} bodyStyle={{ padding: '22px 14px' }} id="card__outer">
+        <Card key={dt.ID} className={styles['card__outer']} bodyStyle={{ padding: '22px 14px' }} id="card__outer">
           <Tag className={styles['tag__barang']} id="tag__barang">
-            Barang {data.ID + 1}
+            Barang {dt.ID + 1}
           </Tag>
 
           <Row>
@@ -67,7 +66,7 @@ const KelolaBarang = () => {
                   width={143}
                   height={203}
                   style={{ borderRadius: 8 }}
-                  src={dt.Locker?.Warehouse?.image_url}
+                  src={dt.Locker?.Warehouse?.image_url ? dt.Locker?.Warehouse?.image_url : imageBarangKosong}
                   preview={false}
                   id="image__barang"
                 />

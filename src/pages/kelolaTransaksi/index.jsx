@@ -5,6 +5,7 @@ import { Image, Pagination } from 'antd'
 import { api } from '../../api'
 import moment from 'moment'
 import useKelolaTransaksiApi from './hooks/useKelolaTransaksi'
+import LoadingComponent from './../../components/loadingComponent/index'
 const KelolaTransaksi = () => {
   const [page, setPage] = useState(1)
   const start = (page - 1) * 2
@@ -15,6 +16,7 @@ const KelolaTransaksi = () => {
   }
 
   const [isLoadingKelolaTransaski, dataTransaction, getTransaction] = useKelolaTransaksiApi()
+  console.log(dataTransaction)
 
   useEffect(() => {
     getTransaction()
@@ -22,50 +24,60 @@ const KelolaTransaksi = () => {
 
   return (
     <>
+      {isLoadingKelolaTransaski ? <LoadingComponent /> : null}
       <div className={styles['body']}>
         <h1> Kelola Transaksi</h1>
-        {dataTransaction?.slice(start, end)?.map((item, idx) => (
-          <div key={idx} className={styles['container']} id={`id-${idx + 2}`}>
+        {dataTransaction?.slice(start, end)?.map((item) => (
+          <div key={item.ID} className={styles['container']}>
             <div className={styles['containerOne']}>
               <p className={styles['label']}>{item.User?.first_name + ' ' + item.User?.last_name}</p>
               <Image width={270} height={170} className={styles['images']} src={item.ItemCategory?.image_url} />
             </div>
 
             <table className={styles['containerTwo']}>
-              <tr>
-                <td className={styles['kategori-item']}>kategori loker</td>
-                <td>:</td>
-                <td className={styles['with-span']}>
-                  &nbsp; {item.Locker.LockerType.name}-{item.Locker.LockerType.ID}
-                </td>
-              </tr>
-              <tr>
-                <td className={styles['kategori-item']}>Barang</td>
-                <td>:</td>
-                <td className={styles['with-span']}>&nbsp; {item.ItemCategory.name}</td>
-              </tr>
-              <tr>
-                <td className={styles['kategori-item']}>Tanggal Check In</td>
-                <td>:</td>
-                <td className={styles['with-span']}>&nbsp; {moment(item.start_date).format('DD MMMM YYYY')}</td>
-              </tr>
-              <tr>
-                <td className={styles['kategori-item']}>Tanggal Check Out</td>
-                <td>:</td>
-                <td className={styles['with-span']}>&nbsp; {moment(item.end_date).format('DD MMMM YYYY')}</td>
-              </tr>
-              <tr>
-                <td className={styles['kategori-item']}>Alamat Pickup</td>
-                <td>:</td>
-                <td className={styles['with-spans3']}>&nbsp; {item.Locker.Warehouse.name}</td>
-              </tr>
+              <thead>
+                <tr>
+                  <td className={styles['kategori-item']}>kategori loker</td>
+                  <td>:</td>
+                  <td className={styles['with-span']}>
+                    &nbsp; {item.Locker.LockerType.name} -{' '}
+                    {item.Locker.LockerType.ID.length > 10
+                      ? item.Locker.LockerType.ID
+                      : `0${item.Locker.LockerType.ID}`}
+                  </td>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td className={styles['kategori-item']}>Barang</td>
+                  <td>:</td>
+                  <td className={styles['with-span']}>&nbsp; {item.ItemCategory.name}</td>
+                </tr>
+                <tr>
+                  <td className={styles['kategori-item']}>Tanggal Check In</td>
+                  <td>:</td>
+                  <td className={styles['with-span']}>&nbsp; {moment(item.start_date).format('DD MMMM YYYY')}</td>
+                </tr>
+                <tr>
+                  <td className={styles['kategori-item']}>Tanggal Check Out</td>
+                  <td>:</td>
+                  <td className={styles['with-span']}>&nbsp; {moment(item.end_date).format('DD MMMM YYYY')}</td>
+                </tr>
+                <tr>
+                  <td className={styles['kategori-item']}>Alamat Pickup</td>
+                  <td>:</td>
+                  <td className={styles['with-spans3']}>
+                    &nbsp; {item.Locker.Warehouse.name ? item.Locker.Warehouse.name : '-'}
+                  </td>
+                </tr>
+              </tbody>
             </table>
 
             <div className={styles['containerThree']}>
               <span className={styles['kode']}>{'Kode Penyewaan: ' + item.order_id}</span>
               <p className={styles['pembayaran']}>
                 Pembayaran: <br />
-                <span className={styles['tunai']}>{'(' + item.payment_method + ')'} </span>
+                <span className={styles['tunai']}>{item.payment_method} </span>
                 <br />
                 <span className={styles['tunai']}>{'Rp. ' + item.amount + ',-'} </span>
               </p>
@@ -83,7 +95,7 @@ const KelolaTransaksi = () => {
                 }
               >
                 {item.status === 'Waiting for Payment'
-                  ? 'Bayar Dulu Cuy'
+                  ? 'Menunggu'
                   : item.status === 'On Going'
                   ? 'Sedang Disewakan'
                   : item.status === 'Done'

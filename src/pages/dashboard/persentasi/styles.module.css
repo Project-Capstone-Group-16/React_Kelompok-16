@@ -80,7 +80,7 @@
 }
 
 .container-total-pengguna-1, .container-total-pengguna-2 {
-    width: 171px;
+    width: 100%;
     height: 79px;
     padding: 10px;
     border: 2px solid #F9F9F9;

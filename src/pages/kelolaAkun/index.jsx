@@ -20,6 +20,7 @@ import {
 } from 'antd'
 import dayjs from 'dayjs'
 import React, { useEffect, useState } from 'react'
+import { iconProfile } from '../../assets/icons/admin'
 import LoadingComponent from './../../components/loadingComponent/index'
 import { useDeleteStaff, useGetStaff, usePostStaff, useUpdateStaff } from './hooks/useStaff'
 import useUploadImage from './hooks/useUploadImage'
@@ -174,7 +175,12 @@ const KelolaAkun = () => {
                 <Row gutter={[40]} align="middle">
                   <Col span={8}>
                     <Card className={styles['card-profil-pengguna']}>
-                      <Avatar className={styles['img-pengguna']} shape="circle" size={90} src={user?.image_url} />
+                      <Avatar
+                        className={styles['img-pengguna']}
+                        shape="circle"
+                        size={90}
+                        src={user?.image_url ? user?.image_url : iconProfile}
+                      />
                       <p className={styles['username-pengguna']}>{user?.fullname}</p>
 
                       <p className={styles['histori-pengguna']}>
@@ -431,13 +437,18 @@ const KelolaAkun = () => {
               </Form>
             </Modal>
           </Row>
-          {dataStaff?.slice(start, end)?.map((staff, index) => (
+          {dataStaff?.slice(start, end)?.map((staff) => (
             <Row key={staff?.ID} gutter={32} className={styles['row-pegawai']}>
               <Card bordered={true} className={styles['card-data-pegawai']}>
                 <Row gutter={[40]} align="middle">
                   <Col span={8}>
                     <Card className={styles['card-profil-pegawai']}>
-                      <Avatar className={styles['img-pegawai']} shape="circle" size={150} src={staff?.image_url} />
+                      <Avatar
+                        className={styles['img-pegawai']}
+                        shape="circle"
+                        size={150}
+                        src={staff?.image_url ? staff?.image_url : defaultImage}
+                      />
                       <p className={styles['username-pegawai']}>{staff?.full_name}</p>
                     </Card>
                   </Col>
