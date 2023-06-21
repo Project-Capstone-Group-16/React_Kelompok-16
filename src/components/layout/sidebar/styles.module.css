@@ -34,6 +34,10 @@
     padding: 10px;
 }
 
+.logo:hover {
+    cursor: pointer;
+}
+
 .menu-item {
     padding: 0 10px;
     background-color: #1652F9 !important;
