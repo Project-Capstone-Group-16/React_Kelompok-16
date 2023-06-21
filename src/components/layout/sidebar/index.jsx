@@ -4,6 +4,7 @@ import styles from './styles.module.css'
 import { MENU_ITEMS } from './constants'
 import { logoInventron, iconLogoutPutih, iconLogoutBiru } from '../../../assets/icons/admin'
 import { useNavigate } from 'react-router-dom'
+import Cookies from 'js-cookie'
 
 const SidebarComponent = () => {
   const [isHover, setIsHover] = useState(false)
@@ -32,7 +33,7 @@ const SidebarComponent = () => {
                 setIsHover(false)
               }}
               onClick={() => {
-                localStorage.removeItem('token')
+                Cookies.remove('token')
                 navigate('/login')
               }}
             >
