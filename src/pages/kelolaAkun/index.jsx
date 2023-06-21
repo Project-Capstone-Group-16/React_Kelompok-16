@@ -26,6 +26,7 @@ import { useDeleteStaff, useGetStaff, usePostStaff, useUpdateStaff } from './hoo
 import useUploadImage from './hooks/useUploadImage'
 import { useGetUsers } from './hooks/useUsers'
 import styles from './styles.module.css'
+import { FORMAT_DATE } from '../../helpers'
 
 const KelolaAkun = () => {
   const { TextArea } = Input
@@ -196,7 +197,7 @@ const KelolaAkun = () => {
                       size="large"
                       initialValues={{
                         fullname: user?.fullname,
-                        birth_date: user?.birth_date,
+                        birth_date: dayjs(user?.birth_date).format('DD/MM/YYYY'),
                         gender: user?.gender,
                         phone_number: user?.phone_number,
                         address: user?.address,
@@ -421,7 +422,7 @@ const KelolaAkun = () => {
                       whitespace: true,
                       message: 'Tidak boleh diawali spasi',
                     },
-                    { max: 11, message: 'Minimal 11 karakter' },
+                    { max: 11, message: 'Maksimal 11 digit' },
                   ]}
                 >
                   <Input placeholder="Silahkan mengisi nomor telepon Anda" addonBefore="+62" />

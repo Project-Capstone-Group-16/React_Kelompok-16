@@ -1,6 +1,5 @@
+import Cookies from 'js-cookie'
 import { baseAPI } from '../configs/apiServices'
-
-const token = localStorage.getItem('token')
 
 export const api = {
   //login
@@ -23,7 +22,7 @@ export const api = {
   getDashboard: () => {
     return baseAPI.get('/admin/dashboard', {
       headers: {
-        Authorization: `Bearer ${token}`,
+        Authorization: `Bearer ${Cookies.get('token')}`,
       },
     })
   },
@@ -31,7 +30,7 @@ export const api = {
   getWarehouse: () => {
     return baseAPI.get('/admin/warehouse', {
       headers: {
-        Authorization: `Bearer ${token}`,
+        Authorization: `Bearer ${Cookies.get('token')}`,
       },
     })
   },
@@ -40,7 +39,7 @@ export const api = {
   createWarehouse: (body) => {
     return baseAPI.post('/admin/warehouse', body, {
       headers: {
-        Authorization: `Bearer ${token}`,
+        Authorization: `Bearer ${Cookies.get('token')}`,
       },
     })
   },
@@ -48,7 +47,7 @@ export const api = {
   updateWarehouse: (id, body) => {
     return baseAPI.put(`/admin/warehouse/${id}`, body, {
       headers: {
-        Authorization: `Bearer ${token}`,
+        Authorization: `Bearer ${Cookies.get('token')}`,
       },
     })
   },
@@ -56,7 +55,7 @@ export const api = {
   deleteWatrehouse: (id) => {
     return baseAPI.delete(`/admin/warehouse/${id}`, {
       headers: {
-        Authorization: `Bearer ${token}`,
+        Authorization: `Bearer ${Cookies.get('token')}`,
       },
     })
   },
@@ -65,7 +64,7 @@ export const api = {
   getUser: () => {
     return baseAPI.get('/admin/users', {
       headers: {
-        Authorization: `Bearer ${token}`,
+        Authorization: `Bearer ${Cookies.get('token')}`,
       },
     })
   },
@@ -74,7 +73,7 @@ export const api = {
   getStaff: () => {
     return baseAPI.get('/admin/staff', {
       headers: {
-        Authorization: `Bearer ${token}`,
+        Authorization: `Bearer ${Cookies.get('token')}`,
       },
     })
   },
@@ -83,7 +82,7 @@ export const api = {
   createStaff: (body) => {
     return baseAPI.post('/admin/staff', body, {
       headers: {
-        Authorization: `Bearer ${token}`,
+        Authorization: `Bearer ${Cookies.get('token')}`,
       },
     })
   },
@@ -92,7 +91,7 @@ export const api = {
   updateStaff: (id, body) => {
     return baseAPI.put(`/admin/staff/${id}`, body, {
       headers: {
-        Authorization: `Bearer ${token}`,
+        Authorization: `Bearer ${Cookies.get('token')}`,
       },
     })
   },
@@ -101,7 +100,7 @@ export const api = {
   deleteStaff: (id) => {
     return baseAPI.delete(`/admin/staff/${id}`, {
       headers: {
-        Authorization: `Bearer ${token}`,
+        Authorization: `Bearer ${Cookies.get('token')}`,
       },
     })
   },
@@ -110,7 +109,7 @@ export const api = {
   getTransaction: () => {
     return baseAPI.get('/admin/transactions', {
       headers: {
-        Authorization: `Bearer ${token}`,
+        Authorization: `Bearer ${Cookies.get('token')}`,
       },
     })
   },
