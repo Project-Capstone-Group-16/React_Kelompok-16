@@ -1,9 +1,9 @@
-import React, { useEffect, useState } from 'react'
 import { Card, Image, Pagination, Row, Tag, Typography } from 'antd'
 import dayjs from 'dayjs'
+import React, { useEffect, useState } from 'react'
+import { imageBarangKosong } from '../../assets/images/admin'
 import { useKelolaBarang } from './hooks/useKelolaBarang'
 import styles from './styles.module.css'
-import { imageBarangKosong } from '../../assets/images/admin'
 
 const KelolaBarang = () => {
   const [page, setPage] = useState(1)

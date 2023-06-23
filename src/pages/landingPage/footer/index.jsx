@@ -1,8 +1,7 @@
-import { Row, Col, Space, Typography } from 'antd'
+import { Col, Row, Space, Typography } from 'antd'
 import React from 'react'
 import { Link } from 'react-router-dom'
 import Gap from '../../../components/gap'
-
 import {
   AppStoreImage,
   GooglePlayImage,
@@ -12,9 +11,7 @@ import {
   UnduhanImage3,
   UnduhanImage4,
 } from '../../../assets/images/footer'
-
-import { FacebookIcon, InstagramIcon, WhatsappIcon, TwitterIcon } from '../../../assets/svg/footer'
-
+import { FacebookIcon, InstagramIcon, TwitterIcon, WhatsappIcon } from '../../../assets/svg/footer'
 import styles from './styles.module.css'
 
 function Footer() {

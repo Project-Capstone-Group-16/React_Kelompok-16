@@ -1,11 +1,9 @@
-import React, { useEffect, useState } from 'react'
-import styles from './styles.module.css'
-import { kelolaTransaksi } from './constant'
 import { Image, Pagination } from 'antd'
-import { api } from '../../api'
-import moment from 'moment'
-import useKelolaTransaksiApi from './hooks/useKelolaTransaksi'
+import dayjs from 'dayjs'
+import React, { useEffect, useState } from 'react'
 import LoadingComponent from './../../components/loadingComponent/index'
+import useKelolaTransaksiApi from './hooks/useKelolaTransaksi'
+import styles from './styles.module.css'
 const KelolaTransaksi = () => {
   const [page, setPage] = useState(1)
   const start = (page - 1) * 2
@@ -16,7 +14,6 @@ const KelolaTransaksi = () => {
   }
 
   const [isLoadingKelolaTransaski, dataTransaction, getTransaction] = useKelolaTransaksiApi()
-  console.log(dataTransaction)
 
   useEffect(() => {
     getTransaction()
@@ -56,12 +53,12 @@ const KelolaTransaksi = () => {
                 <tr>
                   <td className={styles['kategori-item']}>Tanggal Check In</td>
                   <td>:</td>
-                  <td className={styles['with-span']}>&nbsp; {moment(item.start_date).format('DD MMMM YYYY')}</td>
+                  <td className={styles['with-span']}>&nbsp; {dayjs(item.start_date).format('DD MMMM YYYY')}</td>
                 </tr>
                 <tr>
                   <td className={styles['kategori-item']}>Tanggal Check Out</td>
                   <td>:</td>
-                  <td className={styles['with-span']}>&nbsp; {moment(item.end_date).format('DD MMMM YYYY')}</td>
+                  <td className={styles['with-span']}>&nbsp; {dayjs(item.end_date).format('DD MMMM YYYY')}</td>
                 </tr>
                 <tr>
                   <td className={styles['kategori-item']}>Alamat Pickup</td>

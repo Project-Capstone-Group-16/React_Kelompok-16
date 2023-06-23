@@ -1,7 +1,7 @@
 import { message } from 'antd'
+import Cookies from 'js-cookie'
 import { useCallback, useState } from 'react'
 import { api } from '../../../api'
-import Cookies from 'js-cookie'
 
 export const useLogin = () => {
   const [isLoading, setIsLoading] = useState(false)
@@ -10,15 +10,13 @@ export const useLogin = () => {
     try {
       setIsLoading(true)
       const res = await api.login(body)
-      // console.log(res)
       const token = res.data.data.token
       Cookies.set('token', token, { expires: 1 })
       onSuccess && onSuccess()
     } catch (err) {
-      // console.log(err)
       message.open({
         type: 'error',
-        content: `${err.response.data}`,
+        content: `${err.message}`,
       })
     } finally {
       setIsLoading(false)

@@ -1,6 +1,6 @@
+import { message } from 'antd'
 import { useCallback, useState } from 'react'
 import { api } from '../../../api'
-import { message } from 'antd'
 
 export const useDashboard = () => {
   const [isLoading, setIsLoading] = useState(false)
@@ -12,7 +12,6 @@ export const useDashboard = () => {
       const res = await api.getDashboard()
       setDataDashboard(res.data.data)
     } catch (err) {
-      console.log({ err })
       message.open({
         type: 'error',
         content: `${err?.message}`,

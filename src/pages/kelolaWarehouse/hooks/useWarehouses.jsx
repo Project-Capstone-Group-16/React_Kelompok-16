@@ -1,6 +1,6 @@
+import { message } from 'antd'
 import { useCallback, useState } from 'react'
 import { api } from '../../../api'
-import { message } from 'antd'
 
 export const useGetWarehouses = () => {
   const [isLoading, setIsLoading] = useState(true)

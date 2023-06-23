@@ -1,10 +1,10 @@
+import { Form, Pagination } from 'antd'
 import React, { useState } from 'react'
-import styles from './styles.module.css'
 import Card from '../../components/kelolaWarehouse/card'
 import ModalForm from '../../components/kelolaWarehouse/modalForm'
-import { Pagination, Form } from 'antd'
-import { useGetWarehouses } from './hooks/useWarehouses'
 import LoadingComponent from '../../components/loadingComponent'
+import { useGetWarehouses } from './hooks/useWarehouses'
+import styles from './styles.module.css'
 const KelolaWarehouse = () => {
   const [page, setPage] = useState(1)
   const [open, setOpen] = useState({ mode: null, show: false })

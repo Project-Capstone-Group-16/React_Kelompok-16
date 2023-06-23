@@ -1,6 +1,6 @@
+import { message } from 'antd'
 import { useCallback, useState } from 'react'
 import { api } from '../../../api'
-import { message } from 'antd'
 
 export const useRegister = () => {
   const [isLoading, setIsLoading] = useState(false)
@@ -11,10 +11,9 @@ export const useRegister = () => {
       await api.register(body)
       onSuccess && onSuccess()
     } catch (err) {
-      console.log(err)
       message.open({
         type: 'error',
-        content: `${err.response.data.error}`,
+        content: `${err.message}`,
       })
     } finally {
       setIsLoading(false)
