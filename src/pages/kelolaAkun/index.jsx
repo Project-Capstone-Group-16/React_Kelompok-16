@@ -464,7 +464,7 @@ const KelolaAkun = () => {
                         occupation: staff?.occupation,
                         gender: staff?.gender,
                         birth_date: dayjs(staff?.birth_date).format('DD/MM/YYYY'),
-                        phone_number: staff?.phone_number,
+                        phone_number: `0${staff?.phone_number}`,
                         address: staff?.address,
                       }}
                     >

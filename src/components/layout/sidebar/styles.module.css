@@ -1,105 +1,107 @@
 .sidebar {
-    overflow: auto;
-    position: relative;
-    left: 0;
-    flex: 0 0 305px !important;
-    max-width: 305px !important;
-    background-color: #1652F9 !important;
+  overflow: auto;
+  position: relative;
+  left: 0;
+  flex: 0 0 305px !important;
+  max-width: 305px !important;
+  background-color: #1652f9 !important;
 }
 
 .sidebar-item {
-    overflow: scroll;
-    width: 305px;
-    height: 100vh;
-    position: fixed;
-    top: 0;
-    left: 0;
-    z-index: 1;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: space-between;
-
+  overflow: hidden auto;
+  width: 305px;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
 }
 
 .sidebar-menu {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 10px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
 }
 
 .logo {
-    padding: 10px;
+  padding: 10px;
+}
+
+.logo:hover {
+  cursor: pointer;
 }
 
 .menu-item {
-    padding: 0 10px;
-    background-color: #1652F9 !important;
-    border: none !important;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+  padding: 0 10px;
+  background-color: #1652f9 !important;
+  border: none !important;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 .menu-item li {
-    width: 220px !important;
-    background-color: #fff !important;
-    font-weight: 700;
-    box-shadow: 0px 4px 4px #69490B;
-    margin-top: 10px !important;
+  width: 220px !important;
+  background-color: #fff !important;
+  font-weight: 700;
+  box-shadow: 0px 4px 4px #69490b;
+  margin-top: 10px !important;
 }
 
 .sidebar-logout {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 10px;
-    margin-bottom: 20px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 20px;
 }
 
 .icon {
-    width: 20px;
-    height: 20px;
-    margin-right: 10px;
+  width: 20px;
+  height: 20px;
+  margin-right: 10px;
 }
 
 .image-sidebar {
-    background-image: url("../../../assets/images/admin/loker.png");
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-position: center;
-    width: 200px;
-    height: 180px;
-    margin-top: 20px;
-    border-radius: 30px;
-    padding: 30px;
-    font-weight: 500;
+  background-image: url('../../../assets/images/admin/loker.png');
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  width: 200px;
+  height: 180px;
+  margin-top: 20px;
+  border-radius: 30px;
+  padding: 30px;
+  font-weight: 500;
 }
 
 .button-logout {
-    height: 40px;
-    width: 150px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 20px;
-    margin-top: 20px;
-    background-color: transparent;
-    border: none;
-    color: #fff;
-    border-radius: 10px;
-    transition: all 0.3s ease;
-
+  height: 40px;
+  width: 150px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  margin-top: 20px;
+  background-color: transparent;
+  border: none;
+  color: #fff;
+  border-radius: 10px;
+  transition: all 0.3s ease;
 }
 
 .button-logout:hover {
-    background-color: #fff;
-    color: #1652F9;
-    border-radius: 10px;
-    font-weight: 500;
-    cursor: pointer;
+  background-color: #fff;
+  color: #1652f9;
+  border-radius: 10px;
+  font-weight: 500;
+  cursor: pointer;
 }
