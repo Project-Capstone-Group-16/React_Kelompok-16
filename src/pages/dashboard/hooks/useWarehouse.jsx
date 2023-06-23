@@ -1,6 +1,6 @@
+import { message } from 'antd'
 import { useCallback, useState } from 'react'
 import { api } from '../../../api'
-import { message } from 'antd'
 
 export const useWarehouse = () => {
   const [isLoading, setIsLoading] = useState(false)
@@ -12,7 +12,6 @@ export const useWarehouse = () => {
       const res = await api.getWarehouse()
       setDataWarehouse(res.data.data)
     } catch (err) {
-      console.log({ err })
       message.open({
         type: 'error',
         content: `${err?.message}`,

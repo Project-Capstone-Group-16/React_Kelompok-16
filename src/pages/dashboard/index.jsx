@@ -4,10 +4,10 @@ import { iconProfile } from '../../assets/icons/admin'
 import LoadingComponent from './../../components/loadingComponent/index'
 import Diagram from './diagram'
 import { useDashboard } from './hooks/useDashboard'
+import { useWarehouse } from './hooks/useWarehouse'
 import Loker from './loker'
 import Persentasi from './persentasi'
 import styles from './styles.module.css'
-import { useWarehouse } from './hooks/useWarehouse'
 
 const Dashboard = () => {
   const [isLoadingDashboard, dataDashboard, getDataDashboard] = useDashboard()

@@ -10,7 +10,6 @@ const RegisterPage = () => {
   const navigate = useNavigate()
   const [isLoading, register] = useRegister()
   const onRegister = (values) => {
-    console.log('values', values)
     const data = {
       first_name: values.first_name,
       last_name: values.last_name,

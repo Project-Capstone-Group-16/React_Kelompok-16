@@ -41,10 +41,12 @@ label.label-radio-btn-wrapper-custom:hover {
 }
 
 .img-pengguna {
-  margin-bottom: 16px;
+  border-radius: 50%;
+  border: 1px solid #e1e1e1;
 }
 
 .username-pengguna {
+  margin-top: 16px;
   font-size: 15px;
   font-weight: 700;
 }
@@ -105,6 +107,8 @@ label.label-radio-btn-wrapper-custom:hover {
 
 .img-pegawai {
   margin-bottom: 16px;
+  border-radius: 50%;
+  border: 1px solid #e1e1e1;
 }
 
 .username-pegawai {

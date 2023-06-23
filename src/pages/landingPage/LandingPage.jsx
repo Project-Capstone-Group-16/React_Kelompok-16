@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { BurgerSVG, logo } from '../../assets/svg'
 import { menu } from './constants'
 import FirstSection from './ekplorasi/first-section'

@@ -1,6 +1,6 @@
+import { message } from 'antd'
 import { useCallback, useState } from 'react'
 import { api } from '../../../api/index'
-import { message } from 'antd'
 
 const useKelolaTransaksiApi = () => {
   const [isLoading, setIsLoading] = useState(false)
@@ -12,7 +12,6 @@ const useKelolaTransaksiApi = () => {
       const res = await api.getTransaction()
       setDataTransaction(res?.data?.data)
     } catch (err) {
-      console.log({ err })
       message.open({
         type: 'error',
         content: `${err?.message}`,

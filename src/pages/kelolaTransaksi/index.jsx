@@ -1,11 +1,9 @@
-import React, { useEffect, useState } from 'react'
-import styles from './styles.module.css'
-import { kelolaTransaksi } from './constant'
 import { Image, Pagination } from 'antd'
-import { api } from '../../api'
 import moment from 'moment'
-import useKelolaTransaksiApi from './hooks/useKelolaTransaksi'
+import React, { useEffect, useState } from 'react'
 import LoadingComponent from './../../components/loadingComponent/index'
+import useKelolaTransaksiApi from './hooks/useKelolaTransaksi'
+import styles from './styles.module.css'
 const KelolaTransaksi = () => {
   const [page, setPage] = useState(1)
   const start = (page - 1) * 2
@@ -16,7 +14,6 @@ const KelolaTransaksi = () => {
   }
 
   const [isLoadingKelolaTransaski, dataTransaction, getTransaction] = useKelolaTransaksiApi()
-  console.log(dataTransaction)
 
   useEffect(() => {
     getTransaction()

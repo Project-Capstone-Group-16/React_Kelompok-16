@@ -84,7 +84,13 @@ const Loker = ({ data }) => {
           ))}
           <div className={styles['container-pagination']}>
             {data ? (
-              <Pagination defaultCurrent={1} value={page} total={data?.length} pageSize={1} onChange={handlePaginate} />
+              <Pagination
+                defaultCurrent={1}
+                value={page}
+                total={data?.length}
+                pageSize={1}
+                onChange={handlePaginate}
+              />
             ) : null}
           </div>
         </div>

@@ -1,4 +1,4 @@
-import { UploadOutlined } from '@ant-design/icons'
+import { UploadOutlined, UserOutlined } from '@ant-design/icons'
 import {
   Avatar,
   Button,
@@ -26,7 +26,6 @@ import { useDeleteStaff, useGetStaff, usePostStaff, useUpdateStaff } from './hoo
 import useUploadImage from './hooks/useUploadImage'
 import { useGetUsers } from './hooks/useUsers'
 import styles from './styles.module.css'
-import { FORMAT_DATE } from '../../helpers'
 
 const KelolaAkun = () => {
   const { TextArea } = Input
@@ -91,8 +90,6 @@ const KelolaAkun = () => {
 
   //   Add Data Pegawai
   const onAdd = (values) => {
-    console.log(values)
-
     createStaff({ ...values, birth_date: dayjs(values.birth_date).format('DD/MM/YYYY') }, () => {
       getStaff()
       formStaff.resetFields()
@@ -176,14 +173,14 @@ const KelolaAkun = () => {
                 <Row gutter={[40]} align="middle">
                   <Col span={8}>
                     <Card className={styles['card-profil-pengguna']}>
-                      <Avatar
+                      <Image
+                        width={150}
+                        height={150}
                         className={styles['img-pengguna']}
-                        shape="circle"
-                        size={90}
-                        src={user?.image_url ? user?.image_url : iconProfile}
+                        src={user?.image_url ? user.image_url : iconProfile}
+                        alt="Profile Penguna"
                       />
                       <p className={styles['username-pengguna']}>{user?.fullname}</p>
-
                       <p className={styles['histori-pengguna']}>
                         Histori Penyimpanan : <br /> <span>{`${user?.transaction_histroies}x Penyimpanan`}</span>
                       </p>
@@ -444,11 +441,11 @@ const KelolaAkun = () => {
                 <Row gutter={[40]} align="middle">
                   <Col span={8}>
                     <Card className={styles['card-profil-pegawai']}>
-                      <Avatar
+                      <Image
                         className={styles['img-pegawai']}
-                        shape="circle"
-                        size={150}
-                        src={staff?.image_url ? staff?.image_url : defaultImage}
+                        src={staff?.image_url ? staff?.image_url : iconProfile}
+                        width={150}
+                        height={150}
                       />
                       <p className={styles['username-pegawai']}>{staff?.full_name}</p>
                     </Card>

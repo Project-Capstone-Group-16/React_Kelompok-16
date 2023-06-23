@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from 'react'
-import styles from './styles.module.css'
 import { Area } from '@ant-design/charts'
+import React, { useState } from 'react'
+import styles from './styles.module.css'
 
 const Diagram = () => {
   const [data, setData] = useState([
