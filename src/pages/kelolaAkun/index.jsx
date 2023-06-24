@@ -93,6 +93,8 @@ const KelolaAkun = () => {
     createStaff({ ...values, birth_date: dayjs(values.birth_date).format('DD/MM/YYYY') }, () => {
       getStaff()
       formStaff.resetFields()
+      setImageUrl()
+      setOpenModal(false)
     })
 
     setTimeout(() => {
@@ -112,6 +114,7 @@ const KelolaAkun = () => {
       getStaff()
       formStaff.resetFields()
       setOpenModal(false)
+      setImageUrl()
     })
   }
 
@@ -369,6 +372,7 @@ const KelolaAkun = () => {
                   ]}
                 >
                   <Select
+                    id="occupation"
                     placeholder="Pilih Jabatan"
                     options={[
                       { value: 'Manager', label: 'Manager' },
@@ -392,6 +396,7 @@ const KelolaAkun = () => {
                 >
                   <Select
                     placeholder="Pilih Jenis Kelamin"
+                    getPopupContainer={(trigger) => trigger.parentElement}
                     options={[
                       { value: 'Pria', label: 'Pria' },
                       { value: 'Wanita', label: 'Wanita' },

@@ -37,10 +37,7 @@ const KelolaTransaksi = () => {
                   <td className={styles['kategori-item']}>kategori loker</td>
                   <td>:</td>
                   <td className={styles['with-span']}>
-                    &nbsp; {item.Locker.LockerType.name} -{' '}
-                    {item.Locker.LockerType.ID.length > 10
-                      ? item.Locker.LockerType.ID
-                      : `0${item.Locker.LockerType.ID}`}
+                    &nbsp; {item.Locker.LockerType.name} - {item.Locker.name}
                   </td>
                 </tr>
               </thead>

@@ -49,10 +49,8 @@ const Card = ({ data, onEdit, refetch }) => {
             onConfirm={onDelete}
             okText="Yes"
             cancelText="No"
-            disabled={true}
           >
-            {/* <button className={styles['delete-button']}>Hapus</button> */}
-            <Button disabled={true}>Hapus</Button>
+            <button className={styles['delete-button']}>Hapus</button>
           </Popconfirm>
         </div>
       </div>
