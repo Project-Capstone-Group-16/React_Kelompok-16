@@ -1,6 +1,5 @@
-import { UploadOutlined, UserOutlined } from '@ant-design/icons'
+import { UploadOutlined } from '@ant-design/icons'
 import {
-  Avatar,
   Button,
   Card,
   Col,
@@ -241,7 +240,13 @@ const KelolaAkun = () => {
         <section id="section-pegawai">
           {isLoadingStaff ? <LoadingComponent /> : null}
           <Row>
-            <Button className={styles['add-data-btn']} type="primary" size="large" onClick={showModal}>
+            <Button
+              id="btn-input-pegawai"
+              className={styles['add-data-btn']}
+              type="primary"
+              size="large"
+              onClick={showModal}
+            >
               Input Data
             </Button>
 
@@ -256,6 +261,7 @@ const KelolaAkun = () => {
                 isEdit ? (
                   <Row justify="space-between">
                     <Button
+                      id="btn-reset-pegawai"
                       key="reset"
                       type="primary"
                       onClick={onResetInput}
@@ -266,6 +272,7 @@ const KelolaAkun = () => {
                     </Button>
 
                     <Button
+                      id="btn-simpan-pegawai"
                       key="submit"
                       htmlType="submit"
                       type="primary"
@@ -279,11 +286,12 @@ const KelolaAkun = () => {
                   </Row>
                 ) : (
                   <Row justify="space-between">
-                    <Button key="reset" type="primary" onClick={onCancel} size="middle" danger>
+                    <Button id="btn-reset-pegawai" key="reset" type="primary" onClick={onCancel} size="middle" danger>
                       Cancel
                     </Button>
 
                     <Button
+                      id="btn-submit-pegawai"
                       key="submit"
                       htmlType="submit"
                       type="primary"
@@ -313,6 +321,7 @@ const KelolaAkun = () => {
                     <div className={styles['image-container']}>
                       <Image src={imageUrl} width={100} height={100} />
                       <Button
+                        id="btn-delete-image"
                         type="link"
                         danger
                         onClick={() => {
@@ -333,7 +342,7 @@ const KelolaAkun = () => {
                       onChange={handleUpload}
                       disabled={isLoadingImage}
                     >
-                      <Button icon={<UploadOutlined />}>
+                      <Button id="btn-upload-image" icon={<UploadOutlined />}>
                         Upload Foto {!!isLoadingImage && <Spin size="small" style={{ paddingLeft: 10 }} />}
                       </Button>
                     </Upload>
@@ -516,6 +525,7 @@ const KelolaAkun = () => {
                         <Col span={4}>
                           <Space className={styles['action-card']} direction="vertical">
                             <Button
+                              id="btn-ubah-pegawai"
                               className={styles['btn-ubah']}
                               type="primary"
                               onClick={() => {
@@ -534,7 +544,13 @@ const KelolaAkun = () => {
                               }}
                               loading={isLoadingDeleteStaff}
                             >
-                              <Button className={styles['btn-hapus']} type="primary" danger block>
+                              <Button
+                                id="btn-hapus-pegawai"
+                                className={styles['btn-hapus']}
+                                type="primary"
+                                danger
+                                block
+                              >
                                 Hapus
                               </Button>
                             </Popconfirm>
