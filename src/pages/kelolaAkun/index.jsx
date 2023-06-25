@@ -252,7 +252,7 @@ const KelolaAkun = () => {
 
             <Modal
               className={styles['modal-form']}
-              title={isEdit ? 'Ubah Data Warehouse' : 'Tambah Data Warehouse'}
+              title={isEdit ? 'Ubah Data Pegawai' : 'Tambah Data Pegawai'}
               open={openModal}
               width={627}
               onOk={formStaff.submit}
@@ -308,7 +308,7 @@ const KelolaAkun = () => {
               centered
             >
               <Form
-                className={styles['form-data-warehouse']}
+                className={styles['form-data-pegawai']}
                 name="formStaff"
                 form={formStaff}
                 onFinish={isEdit ? onEdit : onAdd}
@@ -316,7 +316,7 @@ const KelolaAkun = () => {
                 size="large"
                 scrollToFirstError={true}
               >
-                <Form.Item label="Upload Foto" name="image_url">
+                <Form.Item label="Upload Foto" name="image_url" rules={[{ required: true }]}>
                   {!!imageUrl ? (
                     <div className={styles['image-container']}>
                       <Image src={imageUrl} width={100} height={100} />
