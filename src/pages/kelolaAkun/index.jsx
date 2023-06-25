@@ -373,6 +373,7 @@ const KelolaAkun = () => {
                 >
                   <Select
                     id="occupation"
+                    getPopupContainer={(trigger) => trigger.parentElement}
                     placeholder="Pilih Jabatan"
                     options={[
                       { value: 'Manager', label: 'Manager' },
@@ -395,6 +396,7 @@ const KelolaAkun = () => {
                   ]}
                 >
                   <Select
+                    id="jenis_kelamin"
                     placeholder="Pilih Jenis Kelamin"
                     getPopupContainer={(trigger) => trigger.parentElement}
                     options={[
